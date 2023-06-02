@@ -11,6 +11,7 @@ class Product(db.Model):
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.String, nullable=False)
     price = db.Column(db.Integer, nullable=False)
+    previewImage = db.Column(db.String, nullable=False)
     available = db.Column(db.Integer, nullable=False)
     createdAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updatedAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
@@ -25,6 +26,7 @@ class Product(db.Model):
             "name": self.name,
             "description": self.description,
             "price": self.price,
+            "previewImage": self.previewImage,
             "available": self.available,
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt
