@@ -1,4 +1,9 @@
 from .db import db, add_prefix_for_prod
+from datetime import datetime
+import os
+
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 class Product(db.Model):
     __tablename__ = "products"
