@@ -10,7 +10,6 @@ class ProductImage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     productId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('products.id')), nullable=False)
     image = db.Column(db.String, nullable=False)
-    description = db.Column(db.String, nullable=False)
     createdAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updatedAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
