@@ -1,12 +1,12 @@
-from app import app, db
-from app.models.product_image import ProductImage
+from app.models import db, ProductImage, environment, SCHEMA
+from sqlalchemy.sql import text
 
+# with app.app_context():
+#     db.drop_all()
+#     db.create_all()
+#     print("table made")
 
-with app.app_context():
-    db.drop_all()
-    db.create_all()
-    print("table made")
-
+def seed_product_images():
     productImage1 = ProductImage(
         productId=1,
         image="https://i.etsystatic.com/5977919/r/il/ce2b8c/2210427839/il_1588xN.2210427839_jnp9.jpg"
@@ -33,6 +33,13 @@ with app.app_context():
                      productImage3,
                      productImage4,
                      productImage5]
-    add_productImages = [db.session.add(item) for item in productImages]
-    
+    _ = [db.session.add(item) for item in productImages]
+    db.session.commit()
+
+def undo_product_images():
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.product_images RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM product_images"))
+        
     db.session.commit()

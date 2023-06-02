@@ -1,12 +1,13 @@
-from app.models.product import Product 
-from app import app, db
+from app.models import db, Product, environment, SCHEMA
+from sqlalchemy.sql import text
 
-with app.app_context():
-    db.drop_all()
-    print("All tables dropped!")
-    db.create_all()
-    print("All tables created!!!")
+# with app.app_context():
+#     db.drop_all()
+#     print("All tables dropped!")
+#     db.create_all()
+#     print("All tables created!!!")
 
+def seed_products():
     product1 = Product(
         userId = 1,
         name = "Personalized cufflinks",
@@ -48,9 +49,13 @@ with app.app_context():
         available = 15
     )
 
-
     all_products = [product1, product2, product3, product4, product5]
-    add_products = [db.session.add(product) for product in all_products]
+    _ = [db.session.add(product) for product in all_products]
     db.session.commit()
-    print("Products created!")
 
+def undo_products():
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.products RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM products"))
+    db.session.commit()
