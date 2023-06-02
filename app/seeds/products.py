@@ -11,7 +11,8 @@ with app.app_context():
         userId = 1,
         name = "Personalized cufflinks",
         description = "These Initial cufflinks will become a wonderful personalized accessory for the groom. You may choose any letters and color for the embroidered monograms.",
-        price = 90.56 ,
+        price = 90.56,
+        previewImage = "https://i.etsystatic.com/5977919/r/il/ce2b8c/2210427839/il_1588xN.2210427839_jnp9.jpg",
         available = 5
     )
     product2 = Product(
@@ -19,6 +20,7 @@ with app.app_context():
         name = "Custom Coffee Mug",
         description = "Ceramic Mug comes with white box. Permanently printed not vinyl",
         price = 10.50,
+        previewImage = "https://i.etsystatic.com/17299734/r/il/9851cf/3405866237/il_1588xN.3405866237_tt7t.jpg",
         available = 10
     )
     product3 = Product(
@@ -26,6 +28,7 @@ with app.app_context():
         name = "Personalized Leather Jewelry Dish",
         description = "It's just a sweet personalized gift for every occasion such as birthday, graduation , bachelorette , wedding , 3rd anniversary, housewarming,Father's Day Gift",
         price = 35.90,
+        previewImage = "https://i.etsystatic.com/9696294/r/il/f75bb3/3611273176/il_1588xN.3611273176_9lxh.jpg",
         available = 6
     )
     product4 = Product(
@@ -33,6 +36,7 @@ with app.app_context():
         name = "Christmas Married Ornament ",
         description = "This Our First Christmas Married Ornament 2022 will make a great keepsake ornament for your family! The name is glued on to the back piece.",
         price = 49,
+        previewImage = "https://i.etsystatic.com/25960492/r/il/a905ac/4233743066/il_1588xN.4233743066_3h5u.jpg",
         available = 7
     )
     product5 = Product(
@@ -40,6 +44,7 @@ with app.app_context():
         name = "Silver Hand Stamped Personalized Music Page Holder",
         description = "Silver Personalized, Hand Stamped Music Book Holder Clip. The perfect gift for the musician in your life!",
         price = 65,
+        previewImage = "https://i.etsystatic.com/9197180/r/il/cee997/3562526079/il_1588xN.3562526079_h3ge.jpg",
         available = 15
     )
 
