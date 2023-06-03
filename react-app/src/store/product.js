@@ -28,6 +28,9 @@ const productReducer = (state = initialState, action) => {
         action.products.forEach(product => {
             newState[product.id] = product
         })
+        default:
+            return newState;
+
     }
 }
 
