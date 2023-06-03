@@ -23,7 +23,7 @@ function LoginFormModal() {
 
   const demouserhandleSubmit = async (e) => {
     e.preventDefault()
-    const data = await dispatch(login({email:"demo@aa.io", password:"password"}))
+    const data = await dispatch(login("demo@aa.io", "password"))
     if (data) {
       setErrors(data);
     } else {
