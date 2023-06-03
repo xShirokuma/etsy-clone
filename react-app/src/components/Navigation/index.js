@@ -8,16 +8,60 @@ function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 
 	return (
-		<ul>
-			<li>
-				<NavLink exact to="/">Home</NavLink>
-			</li>
-			{isLoaded && (
+		<div className='headerContainer'>
+			<ul className='navigation'>
+				<li>
+					<NavLink exact to="/">Home</NavLink>
+				</li>
+				<li>
+					<form>
+						<input type='search' placeholder='Search for anything'></input>
+						<button>
+							<i className="fa-solid fa-magnifying-glass fa-lg" />
+						</button>
+					</form>
+				</li>
+				<li className={sessionUser? '':'hidden'}>
+					<button id='favorites'>
+        				<i className="fa-regular fa-heart fa-lg" />
+      				</button>
+				</li>
+				{isLoaded && (
 				<li>
 					<ProfileButton user={sessionUser} />
 				</li>
-			)}
-		</ul>
+				)}
+				<li>
+					<button id='shoppingCart'>
+						<i className="fa-solid fa-cart-shopping fa-lg" />
+					</button>
+				</li>
+			</ul>
+			<ul className='category'>
+				<li>
+					Jewelry & Accessories
+				</li>
+				<li>
+					Clothing & Shoes
+				</li>
+				<li>
+					Home & Living
+				</li>
+				<li>
+					Wedding & Party
+				</li>
+				<li>
+					Toys & Entertainment
+				</li>
+				<li>
+					Art & Collectibles
+				</li>
+				<li>
+					Gift & Gift Cards
+				</li>
+			</ul>
+		</div>
+		
 	);
 }
 
