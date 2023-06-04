@@ -17,13 +17,13 @@ function Navigation({ isLoaded }){
 					<form>
 						<input type='search' placeholder='Search for anything'></input>
 						<button>
-							<i className="fa-solid fa-magnifying-glass fa-lg" />
+							<i className="fa-solid fa-magnifying-glass fa-xl" />
 						</button>
 					</form>
 				</li>
 				<li className={sessionUser? '':'hidden'}>
 					<button id='favorites'>
-        				<i className="fa-regular fa-heart fa-lg" />
+        				<i className="fa-regular fa-heart fa-xl" />
       				</button>
 				</li>
 				{isLoaded && (
@@ -33,7 +33,7 @@ function Navigation({ isLoaded }){
 				)}
 				<li>
 					<button id='shoppingCart'>
-						<i className="fa-solid fa-cart-shopping fa-lg" />
+						<i className="fa-solid fa-cart-shopping fa-xl" />
 					</button>
 				</li>
 			</ul>
