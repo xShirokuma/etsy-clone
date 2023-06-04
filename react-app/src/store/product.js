@@ -13,23 +13,28 @@ export const fetchProducts = () => async (dispatch) => {
 
     if (res.ok) {
         const products = await res.json();
+        // console.log(products)
         dispatch(getProducts(products));
         return products
     }
 }
 
-const initialState = {}
+const initialState = {
+    allProducts: {}
+}
 
 const productReducer = (state = initialState, action) => {
-    const newState = {}
+    let newState = {}
     switch (action.type) {
         case GET_PRODUCTS:
+        console.log(action.products.products)
         newState = { ...state }
-        action.products.forEach(product => {
-            newState[product.id] = product
+        action.products.products.forEach(product => {
+            newState.allProducts[product.id] = product
         })
-        default:
-            return newState;
+        return newState
+    default:
+        return state;
 
     }
 }
