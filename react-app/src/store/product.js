@@ -49,23 +49,21 @@ const productReducer = (state = initialState, action) => {
     let newState = {}
     switch (action.type) {
         case GET_PRODUCTS:
-        console.log(action.products.products)
-        newState = { ...state }
-        action.products.products.forEach(product => {
-            newState.allProducts[product.id] = product
-        })
-        return newState
+            console.log(action.products.products)
+            newState = { ...state }
+            action.products.products.forEach(product => {
+                newState.allProducts[product.id] = product
+            })
+            return newState
         case GET_SINGLEPRODUCT:
-        newState = { ...state}
-        console.log("newState",newState)
-        newState.singleProduct = { ...action.product }
-        console.log(action.product.id)
-        console.log("neewstate after",newState)
-
-        return newState
-    default:
-        return state;
-
+            newState = { ...state}
+            console.log("newState",newState)
+            newState.singleProduct = { ...action.product }
+            console.log(action.product.id)
+            console.log("neewstate after",newState)
+            return newState
+        default:
+            return state;
     }
 }
 
