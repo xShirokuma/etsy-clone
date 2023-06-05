@@ -1,6 +1,7 @@
 const GET_PRODUCTS = "products/GET_PRODUCTS"
 const GET_SINGLEPRODUCT = "products/GET_SINGLEPRODUCT"
 
+
 //action creator
 const getProducts = (products) => ({
     type: GET_PRODUCTS,
@@ -11,7 +12,6 @@ const getSingleProduct = (product) => ({
     type: GET_SINGLEPRODUCT,
     product
 })
-
 
 
 
@@ -40,6 +40,7 @@ export const fetchSingleProduct = (productId) => async (dispatch) => {
 
 
 
+
 const initialState = {
     allProducts: {},
     singleProduct: {}
@@ -62,6 +63,7 @@ const productReducer = (state = initialState, action) => {
             console.log(action.product.id)
             console.log("neewstate after",newState)
             return newState
+
         default:
             return state;
     }
