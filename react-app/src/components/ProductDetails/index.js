@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
-import { fetchProducts } from "../../store/product";
+import { useParams } from "react-router-dom";
+import { fetchProducts } from "../../store/products";
 import "./productdetails.css";
 
 function ProductDetails(){
 const dispatch = useDispatch();
 const {productId} = useParams()
-const product = (useSelector((state) => state.productsReducer[productId]))
+const product = (useSelector((state) => state.products[productId]))
 
 useEffect(() => {
     dispatch(fetchProducts());

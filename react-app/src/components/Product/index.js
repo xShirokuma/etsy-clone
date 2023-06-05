@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { fetchProducts } from "../../store/product";
+import { fetchProducts } from "../../store/products";
 import "./product.css";
 
 function ProductList() {
   const dispatch = useDispatch();
-  const products = Object.values(useSelector((state) => (state.productsReducer)));
+  const products = Object.values(useSelector((state) => (state.products)));
 
   console.log(`ln 11: ${products}`);
 
