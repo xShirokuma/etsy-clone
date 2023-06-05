@@ -1,36 +1,28 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
-import { fetchSingleProduct } from "../../store/product";
+import { useParams } from "react-router-dom";
+import { fetchProducts } from "../../store/products";
 import "./productdetails.css";
 
-function ProductDetails(){
-const dispatch = useDispatch();
-const {productId} = useParams()
-const product = useSelector((state) => state.products.singleProduct)
-console.log("inside the single product detail", product.product)
+const ProductDetails = () => {
+  const dispatch = useDispatch();
+  const {productId} = useParams()
+  const product = (useSelector((state) => state.products[productId]))
 
-useEffect(() => {
-    dispatch(fetchSingleProduct(productId));
-  }, [dispatch]);
+  useEffect(() => {
+      dispatch(fetchProducts());
+    }, [dispatch]);
 
-return (
-
- <div className="product-single">
-    <h1>Product Details</h1>
- 
-    <div>{product.product?.name}</div>
-    <img src={product.product?.previewImage} />
-    <div>{product.product?.description}</div>
-    <div>{product.product?.price}</div>
-    <div>{product.product?.available}</div>
- 
-
- </div>
-
-)
-
+  return (
+    <div className="product-single">
+        <h1>Product Details</h1>
+        <div>{product?.name}</div>
+        <img src={product?.previewImage} />
+        <div>{product?.description}</div>
+        <div>{product?.price}</div>
+        <div>{product?.available}</div>
+    </div>
+  )
 }
-
 
 export default ProductDetails;

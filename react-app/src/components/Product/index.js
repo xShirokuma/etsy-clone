@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { fetchProducts } from "../../store/product";
+import { fetchProducts } from "../../store/products";
 import "./product.css";
 
-function ProductList() {
+const ProductList = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) =>
-    Object.values(state.products.allProducts)
-  );
+  const products = Object.values(useSelector((state) => (state.products)));
+
+  console.log(`ln 11: ${products}`);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -16,7 +16,7 @@ function ProductList() {
 
   return (
     <div className="card-product">
-      {products.map((product) => (
+      {products?.map((product) => (
         <div key={product.id}>
           <NavLink to={`/products/${product.id}`}>
             <img
