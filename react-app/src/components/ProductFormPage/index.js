@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signUp } from "../../store/session";
 import './ProductFormPage.css'
-import thunkNewProduct from "../../store/product"
+import { thunkNewProduct } from "../../store/product"
 
 const ProductFormPage = () => {
     const dispatch = useDispatch();
@@ -70,7 +70,7 @@ const ProductFormPage = () => {
 
 
     return (
-      <form onSubmit={handleSumbit}>
+      <form onSubmit={handleSubmit} className="productForm">
         <div>
             <h1>Create New Product</h1>
             <div>
@@ -180,6 +180,13 @@ const ProductFormPage = () => {
                     value={available}
                     onChange={(e) => setAvailable(e.target.value)}/>
             </label>
+
+            <div>
+                <button  className="createbutton-product" type="submit" disabled={!!Object.values(errors).length}>
+                    Create Product
+                </button>
+            </div>
+            
         </div>
       </form>
     )

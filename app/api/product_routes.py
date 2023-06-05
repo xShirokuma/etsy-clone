@@ -16,7 +16,7 @@ def get_productDetails(productId):
     product = Product.query.get(productId)
     return {'product': product.to_dict()}
 
-@product_routes.route('/new', methods=["GET", "POST"])
+@product_routes.route('/', methods=["POST"])
 def create_product():
     form = ProductForm()
     if form.validate_on_submit():
@@ -32,6 +32,6 @@ def create_product():
     
     if form.errors:
         print(form.errors)
-        return redirect("/new")
-    
+        return redirect(f"/products/{product.id}")
+
     return "<h1>Product Form<h1>"

@@ -32,7 +32,7 @@
 
 .navigation {
   display: grid;
-  grid-template-columns: 2fr 16fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 16fr 1fr 1fr 1fr 1fr;
   justify-content: space-between;
   align-items: center;
   width: 95%;
