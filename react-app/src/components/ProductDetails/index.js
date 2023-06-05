@@ -18,7 +18,7 @@ useEffect(() => {
 return (
 
  <div className="product-single">
- <h1>Product Details</h1>
+    <h1>Product Details</h1>
  
     <div>{product.product?.name}</div>
     <img src={product.product?.previewImage} />

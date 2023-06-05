@@ -24,7 +24,7 @@ function ProductList() {
               src={product.previewImage}
               alt="products"
             />
-            <div>{product.price}</div>
+            <div>$ {product.price}</div>
           </NavLink>
         </div>
       ))}
