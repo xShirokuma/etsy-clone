@@ -7,8 +7,7 @@ import "./productdetails.css";
 function ProductDetails(){
 const dispatch = useDispatch();
 const {productId} = useParams()
-const product = useSelector((state) =>state.products.singleProduct
-)
+const product = useSelector((state) => state.products.singleProduct)
 console.log("inside the single product detail", product.product)
 
 useEffect(() => {
