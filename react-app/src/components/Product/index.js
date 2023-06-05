@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { fetchProducts } from "../../store/products";
 import "./product.css";
 
-function ProductList() {
+const ProductList = () => {
   const dispatch = useDispatch();
   const products = Object.values(useSelector((state) => (state.products)));
 
