@@ -1,0 +1,29 @@
+
+.image-carousel{
+    padding: 30px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.carousel .slider-wrapper {
+    width: 100%;
+}
+
+.carousel .thumb {
+    width: auto;
+    height: auto;
+    display: flex;
+
+}
+
+.carousel .slide img {
+    height: 100%;
+}
+
+.carousel .carousel-status {
+    display: none;
+}
+
+.carousel .control-dots {
+    display: none;
+}

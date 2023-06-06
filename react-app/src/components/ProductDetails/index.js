@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchProducts } from "../../store/products";
+import ImageCarousel from "./Carousel";
 import "./productdetails.css";
+
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -17,7 +19,10 @@ const ProductDetails = () => {
     <div className="product-single">
         <h1>Product Details</h1>
         <div>{product?.name}</div>
-        <img src={product?.previewImage} />
+        {/* <img src={product?.previewImage} /> */}
+        <div>
+          <ImageCarousel />
+        </div>
         <div>{product?.description}</div>
         <div>{product?.price}</div>
         <div>{product?.available}</div>
