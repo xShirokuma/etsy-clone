@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
 import { authenticate } from "./store/session";
-import { Navigation } from "./components"
+import { Navigation, ProtectedRoute } from "./components"
 import { HomePage, ShopPage, CreateProductPage, UpdateProductPage, ProductPage } from "./pages";
 
 function App() {

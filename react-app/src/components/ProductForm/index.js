@@ -10,17 +10,6 @@ const ProductForm = ({ product, formType }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
-<<<<<<< HEAD
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [price, setPrice] = useState("");
-    const [previewImage, setPreiewImage] = useState("");
-    const [url1, setUrl1] = useState("");
-    const [url2, setUrl2] = useState("");
-    const [url3, setUrl3] = useState("");
-    const [url4, setUrl4] = useState("");
-    const [available, setAvailable] = useState("");
-=======
 
     const [name, setName] = useState(product?.name);
     const [description, setDescription] = useState(product?.description);
@@ -31,7 +20,6 @@ const ProductForm = ({ product, formType }) => {
     const [url3, setUrl3] = useState(product?.url3);
     const [url4, setUrl4] = useState(product?.url4);
     const [available, setAvailable] = useState(product?.available);
->>>>>>> form
 
     const [errors, setErrors] = useState({});
 
