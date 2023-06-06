@@ -25,7 +25,17 @@ def create_product():
             available=form.data["available"])
         db.session.add(product)
         db.session.commit()
+
+        imageUrls = [form.data["previewImage"], form.data["url1"], form.data["url2"], form.data["url3"], form.data["url4"]]
+        for imageUrl in imageUrls:
+            productImage = ProductImage(
+                image = imageUrl,
+                productId = product.id
+            )
+            db.session.add(productImage)
+        db.session.commit()
         return {'product': product.to_dict()}
+    
     if form.errors:
         print(form.errors)
 
@@ -56,3 +66,10 @@ def edit_product(productId):
     else:
         print(form.errors)
         return "<h1>Product Form<h1>"
+
+@product_routes.route('/<int:productId>', methods=["DELETE"])
+def delete_product(productId):
+    product = Product.query.get(productId)
+    db.session.delete(product)
+    db.session.commit()
+    return f"Sucessfully deleted "

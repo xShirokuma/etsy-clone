@@ -4,6 +4,8 @@ import "./ShopPage.css"
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../store/products"
 import { useHistory } from "react-router-dom";
+import OpenModalButton from '../../components/OpenModalButton'
+import DeleteProduct from '../../components/DeleteProduct'
 
 const ShopPage = () => {
     const dispatch = useDispatch();
@@ -45,7 +47,10 @@ const ShopPage = () => {
                 </NavLink>
                 <div>
                     <button onClick={(e)=>history.push(`/products/${product.id}/edit`)}>Edit Product</button>
-                    <button>Delete Product</button>
+                    {/* <button onClick={(e)=>history.push(`/products/${product.id}/`)}>Delete Product</button> */}
+                    <OpenModalButton 
+                             buttonText="Delete" modalComponent={<DeleteProduct productId={product.id} />} 
+                             /> 
                 </div>
             </div>
             ))}

@@ -28,7 +28,7 @@ function Navigation({ isLoaded }){
 				</li>
 				<li className={sessionUser? '':'hidden'}>
     				<Link id='shop' to = "/shop">
-    				<i class="fa-solid fa-shop"></i>
+    				<i classNa="fa-solid fa-shop"></i>
           			</Link>
     			</li>
 				{isLoaded && (
