@@ -17,7 +17,7 @@ def create_product():
     form['csrf_token'].data = request.cookies.get('csrf_token')
     if form.validate_on_submit():
         product = Product(
-            userId=3,
+            userId=current_user.id,
             name=form.data["name"],
             description=form.data["description"],
             price=form.data["price"],
