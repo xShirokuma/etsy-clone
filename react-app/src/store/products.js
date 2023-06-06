@@ -36,15 +36,8 @@ export const thunkNewProduct = (product,images) => async (dispatch) => {
 
     let newProduct 
     if(response.ok) {
-        newProduct = await response.json();
-        for(let i = 0; i < images.length; i++){
-            const res = await fetch (`/api/products/${newProduct.id}/images`,{
-                method:'POST',
-                headers:{ "Content-Type" : 'application/json' },
-                body: JSON.stringify(images[i])
-            })
-        } 
-        dispatch(createProduct(newProduct))
+        newProduct = response.json();
+        await dispatch(createProduct(newProduct))
     } 
     
     return newProduct;  

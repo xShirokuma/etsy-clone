@@ -25,7 +25,17 @@ def create_product():
             available=form.data["available"])
         db.session.add(product)
         db.session.commit()
+
+        imageUrls = [form.data["previewImage"], form.data["url1"], form.data["url2"], form.data["url3"], form.data["url4"]]
+        for imageUrl in imageUrls:
+            productImage = ProductImage(
+                image = imageUrl,
+                productId = product.id
+            )
+            db.session.add(productImage)
+        db.session.commit()
         return {'product': product.to_dict()}
+    
     if form.errors:
         print(form.errors)
 

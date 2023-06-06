@@ -59,8 +59,7 @@ const ProductForm = ({ product, formType }) => {
             url1,
             url2,
             url3,
-            url4,
-            available
+            url4
         }
 
         const images = [url1, url2, url3, url4]
@@ -69,7 +68,7 @@ const ProductForm = ({ product, formType }) => {
         if(formType === 'Create a New Product'){
             let createdProduct = await dispatch(thunkNewProduct(product,images));
             if (createdProduct){
-            history.push(`/products/${product.id}`)
+                history.push(`/products/${createdProduct.product.id}`)
             }
         }else if(formType === 'Update your product'){
             console.log("what is product:", product)
