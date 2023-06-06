@@ -12,7 +12,7 @@ const ProductFormPage = () => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
-    const [preivewImage, setPreiewImage] = useState("");
+    const [previewImage, setPreiewImage] = useState("");
     const [url1, setUrl1] = useState("");
     const [url2, setUrl2] = useState("");
     const [url3, setUrl3] = useState("");
@@ -32,8 +32,8 @@ const ProductFormPage = () => {
         if (price==="") {
             errors.price = "Price is required";
         }
-        if (preivewImage==="") {
-            errors.preivewImage = "PreivewImage is required";
+        if (previewImage==="") {
+            errors.previewImage = "previewImage is required";
         }
         if (url1.match(/\.(jpeg|jpg|png)$/) === null || url2.match(/\.(jpeg|jpg|png)$/) === null || url3.match(/\.(jpeg|jpg|png)$/) === null || url4.match(/\.(jpeg|jpg|png)$/) === null ) {
             errors.url1 = "Image URL must end in .png, .jpg, or .jpeg";
@@ -42,7 +42,7 @@ const ProductFormPage = () => {
             errors.available = "Available is required";
         }
         setErrors(errors);
-    },[name,description,price,description,preivewImage,url1,url2,url3,url4])
+    },[name,description,price,description,previewImage,url1,url2,url3,url4])
     
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -51,7 +51,7 @@ const ProductFormPage = () => {
             name,
             description,
             price,
-            preivewImage,
+            previewImage,
             url1,
             url2,
             url3,
@@ -110,14 +110,14 @@ const ProductFormPage = () => {
             </label>
 
             <div>
-                <h4>PreivewImage</h4>
-                <h4 className='formErrors'>{errors?.preivewImage}</h4>
+                <h4>previewImage</h4>
+                <h4 className='formErrors'>{errors?.previewImage}</h4>
             </div>
             <label>
                 <input 
                     type='text'
-                    placeholder='PreivewImage'
-                    value={preivewImage}
+                    placeholder='previewImage'
+                    value={previewImage}
                     onChange={(e) => setPreiewImage(e.target.value)}/>
             </label>
 

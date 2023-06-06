@@ -19,19 +19,21 @@ def get_productDetails(productId):
 @product_routes.route('/', methods=["POST"])
 def create_product():
     form = ProductForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         product = Product(
-                          name=form.data["name"],
-                          description=form.data["description"],
-                          price=form.data["price"],
-                          preivewImage=form.data["preivewImage"],
-                          available=form.data["available"])
+            userId=3,
+            name=form.data["name"],
+            description=form.data["description"],
+            price=form.data["price"],
+            previewImage=form.data["previewImage"],
+            available=form.data["available"])
         db.session.add(product)
         db.session.commit()
-        return redirect("/")
+        return {'product': product.to_dict()}
+    else:
+        print(form.errors)
+        return "<h1>Product Form<h1>"
     
     if form.errors:
         print(form.errors)
-        return redirect(f"/products/{product.id}")
-
-    return "<h1>Product Form<h1>"
