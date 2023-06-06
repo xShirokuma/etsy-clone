@@ -1,10 +1,58 @@
 from flask import Blueprint, jsonify, session, request, redirect
-from app.models import db, Product, ProductImage
+from app.models import db, Product, ProductImage, Review, ReviewImage
 from flask_login import current_user, login_required
-from app.forms import ProductForm
+from app.forms import ProductForm, ReviewForm
 
 
 product_routes = Blueprint('products', __name__)
+
+@product_routes.route('<int:productId>/reviews/<int:reviewId>')
+def update_review(reviewId):
+    review = Review.query.get(reviewId)
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    #review, stars
+    if form.validate_on_submit():
+        if form.data["review"]:
+            review.review = form.data["review"]
+        if form.data["stars"]:
+            review.stars = form.data["stars"]
+        
+        db.session.commit()
+        return {'review': review.to_dict()}
+    else:
+        print(form.errors)
+
+@product_routes.route('<int:productId>/reviews/<int:reviewId>')
+def delete_review(reviewId):
+    review = Review.query.get(reviewId)
+    db.session.delete(review)
+    db.session.commit()
+    return f"Sucessfully deleted"
+
+@product_routes.route('<int:productId>/reviews')
+def create_review(productId):
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies.get('csrf_token')
+    if form.validate_on_submit():
+        review = Review(
+            productId = productId,
+            userId=current_user.id,
+            review=form.data["review"],
+            stars=form.data["stars"]
+        )
+        db.session.add(review)
+        db.session.commit()
+
+        reviewUrls = [form.data["url1"], form.data["url2"]]
+        for imageUrl in reviewUrls:
+            reviewImage = ReviewImage(
+                image = imageUrl,
+                reviewId = review.Id
+            )
+            db.session.add(reviewImage)
+        db.session.commit()
+        return {'review': review.to_dict()}
 
 @product_routes.route('/<int:productId>')
 def get_productDetails(productId):
