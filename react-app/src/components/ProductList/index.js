@@ -8,8 +8,6 @@ const ProductList = () => {
   const dispatch = useDispatch();
   const products = Object.values(useSelector((state) => (state.products)));
 
-  console.log(`ln 11: ${products}`);
-
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);

@@ -25,14 +25,13 @@
   border-bottom: solid 2px rgb(222, 219, 219);
   width: 100%;
   height: 110px;
-  position: fixed;
   top: 0;
   background-color: white;
 }
 
 .navigation {
   display: grid;
-  grid-template-columns: 2fr 16fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 16fr 1fr 1fr 1fr 1fr;
   justify-content: space-between;
   align-items: center;
   width: 95%;

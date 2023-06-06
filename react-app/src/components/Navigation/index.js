@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
@@ -26,7 +26,13 @@ function Navigation({ isLoaded }){
         				<i className="fa-regular fa-heart fa-xl" />
       				</button>
 				</li>
+				<li className={sessionUser? '':'hidden'}>
+    				<Link id='shop' to = "/shop">
+    				<i class="fa-solid fa-shop"></i>
+          			</Link>
+    			</li>
 				{isLoaded && (
+					
 				<li>
 					<ProfileButton user={sessionUser} />
 				</li>
