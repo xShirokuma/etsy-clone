@@ -1,6 +1,7 @@
 const GET_PRODUCTS = "products/GET_PRODUCTS"
 const CREATE_PRODUCT = "products/CREATE_PRODUCT"
 const EDIT_PRODUCT = "products/EDIT_PRODUCT"
+const DELETE_PRODUCT = "products/DELETE_PRODUCT"
 
 //action creator
 const getProducts = (products) => ({
@@ -15,6 +16,11 @@ const editProduct = (editProduct) => ({
     type: EDIT_PRODUCT,
     editProduct
 })
+const deleteProduct = (deleteProductId) => ({
+    type: DELETE_PRODUCT,
+    deleteProductId
+})
+
 
 //Thunk Action Creators
 export const fetchProducts = () => async (dispatch) => {
@@ -58,6 +64,18 @@ export const thunkEditProduct = (product) => async (dispatch) => {
     };
 }
 
+export const thunkDeleteProduct = (productId) => async (dispatch) => {
+    console.log("inside the delete thunk",productId)
+    const response = await fetch(`/api/products/${productId}`,{
+    method:'DELETE'
+    })
+    if(response.ok) {
+      const Producttodelete = await response.json();
+      dispatch(deleteProduct(Producttodelete.id))
+      return Producttodelete
+    }
+  }
+
 
 
 
@@ -79,6 +97,10 @@ const productsReducer = (state = initialState, action) => {
         case EDIT_PRODUCT:
             newState = { ...state}
             newState[action.editProduct.id] = action.editProduct
+            return newState
+        case DELETE_PRODUCT:
+            newState = { ...state}
+            delete newState[action.deleteProductId] 
             return newState
         default:
             return state;

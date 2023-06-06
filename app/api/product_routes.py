@@ -66,3 +66,10 @@ def edit_product(productId):
     else:
         print(form.errors)
         return "<h1>Product Form<h1>"
+
+@product_routes.route('/<int:productId>', methods=["DELETE"])
+def delete_product(productId):
+    product = Product.query.get(productId)
+    db.session.delete(product)
+    db.session.commit()
+    return f"Sucessfully deleted "
