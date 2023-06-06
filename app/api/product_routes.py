@@ -29,12 +29,11 @@ def create_product():
     if form.errors:
         print(form.errors)
 
-<<<<<<< HEAD
 @product_routes.route('/')
 def get_products():
     products = Product.query.all()
     return {'products': [product.to_dict() for product in products]}
-=======
+
 @product_routes.route('/<int:productId>', methods=["PUT"])
 def edit_product(productId):
     product = Product.query.get(productId)
@@ -57,4 +56,3 @@ def edit_product(productId):
     else:
         print(form.errors)
         return "<h1>Product Form<h1>"
->>>>>>> form
