@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
 import { authenticate } from "./store/session";
-import { Navigation } from "./components"
+import { ProtectedRoute, Navigation } from "./components"
 import { HomePage, ShopPage, CreateProductPage, ProductPage } from "./pages";
 
 function App() {
@@ -24,12 +24,12 @@ function App() {
           <Route exact path="/shop" >
             <ShopPage />
           </Route>
-          <Route exact path='/products/new'>
+          <ProtectedRoute exact path='/products/new'>
             <CreateProductPage />
-          </Route>
-          {/* <Route exact path='/products/:productId/edit'>
+          </ProtectedRoute>
+          {/* <ProtectedRoute exact path='/products/:productId/edit'>
             <ProductForm />
-          </Route> */}
+          </ProtectedRoute> */}
           <Route exact path="/products/:productId" >
             <ProductPage />
           </Route>

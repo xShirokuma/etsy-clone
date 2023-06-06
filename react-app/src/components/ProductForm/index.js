@@ -17,7 +17,7 @@ const ProductFormPage = () => {
     const [url2, setUrl2] = useState("");
     const [url3, setUrl3] = useState("");
     const [url4, setUrl4] = useState("");
-    const [available, setAvailable] = useState([]);
+    const [available, setAvailable] = useState("");
 
     const [errors, setErrors] = useState({});
 
@@ -42,7 +42,7 @@ const ProductFormPage = () => {
             errors.available = "Available is required";
         }
         setErrors(errors);
-    },[name,description,price,description,previewImage,url1,url2,url3,url4])
+    },[name,description,price,available,previewImage,url1,url2,url3,url4])
     
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -51,6 +51,7 @@ const ProductFormPage = () => {
             name,
             description,
             price,
+            available,
             previewImage,
             url1,
             url2,

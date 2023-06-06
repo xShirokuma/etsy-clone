@@ -1,7 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, FloatField, IntegerField, URLField, SubmitField
-from wtforms.validators import DataRequired, Length, NumberRange, ValidationError
-from app.models import User
+from wtforms.validators import DataRequired, Length, NumberRange
 
 class ProductForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired(), Length(max=255)])
