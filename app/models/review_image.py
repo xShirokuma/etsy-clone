@@ -17,7 +17,6 @@ class ReviewImage(db.Model):
             "id": self.id,
             "reviewId": self.reviewId,
             "imageUrl": self.image,
-            "review": self.review.to_dict(),
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt
        }

@@ -32,6 +32,7 @@ class Product(db.Model):
             "available": self.available,
             "images": [image.to_dict() for image in self.images],
             "user": self.user.to_dict(),
+            "reviews": [review.to_dict() for review in self.reviews],
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt
        }
