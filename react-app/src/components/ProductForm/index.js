@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signUp } from "../../store/session";
-import './ProductFormPage.css'
+import './ProductForm.css'
 import { thunkNewProduct } from "../../store/products"
 
 const ProductFormPage = () => {
@@ -65,7 +65,6 @@ const ProductFormPage = () => {
         if (createdProdcut){
             history.push(`/products/${product.id}`)
         }
-        
     }
 
 

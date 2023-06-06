@@ -27,8 +27,8 @@ function Navigation({ isLoaded }){
       				</button>
 				</li>
 				<li className={sessionUser? '':'hidden'}>
-    				<Link id='favorites' to = '/products/new'>
-    				<i class="fa-solid fa-plus"></i>
+    				<Link id='shop' to = "/shop">
+    				<i class="fa-solid fa-shop"></i>
           			</Link>
     			</li>
 				{isLoaded && (
