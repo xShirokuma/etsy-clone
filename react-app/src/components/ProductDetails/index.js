@@ -7,6 +7,8 @@ import { useHistory, Link } from "react-router-dom";
 import OpenModalButton from "../../components/OpenModalButton";
 import DeleteReview from "../../components/DeleteReview";
 import PostReviewModal from "../../pages/PostReviewPage";
+import EditReview from "../EditReview";
+
 import "./productdetails.css";
 
 const ProductDetails = () => {
@@ -53,6 +55,10 @@ const ProductDetails = () => {
                   <img src={i.imageUrl} alt="Review Image" />
                 </div>
               ))}
+              <OpenModalButton
+                buttonText="Edit"
+                modalComponent={<EditReview productId={productId} review={r}/>}
+              />
               <OpenModalButton
                 buttonText="Delete"
                 modalComponent={<DeleteReview productId={productId} reviewId={r.id}/>}

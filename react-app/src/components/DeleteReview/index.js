@@ -14,9 +14,7 @@ const DeleteReview = ({productId, reviewId}) => {
         const deletedReview= await dispatch(thunkDeleteReview(productId, reviewId))
           e.preventDefault();
           await closeModal()
-          if(deletedReview){
-            history.push('/shop')
-          }
+          
         };
         const handleSubmitno = async (e) => {
           e.preventDefault()
