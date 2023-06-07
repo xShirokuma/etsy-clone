@@ -8,10 +8,10 @@ const UpdateProduct = () => {
     const { productId } = useParams();
     const product = useSelector(state=>state.products[productId])
     console.log("what is product in update page:", product)
-    const dispatch = useDispatch();
-    useEffect(()=>{
-        dispatch(fetchProducts(product))
-    }, [dispatch])
+    // const dispatch = useDispatch();
+    // useEffect(()=>{
+    //     dispatch(fetchProducts(product))
+    // }, [dispatch])
 
     if(!product) return (<></>);        
 

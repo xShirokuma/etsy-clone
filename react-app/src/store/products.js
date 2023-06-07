@@ -140,7 +140,10 @@ const initialState = {}
 
 const productsReducer = (state = initialState, action) => {
     let newState = {}
+    let productId
     let product
+    let newProduct
+    let index
     switch (action.type) {
         case GET_PRODUCTS:
             action.products.forEach(product => {
@@ -148,7 +151,6 @@ const productsReducer = (state = initialState, action) => {
             })
             return newState
         case CREATE_PRODUCT:
-            console.log("test")
             newState = { ...state}
             newState[action.newProduct.id] = action.newProduct
             return newState
@@ -162,21 +164,31 @@ const productsReducer = (state = initialState, action) => {
             return newState
         case CREATE_REVIEW:
             newState = { ...state }
-            product = newState[action.newReview.productId]
-            product.reviews = [...state[action.newReview.productId].reviews, action.newReview]
+            productId = action.newReview.productId
+            product = state[productId]
+            newProduct = { ...product }
+            newState[productId] = newProduct
+            newProduct.reviews = [...product.reviews, action.newReview]
             return newState
         case DELETE_REVIEW:
             newState = { ...state}
-            product = newState[action.review.productId]
-            const index = product.reviews.findIndex(review => review.id === action.review.id)
-            state[action.review.productId].reviews.splice(index, 1)
-            product.reviews = [...state[action.review.productId].reviews]
+            productId = action.review.productId
+            product = state[productId]
+            newProduct = { ...product }
+            newState[productId] = newProduct
+            index = product.reviews.findIndex(review => review.id === action.review.id)
+            newProduct.reviews = [...product.reviews]
+            newProduct.reviews.splice(index, 1)
             return newState
-
         case EDIT_REVIEW:
             newState = { ...state}
-            state[action.review.productId].reviews[action.review.id] = action.review
-            newState[action.review.productId].reviews = [...state[action.review.productId].reviews]
+            productId = action.review.productId
+            product = state[productId]
+            newProduct = { ...product }
+            newState[productId] = newProduct
+            index = product.reviews.findIndex(review => review.id === action.review.id)
+            newProduct.reviews = [...product.reviews]
+            newProduct.reviews[index] = action.review
             return newState
         default:
             return state;
