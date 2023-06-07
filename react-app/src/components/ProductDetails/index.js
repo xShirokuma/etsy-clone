@@ -14,9 +14,15 @@ const ProductDetails = () => {
   const history = useHistory();
   const { productId } = useParams();
   const product = useSelector((state) => state?.products[productId]);
-  // console.log("product",product)
-  // console.log("id",productId)
-  // console.log("reviews",product.reviews)
+
+  const reviewAvg = () => {
+    let totalStars = 0;
+    product.reviews.forEach(review => {
+      totalStars += review.stars
+    })
+    const average = totalStars / product.reviews.length
+    return average.toFixed(1)
+  }
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -26,18 +32,18 @@ const ProductDetails = () => {
     <div className="product-single">
       <h1>Product Details</h1>
       <div>{product?.name}</div>
-      {/* <img src={product?.previewImage} /> */}
       <div>
         <ImageCarousel />
       </div>
+      <h2>Description</h2>
       <div>{product?.description}</div>
-      <div>{product?.price}</div>
-      <div>{product?.available}</div>
+      <div>${product?.price}</div>
+      <div>Available:{product?.available}</div>
       {product?.reviews?.map((r) => {
         return (
           <div>
-            <div>{r?.review}</div>
-            <div>{r?.stars}</div>
+            {product.reviews.length ? `${product.reviews.length} Review(s)` : "New"}
+            {`⭐ ${reviewAvg()}`}
             {product?.reviews?.map((r) => {
               return (
                 <div key={r.id}>
