@@ -1,4 +1,57 @@
 img {
     height: 100px;
-    width: 100px;
+    width: 150px;
+    /* object-fit: cover; */
+}
+
+.bodyContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0 0 0;
+    /* background-image: linear-gradient(#c1e3f3 70%, #ffffff 0%); */
+}
+
+.card-product {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: stretch;
+    align-items: center;
+    gap: 20px;
+    width: 90%;
+}
+
+.imageWithFav {
+    position: relative;
+}
+
+.imageWithFav img {
+    display: block;
+    height: 220px;
+    width: 100%;
+    border-radius: 3%;
+}
+
+.imageWithFav img:hover {
+    box-shadow: 0 0 8px rgb(184, 184, 184);
+}
+
+.imageWithFav button {
+    position: absolute;
+    background-color: white;
+    border: transparent;
+    top: 4%;
+    left: 85%;
+    border-radius: 50%;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageWithFav button:hover {
+    transform: scale(1.1) perspective(1px);
+    cursor: pointer;
 }

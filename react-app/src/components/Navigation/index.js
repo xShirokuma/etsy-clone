@@ -10,25 +10,25 @@ function Navigation({ isLoaded }){
 	return (
 		<div className='headerContainer'>
 			<ul className='navigation'>
-				<li>
+				<li id="logo">
 					<NavLink exact to="/">Home</NavLink>
 				</li>
 				<li>
 					<form>
-						<input type='search' placeholder='Search for anything'></input>
+						<input type='search' placeholder='Search for anything' disabled="True"></input>
 						<button>
 							<i className="fa-solid fa-magnifying-glass fa-xl" />
 						</button>
 					</form>
 				</li>
 				<li className={sessionUser? '':'hidden'}>
-					<button id='favorites'>
+					<NavLink exact to= "/favorite">
         				<i className="fa-regular fa-heart fa-xl" />
-      				</button>
+      				</NavLink>
 				</li>
 				<li className={sessionUser? '':'hidden'}>
     				<Link id='shop' to = "/shop">
-    				<i className="fa-solid fa-shop"></i>
+    				<i className="fa-solid fa-shop fa-lg"></i>
           			</Link>
     			</li>
 				{isLoaded && (
@@ -38,9 +38,9 @@ function Navigation({ isLoaded }){
 				</li>
 				)}
 				<li>
-					<button id='shoppingCart'>
-						<i className="fa-solid fa-cart-shopping fa-xl" />
-					</button>
+					<NavLink exact to= "/">
+						<i className="fa-solid fa-cart-shopping fa-lg" />
+					</NavLink>
 				</li>
 			</ul>
 			<ul className='category'>

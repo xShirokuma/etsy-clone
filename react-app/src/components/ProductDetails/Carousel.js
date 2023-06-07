@@ -12,9 +12,9 @@ const ImageCarousel = () => {
   const { productId } = useParams();
   const product = useSelector((state) => state.products[productId]);
 
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchProducts());
+  // }, [dispatch]);
 
   return (
       <Carousel className="image-carousel">

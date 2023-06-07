@@ -13,39 +13,32 @@ const DeleteProduct = ({productId}) => {
     console.log("component", deleteproduct)
 
     const handleSubmityes = async (e) => {
-        const deletedProduct= await dispatch(thunkDeleteProduct(deleteproduct.id))
-          e.preventDefault();
-          await closeModal()
-          if(deletedProduct){
+        e.preventDefault();
+        const deletedProduct = await dispatch(thunkDeleteProduct(deleteproduct.id))
+        await closeModal()
+        if(deletedProduct){
             history.push('/shop')
           }
-        };
-        const handleSubmitno = async (e) => {
-          e.preventDefault()
-        closeModal()
-        }
-        
-        
-        return(
+    };
+
+    const handleSubmitno = async (e) => {
+      e.preventDefault()
+      closeModal()
+    }
+
+    return(
             
-                <div>
-                <h1>Confirm Delete</h1>
-                <p>Are you sure you want to remove this product from the listings?</p>
-                <form>
-                <div className="delete-buttons">
-                  <button  onClick={handleSubmityes}>Yes </button>
-                  <button  onClick={handleSubmitno}> No </button>
-                  </div>
-                </form>
-                </div>
-                
-            )
-
-
-
-
-
-
+      <div>
+        <h1>Confirm Delete</h1>
+        <p>Are you sure you want to remove this product from the listings?</p>
+        <form>
+          <div className="delete-buttons">
+            <button  onClick={handleSubmityes}>Yes </button>
+            <button  onClick={handleSubmitno}> No </button>
+          </div>
+        </form>
+      </div> 
+    )
 }
 
 export default DeleteProduct

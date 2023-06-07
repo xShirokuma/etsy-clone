@@ -2,6 +2,9 @@ const GET_PRODUCTS = "products/GET_PRODUCTS"
 const CREATE_PRODUCT = "products/CREATE_PRODUCT"
 const EDIT_PRODUCT = "products/EDIT_PRODUCT"
 const DELETE_PRODUCT = "products/DELETE_PRODUCT"
+const CREATE_REVIEW = "products/CREATE_REVIEW"
+const DELETE_REVIEW ="products/DELETE_REVIEW"
+const EDIT_REVIEW = "products/EDIT_REVIEW"
 
 //action creator
 const getProducts = (products) => ({
@@ -16,9 +19,21 @@ const editProduct = (editProduct) => ({
     type: EDIT_PRODUCT,
     editProduct
 })
-const deleteProduct = (deleteProductId) => ({
+const deleteProduct = (productId) => ({
     type: DELETE_PRODUCT,
-    deleteProductId
+    productId
+})
+const createReview = (newReview) => ({
+    type: CREATE_REVIEW,
+    newReview
+})
+const deleteReivew = (review) => ({
+    type: DELETE_REVIEW,
+    review
+})
+const editReview = (review) => ({
+    type: EDIT_REVIEW,
+    review
 })
 
 
@@ -28,7 +43,6 @@ export const fetchProducts = () => async (dispatch) => {
     
     if (res.ok) {
         const {products} = await res.json();
-        console.log(products);
         dispatch(getProducts(products));
     }
 }
@@ -65,17 +79,58 @@ export const thunkEditProduct = (product) => async (dispatch) => {
 }
 
 export const thunkDeleteProduct = (productId) => async (dispatch) => {
-    console.log("inside the delete thunk",productId)
     const response = await fetch(`/api/products/${productId}`,{
-    method:'DELETE'
+        method:'DELETE'
     })
     if(response.ok) {
-      const Producttodelete = await response.json();
-      dispatch(deleteProduct(Producttodelete.id))
-      return Producttodelete
+      dispatch(deleteProduct(productId))
+      return
     }
   }
 
+  //Reviews Thunk
+export const thunkNewReview = (review,productId) => async (dispatch) => {
+    const response = await fetch(`/api/products/${productId}/reviews`,{
+        method:'POST',
+        headers:{ "Content-Type" : 'application/json' },
+        body: JSON.stringify(review)
+    })
+
+    let newReviewObj
+    if(response.ok) {
+        newReviewObj = await response.json();
+        await dispatch(createReview(newReviewObj.review))
+    } 
+    return review;  
+};
+
+export const thunkDeleteReview = (productId, reviewId) => async (dispatch) => {
+    // console.log("inside the delete thunk",productId)
+    const response = await fetch(`/api/products/${productId}/reviews/${reviewId}`,{
+        method:'DELETE'
+    })
+
+    if(response.ok) {
+      const reviewObj = await response.json();
+      dispatch(deleteReivew(reviewObj.review))
+    }
+  }
+
+  export const thunkEditReview = (editreview, productId) => async (dispatch) => {
+    // console.log("inside the delete thunk",productId)
+    // console.log("reviewId in thunk:", reviewId)
+    // console.log("productId in thunk:", productId)
+    const response = await fetch(`/api/products/${productId}/reviews/${editreview.id}`,{
+        method:'PUT',
+        headers:{ "Content-Type" : 'application/json' },
+        body: JSON.stringify(editreview)
+    })
+    if(response.ok) {
+        const reviewEditObj = await response.json();
+        dispatch(editReview(reviewEditObj.review))
+        return reviewEditObj.review;  
+    };
+  }
 
 
 
@@ -83,6 +138,10 @@ const initialState = {}
 
 const productsReducer = (state = initialState, action) => {
     let newState = {}
+    let productId
+    let product
+    let newProduct
+    let index
     switch (action.type) {
         case GET_PRODUCTS:
             action.products.forEach(product => {
@@ -90,7 +149,6 @@ const productsReducer = (state = initialState, action) => {
             })
             return newState
         case CREATE_PRODUCT:
-            console.log("test")
             newState = { ...state}
             newState[action.newProduct.id] = action.newProduct
             return newState
@@ -100,7 +158,35 @@ const productsReducer = (state = initialState, action) => {
             return newState
         case DELETE_PRODUCT:
             newState = { ...state}
-            delete newState[action.deleteProductId] 
+            delete newState[action.productId] 
+            return newState
+        case CREATE_REVIEW:
+            newState = { ...state }
+            productId = action.newReview.productId
+            product = state[productId]
+            newProduct = { ...product }
+            newState[productId] = newProduct
+            newProduct.reviews = [...product.reviews, action.newReview]
+            return newState
+        case DELETE_REVIEW:
+            newState = { ...state}
+            productId = action.review.productId
+            product = state[productId]
+            newProduct = { ...product }
+            newState[productId] = newProduct
+            index = product.reviews.findIndex(review => review.id === action.review.id)
+            newProduct.reviews = [...product.reviews]
+            newProduct.reviews.splice(index, 1)
+            return newState
+        case EDIT_REVIEW:
+            newState = { ...state}
+            productId = action.review.productId
+            product = state[productId]
+            newProduct = { ...product }
+            newState[productId] = newProduct
+            index = product.reviews.findIndex(review => review.id === action.review.id)
+            newProduct.reviews = [...product.reviews]
+            newProduct.reviews[index] = action.review
             return newState
         default:
             return state;

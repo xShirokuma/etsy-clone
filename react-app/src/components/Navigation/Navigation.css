@@ -67,6 +67,10 @@
 }
 
 .navigation a {
+  color: black;
+}
+
+#logo a {
   color: rgb(255, 115, 0);
   font-size: 35px;
 }

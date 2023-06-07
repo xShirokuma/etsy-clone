@@ -15,8 +15,9 @@ class Review(db.Model):
     createdAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updatedAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
-    images = db.relationship("ReviewImage", back_populates="review")
+    images = db.relationship("ReviewImage", back_populates="review", cascade="all, delete-orphan")
     user = db.relationship("User", back_populates="reviews")
+    product = db.relationship("Product", back_populates="reviews")
 
     def to_dict(self):
         return {
@@ -25,8 +26,7 @@ class Review(db.Model):
             "userId": self.userId,
             "review": self.review,
             "stars": self.stars,
-            "images": self.images,
-            "user": self.user,
+            "images": [image.to_dict() for image in self.images],
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt
        }

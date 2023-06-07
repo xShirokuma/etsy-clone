@@ -4,7 +4,8 @@ import { Route, Switch } from "react-router-dom";
 
 import { authenticate } from "./store/session";
 import { Navigation, ProtectedRoute } from "./components"
-import { HomePage, ShopPage, CreateProductPage, UpdateProductPage, ProductPage } from "./pages";
+import { HomePage, ShopPage, CreateProductPage, UpdateProductPage, ProductPage, PostReviewPage, FavoritePage } from "./pages";
+import EditReview from "./components/EditReview";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,9 @@ function App() {
           <Route exact path="/shop" >
             <ShopPage />
           </Route>
+          <Route exact path="/favorite" >
+            <FavoritePage />
+          </Route>
           <ProtectedRoute exact path='/products/new'>
             <CreateProductPage />
           </ProtectedRoute>
@@ -33,6 +37,13 @@ function App() {
           <Route exact path="/products/:productId" >
             <ProductPage />
           </Route>
+          <Route exact path="/products/:productId/review" >
+            <PostReviewPage />
+          </Route>
+          <Route exact path="/products/:productId/review/:reviewId/edit" >
+            <EditReview />
+          </Route>
+
           <Route>
             <h1>Page Not Found</h1>
           </Route>

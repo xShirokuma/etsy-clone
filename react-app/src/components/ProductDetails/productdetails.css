@@ -3,6 +3,8 @@
     padding: 30px;
     display: flex;
     flex-direction: row-reverse;
+    max-width: fit-content;
+    max-height: fit-content;
 }
 
 .carousel .slider-wrapper {
@@ -27,3 +29,19 @@
 .carousel .control-dots {
     display: none;
 }
+
+.carousel {
+    width: fit-content;
+    height: fit-content;
+}
+
+.image-carousel .carousel .thumbs {
+    transform: none !important;
+    transition-duration: 0ms !important;
+}
+
+.carousel img {
+    height: 4.5rem;
+    width: auto;
+}
+
