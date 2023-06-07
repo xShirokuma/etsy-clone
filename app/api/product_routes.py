@@ -24,7 +24,7 @@ def update_review(reviewId):
         print(form.errors)
 
 @product_routes.route('<int:productId>/reviews/<int:reviewId>', methods = ["DELETE"])
-def delete_review(reviewId):
+def delete_review(productId, reviewId):
     review = Review.query.get(reviewId)
     db.session.delete(review)
     db.session.commit()
