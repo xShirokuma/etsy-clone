@@ -2,6 +2,7 @@ const GET_PRODUCTS = "products/GET_PRODUCTS"
 const CREATE_PRODUCT = "products/CREATE_PRODUCT"
 const EDIT_PRODUCT = "products/EDIT_PRODUCT"
 const DELETE_PRODUCT = "products/DELETE_PRODUCT"
+const CREATE_REVIEW = "products/CREATE_REVIEW"
 
 //action creator
 const getProducts = (products) => ({
@@ -20,6 +21,11 @@ const deleteProduct = (deleteProductId) => ({
     type: DELETE_PRODUCT,
     deleteProductId
 })
+const createReview = (review) => ({
+    type: CREATE_REVIEW,
+    review
+})
+
 
 
 //Thunk Action Creators
@@ -76,6 +82,26 @@ export const thunkDeleteProduct = (productId) => async (dispatch) => {
     }
   }
 
+  //Reviews Thunk
+export const thunkNewReview = (review,productId) => async (dispatch) => {
+    console.log("testthunk")
+    const response = await fetch(`/api/products/${productId}/reviews`,{
+        method:'POST',
+        headers:{ "Content-Type" : 'application/json' },
+        body: JSON.stringify(review)
+    })
+
+    let newReview
+    if(response.ok) {
+        newReview = response.json();
+        await dispatch(createReview(newReview))
+    } 
+    
+    return newReview;  
+};
+
+
+
 
 
 
@@ -102,6 +128,12 @@ const productsReducer = (state = initialState, action) => {
             newState = { ...state}
             delete newState[action.deleteProductId] 
             return newState
+        case CREATE_REVIEW:
+            newState = { ...state }
+            index = newState.products.find(action.newReview.productId)
+            newState.products[index].reviews.push(action.newReview)
+            return newState
+
         default:
             return state;
     }

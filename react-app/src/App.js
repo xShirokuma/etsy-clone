@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 
 import { authenticate } from "./store/session";
 import { Navigation, ProtectedRoute } from "./components"
-import { HomePage, ShopPage, CreateProductPage, UpdateProductPage, ProductPage } from "./pages";
+import { HomePage, ShopPage, CreateProductPage, UpdateProductPage, ProductPage, PostReviewPage } from "./pages";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +32,9 @@ function App() {
           </Route>
           <Route exact path="/products/:productId" >
             <ProductPage />
+          </Route>
+          <Route exact path="/products/:productId/review" >
+            <PostReviewPage />
           </Route>
           <Route>
             <h1>Page Not Found</h1>
