@@ -9,7 +9,8 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 20px 0 0 0;
+    padding: 20px 0 0 0;
+    /* background-image: linear-gradient(#c1e3f3 70%, #ffffff 0%); */
 }
 
 .card-product {
@@ -30,6 +31,11 @@ img {
     display: block;
     height: 220px;
     width: 100%;
+    border-radius: 3%;
+}
+
+.imageWithFav img:hover {
+    box-shadow: 0 0 8px rgb(184, 184, 184);
 }
 
 .imageWithFav button {
