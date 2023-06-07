@@ -38,7 +38,6 @@ export const fetchProducts = () => async (dispatch) => {
     
     if (res.ok) {
         const {products} = await res.json();
-        console.log(products);
         dispatch(getProducts(products));
     }
 }
@@ -104,25 +103,21 @@ export const thunkNewReview = (review,productId) => async (dispatch) => {
 
 export const thunkDeleteReview = (productId, reviewId) => async (dispatch) => {
     // console.log("inside the delete thunk",productId)
-    console.log("reviewId in thunk:", reviewId)
-    console.log("productId in thunk:", productId)
     const response = await fetch(`/api/products/${productId}/reviews/${reviewId}`,{
-    method:'DELETE'
+        method:'DELETE'
     })
+
     if(response.ok) {
-      const ReviewtodeleteObj = await response.json();
-      dispatch(deleteReivew(ReviewtodeleteObj.review))
-      return ReviewtodeleteObj
+      const reviewObj = await response.json();
+      dispatch(deleteReivew(reviewObj.review))
     }
   }
-
-
-
 
 const initialState = {}
 
 const productsReducer = (state = initialState, action) => {
     let newState = {}
+    let product
     switch (action.type) {
         case GET_PRODUCTS:
             action.products.forEach(product => {
@@ -144,12 +139,15 @@ const productsReducer = (state = initialState, action) => {
             return newState
         case CREATE_REVIEW:
             newState = { ...state }
-            console.log(newState);
-            newState[action.newReview.productId].reviews.push(action.newReview)
+            product = newState[action.newReview.productId]
+            product.reviews = [...state[action.newReview.productId].reviews, action.newReview]
             return newState
         case DELETE_REVIEW:
             newState = { ...state}
-            delete newState[action.review.productId].reviews[action.review.id]
+            product = newState[action.review.productId]
+            const index = product.reviews.findIndex(review => review.id === action.review.id)
+            state[action.review.productId].reviews.splice(index, 1)
+            product.reviews = [...state[action.review.productId].reviews]
             return newState
         default:
             return state;

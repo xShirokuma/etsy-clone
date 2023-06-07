@@ -15,7 +15,7 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { productId } = useParams();
-  const product = useSelector((state) => state?.products[productId]);
+  const product = useSelector((state) => state.products[productId]);
 
   const reviewAvg = () => {
     let totalStars = 0;
