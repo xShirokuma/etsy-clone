@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
+from.favorties import favorites
 
 class Product(db.Model):
     __tablename__ = "products"
@@ -20,6 +21,12 @@ class Product(db.Model):
     images = db.relationship("ProductImage", back_populates="product", cascade="all, delete-orphan")
     user = db.relationship("User", back_populates="products")
     reviews = db.relationship("Review", back_populates="product", cascade="all, delete-orphan")
+
+    product_favorites = db.relationship(
+        "User",
+        secondary='favorites',
+        back_populates="user_favorites",
+    )
 
     def to_dict(self):
         return {
