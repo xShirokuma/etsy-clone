@@ -5,7 +5,7 @@ import { fetchProducts } from "../../store/products";
 import ImageCarousel from "./Carousel";
 import { useHistory, Link } from "react-router-dom";
 import OpenModalButton from "../../components/OpenModalButton";
-import DeleteReview from "../../components/DeleteProduct";
+import DeleteReview from "../../components/DeleteReview";
 import PostReviewModal from "../../pages/PostReviewPage";
 import "./productdetails.css";
 
@@ -66,10 +66,7 @@ const ProductDetails = () => {
           modalComponent={<PostReviewModal productId={productId} />}
         />
         {/* <button onClick={(e)=>history.push(`/products/${product.id}/delete`)} product={product}>Delete a review</button> */}
-        <OpenModalButton
-          buttonText="Delete"
-          modalComponent={<DeleteReview product={product} />}
-        />
+
       </div>
     </div>
   );
