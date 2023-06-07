@@ -16,6 +16,7 @@ const ProductDetails = () => {
   const history = useHistory();
   const { productId } = useParams();
   const product = useSelector((state) => state.products[productId]);
+  const sessionUser = useSelector((state) => state.session.user);
 
   const reviewAvg = () => {
     let totalStars = 0;
@@ -25,6 +26,15 @@ const ProductDetails = () => {
     const average = totalStars / product.reviews.length;
     return average.toFixed(1);
   };
+
+  let reviewExists = false;
+  if (product?.reviews.length) {
+    for (let i = 0; i < product.reviews.length; i++) {
+      if (product.reviews[i]?.userId === sessionUser?.id) {
+        reviewExists = true;
+      }
+    }
+  }
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -55,6 +65,8 @@ const ProductDetails = () => {
                   <img src={i.imageUrl} alt="Review Image" />
                 </div>
               ))}
+              {sessionUser && review?.userId === sessionUser.id && (
+                <div>
               <OpenModalButton
                 buttonText="Edit"
                 modalComponent={<EditReview productId={productId} review={review}/>}
@@ -62,7 +74,9 @@ const ProductDetails = () => {
               <OpenModalButton
                 buttonText="Delete"
                 modalComponent={<DeleteReview productId={productId} reviewId={review.id}/>}
-              />
+                />
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -71,10 +85,14 @@ const ProductDetails = () => {
       )}
       <div>
         {/* <Link product={product} onClick={(e)=>history.push(`/products/${productId}/review`)} >Post a review</Link> */}
+        {sessionUser &&
+        sessionUser.id !== product?.userId &&
+        !reviewExists && (
         <OpenModalButton
           buttonText="Create"
           modalComponent={<PostReviewModal productId={productId} />}
         />
+        )}
         {/* <button onClick={(e)=>history.push(`/products/${product.id}/delete`)} product={product}>Delete a review</button> */}
 
       </div>
