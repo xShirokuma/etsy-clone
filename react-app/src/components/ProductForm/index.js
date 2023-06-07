@@ -5,7 +5,6 @@ import './ProductForm.css'
 import { thunkNewProduct, thunkEditProduct } from "../../store/products"
 
 const ProductForm = ({ product, formType }) => {
-    console.log("product in page", product)
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
