@@ -11,8 +11,6 @@ const PostReviewModal = ({productId}) => {
     const {closeModal} =  useModal();
     const {newproductId} = useParams()
     const sessionUser = useSelector((state) => state.session.user);
-    console.log("inside the post review comp", productId)
-
 
     const [review, setReview] = useState("");
     const [stars, setStars] = useState(0);
@@ -46,9 +44,9 @@ const PostReviewModal = ({productId}) => {
             url2,
         }
     let createdReview = await dispatch(thunkNewReview(newreview, productId))
-    if (createdReview){
-        history.push(`/products/${productId}`) 
-    }
+    // if (createdReview){
+    //     history.push(`/products/${productId}`) 
+    // }
     closeModal()
     }
    

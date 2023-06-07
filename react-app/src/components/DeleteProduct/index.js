@@ -20,10 +20,10 @@ const DeleteProduct = ({productId}) => {
             history.push('/shop')
           }
         };
-        const handleSubmitno = async (e) => {
-          e.preventDefault()
-        closeModal()
-        }
+    const handleSubmitno = async (e) => {
+      e.preventDefault()
+    closeModal()
+    }
         
         
         return(

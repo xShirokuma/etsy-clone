@@ -28,7 +28,7 @@ def delete_review(productId, reviewId):
     review = Review.query.get(reviewId)
     db.session.delete(review)
     db.session.commit()
-    return f"Sucessfully deleted"
+    return {'review': review.to_dict()}
 
 @product_routes.route('<int:productId>/reviews',methods =['POST'])
 def create_review(productId):
@@ -121,4 +121,4 @@ def delete_product(productId):
     product = Product.query.get(productId)
     db.session.delete(product)
     db.session.commit()
-    return f"Sucessfully deleted "
+    return {'product': product.to_dict()}
