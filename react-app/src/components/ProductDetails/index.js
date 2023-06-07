@@ -15,9 +15,9 @@ const ProductDetails = () => {
   const history = useHistory();
   const {productId} = useParams()
   const product = (useSelector((state) => state?.products[productId]))
-  console.log("product",product)
-  console.log("id",productId)
-  console.log("reviews",product.reviews)
+  // console.log("product",product)
+  // console.log("id",productId)
+  // console.log("reviews",product.reviews)
 
   useEffect(() => {
       dispatch(fetchProducts());
@@ -38,8 +38,8 @@ const ProductDetails = () => {
           product?.reviews?.map(r=> {
             return (
               <div>
-            <div>{r.review}</div>
-            <div>{r.stars}</div>
+            <div>{r?.review}</div>
+            <div>{r?.stars}</div>
             {/* <div>{r.images[0]}</div> */}
             {/* {
             r.images?.map(i =>{
