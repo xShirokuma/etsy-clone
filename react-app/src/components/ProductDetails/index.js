@@ -39,6 +39,7 @@ const ProductDetails = () => {
       <div>{product?.description}</div>
       <div>${product?.price}</div>
       <div>Available:{product?.available}</div>
+      <h2>Reviews</h2>
       {product?.reviews.length ? `${product.reviews.length} Review(s)` : "New"}
       {product?.reviews.length ? `⭐ ${reviewAvg()}` : ''}
       {product?.reviews.length ? (
