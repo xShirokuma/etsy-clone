@@ -53,6 +53,10 @@ const ProductDetails = () => {
                   <img src={i.imageUrl} alt="Review Image" />
                 </div>
               ))}
+              <OpenModalButton
+                buttonText="Delete"
+                modalComponent={<DeleteReview productId={productId} reviewId={r.id}/>}
+              />
             </div>
           ))}
         </div>

@@ -9,11 +9,6 @@ const DeleteReview = ({productId, reviewId}) => {
     const history = useHistory()
     const dispatch = useDispatch()
     const {closeModal} =  useModal();
-    // const deleteproduct = useSelector(state => state?.products[productId])
-    // console.log("component", deleteproduct)
-  //   const { reviewId } = useParams()
-  console.log("reviewId:", reviewId)
-  console.log("productId:", productId)
 
     const handleSubmityes = async (e) => {
         const deletedReview= await dispatch(thunkDeleteReview(productId, reviewId))
