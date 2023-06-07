@@ -1,4 +1,49 @@
 img {
-    height: 100px;
-    width: 100px;
+    height: 220px;
+    width: 100%;
+    /* object-fit: cover; */
+}
+
+.bodyContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 0 0;
+}
+
+.card-product {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: stretch;
+    align-items: center;
+    gap: 20px;
+    width: 90%;
+}
+
+.imageWithFav {
+    position: relative;
+}
+
+.imageWithFav img {
+    display: block;
+}
+
+.imageWithFav button {
+    position: absolute;
+    background-color: white;
+    border: transparent;
+    top: 4%;
+    left: 85%;
+    border-radius: 50%;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageWithFav button:hover {
+    transform: scale(1.1) perspective(1px);
+    cursor: pointer;
 }

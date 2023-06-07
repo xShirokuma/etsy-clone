@@ -39,7 +39,7 @@ const ProductDetails = () => {
       </div>
       <h2>Description</h2>
       <div>{product?.description}</div>
-      <div>${product?.price}</div>
+      <div>${product?.price.toFixed(2)}</div>
       <div>Available:{product?.available}</div>
       <h2>Reviews</h2>
       {product?.reviews.length ? `${product.reviews.length} Review(s)` : "New"}
