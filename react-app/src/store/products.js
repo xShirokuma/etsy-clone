@@ -21,9 +21,9 @@ const deleteProduct = (deleteProductId) => ({
     type: DELETE_PRODUCT,
     deleteProductId
 })
-const createReview = (review) => ({
+const createReview = (newReview) => ({
     type: CREATE_REVIEW,
-    review
+    newReview
 })
 
 
@@ -130,7 +130,7 @@ const productsReducer = (state = initialState, action) => {
             return newState
         case CREATE_REVIEW:
             newState = { ...state }
-            index = newState.products.find(action.newReview.productId)
+            const index = newState.products.find(p => p.id == action.newReview.productId)
             newState.products[index].reviews.push(action.newReview)
             return newState
 

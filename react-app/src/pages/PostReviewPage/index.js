@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams} from "react-router-dom";
+import { thunkNewReview } from "../../store/products";
+import { useModal } from "../../context/Modal";
 import './PostReviewPage.css'
 
-const PostReviewForm = ({product}) => {
+const PostReviewModal = ({productId}) => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const {closeModal} =  useModal();
+    const {newproductId} = useParams()
     const sessionUser = useSelector((state) => state.session.user);
+    console.log("inside the post review comp", productId)
 
 
     const [review, setReview] = useState("");
@@ -32,19 +37,25 @@ const PostReviewForm = ({product}) => {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        review = {
-            productId: product.id,
+        const newreview = {
+            productId: productId,
             userId: sessionUser.id,
             review,
             stars,
             url1,
             url2,
         }
+    let createdReview = await dispatch(thunkNewReview(newreview, productId))
+    if (createdReview){
+        history.push(`/products/${productId}`) 
+    }
+    closeModal()
     }
    
-    const reviewimages = [url1, url2]
+    
 
- //add thunk here!
+ 
+ 
 
     return (
         <form onSubmit={handleSubmit}>
@@ -107,4 +118,4 @@ const PostReviewForm = ({product}) => {
 
 }
 
-export default PostReviewForm
+export default PostReviewModal

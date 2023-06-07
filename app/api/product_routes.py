@@ -6,7 +6,7 @@ from app.forms import ProductForm, ReviewForm
 
 product_routes = Blueprint('products', __name__)
 
-@product_routes.route('<int:productId>/reviews/<int:reviewId>')
+@product_routes.route('<int:productId>/reviews/<int:reviewId>', methods = ["PUT"])
 def update_review(reviewId):
     review = Review.query.get(reviewId)
     form = ReviewForm()
@@ -23,14 +23,14 @@ def update_review(reviewId):
     else:
         print(form.errors)
 
-@product_routes.route('<int:productId>/reviews/<int:reviewId>')
+@product_routes.route('<int:productId>/reviews/<int:reviewId>', methods = ["DELETE"])
 def delete_review(reviewId):
     review = Review.query.get(reviewId)
     db.session.delete(review)
     db.session.commit()
     return f"Sucessfully deleted"
 
-@product_routes.route('<int:productId>/reviews')
+@product_routes.route('<int:productId>/reviews',methods =['POST'])
 def create_review(productId):
     form = ReviewForm()
     form['csrf_token'].data = request.cookies.get('csrf_token')
@@ -38,6 +38,7 @@ def create_review(productId):
         review = Review(
             productId = productId,
             userId=current_user.id,
+            # userId = 3,
             review=form.data["review"],
             stars=form.data["stars"]
         )
@@ -48,7 +49,7 @@ def create_review(productId):
         for imageUrl in reviewUrls:
             reviewImage = ReviewImage(
                 image = imageUrl,
-                reviewId = review.Id
+                reviewId = review.id
             )
             db.session.add(reviewImage)
         db.session.commit()
