@@ -15,7 +15,7 @@ function Navigation({ isLoaded }){
 				</li>
 				<li>
 					<form>
-						<input type='search' placeholder='Search for anything'></input>
+						<input type='search' placeholder='Search for anything' disabled="True"></input>
 						<button>
 							<i className="fa-solid fa-magnifying-glass fa-xl" />
 						</button>

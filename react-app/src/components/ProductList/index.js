@@ -13,20 +13,29 @@ const ProductList = () => {
   }, [dispatch]);
 
   return (
-    <div className="card-product">
+    <div className="bodyContainer">
+      <div className="card-product">
       {products?.map((product) => (
         <div key={product.id}>
           <NavLink to={`/products/${product.id}`}>
-            <img
+            <div className="imageWithFav">
+              <img
               className="product-image"
               src={product.previewImage}
               alt="products"
-            />
-            <div>$ {product.price}</div>
+              />
+              <button>
+        				<i className="fa-regular fa-heart fa-lg" />
+      				</button>
+            </div>
+            
+            <div>$ {product.price.toFixed(2)}</div>
           </NavLink>
         </div>
-      ))}
+        ))}
+      </div>
     </div>
+    
   );
 }
 
