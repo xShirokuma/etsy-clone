@@ -19,9 +19,9 @@ const editProduct = (editProduct) => ({
     type: EDIT_PRODUCT,
     editProduct
 })
-const deleteProduct = (deleteProductId) => ({
+const deleteProduct = (productId) => ({
     type: DELETE_PRODUCT,
-    deleteProductId
+    productId
 })
 const createReview = (newReview) => ({
     type: CREATE_REVIEW,
@@ -79,14 +79,12 @@ export const thunkEditProduct = (product) => async (dispatch) => {
 }
 
 export const thunkDeleteProduct = (productId) => async (dispatch) => {
-    console.log("inside the delete thunk",productId)
     const response = await fetch(`/api/products/${productId}`,{
-    method:'DELETE'
+        method:'DELETE'
     })
     if(response.ok) {
-      const Producttodelete = await response.json();
-      dispatch(deleteProduct(Producttodelete.id))
-      return Producttodelete
+      dispatch(deleteProduct(productId))
+      return
     }
   }
 
@@ -160,7 +158,7 @@ const productsReducer = (state = initialState, action) => {
             return newState
         case DELETE_PRODUCT:
             newState = { ...state}
-            delete newState[action.deleteProductId] 
+            delete newState[action.productId] 
             return newState
         case CREATE_REVIEW:
             newState = { ...state }
