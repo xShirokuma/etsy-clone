@@ -17,12 +17,12 @@ const ProductDetails = () => {
 
   const reviewAvg = () => {
     let totalStars = 0;
-    product.reviews.forEach(review => {
-      totalStars += review.stars
-    })
-    const average = totalStars / product.reviews.length
-    return average.toFixed(1)
-  }
+    product.reviews.forEach((review) => {
+      totalStars += review.stars;
+    });
+    const average = totalStars / product.reviews.length;
+    return average.toFixed(1);
+  };
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -39,30 +39,25 @@ const ProductDetails = () => {
       <div>{product?.description}</div>
       <div>${product?.price}</div>
       <div>Available:{product?.available}</div>
-      {product?.reviews?.map((r) => {
-        return (
-          <div>
-            {product.reviews.length ? `${product.reviews.length} Review(s)` : "New"}
-            {`⭐ ${reviewAvg()}`}
-            {product?.reviews?.map((r) => {
-              return (
-                <div key={r.id}>
-                  <div>{r.review}</div>
-                  <div>{r.stars}</div>
-                  {r.images.map((i) => {
-                    return (
-                      <div key={i.id}>
-                        <img src={i.imageUrl} alt="Review Image" />
-                      </div>
-                    );
-                  })}
+      {product?.reviews.length ? `${product.reviews.length} Review(s)` : "New"}
+      {product?.reviews.length ? `⭐ ${reviewAvg()}` : ''}
+      {product?.reviews.length ? (
+        <div>
+          {product.reviews.map((r) => (
+            <div key={r.id}>
+              <div>{r.review}</div>
+              <div>{r.stars}</div>
+              {r.images.map((i) => (
+                <div key={i.id}>
+                  <img src={i.imageUrl} alt="Review Image" />
                 </div>
-              );
-            })}
-          </div>
-        );
-      })}
-
+              ))}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div>Post A Review</div>
+      )}
       <div>
         {/* <Link product={product} onClick={(e)=>history.push(`/products/${productId}/review`)} >Post a review</Link> */}
         <OpenModalButton
