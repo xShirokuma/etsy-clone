@@ -1,6 +1,6 @@
 img {
-    height: 220px;
-    width: 100%;
+    height: 100px;
+    width: 150px;
     /* object-fit: cover; */
 }
 
@@ -28,6 +28,8 @@ img {
 
 .imageWithFav img {
     display: block;
+    height: 220px;
+    width: 100%;
 }
 
 .imageWithFav button {
