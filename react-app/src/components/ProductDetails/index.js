@@ -46,7 +46,6 @@ const ProductDetails = () => {
                   {r.images.map((i) => {
                     return (
                       <div key={i.id}>
-                        <h1>Hello</h1>
                         <img src={i.imageUrl} alt="Review Image" />
                       </div>
                     );
