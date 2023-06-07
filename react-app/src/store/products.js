@@ -84,20 +84,18 @@ export const thunkDeleteProduct = (productId) => async (dispatch) => {
 
   //Reviews Thunk
 export const thunkNewReview = (review,productId) => async (dispatch) => {
-    console.log("testthunk")
     const response = await fetch(`/api/products/${productId}/reviews`,{
         method:'POST',
         headers:{ "Content-Type" : 'application/json' },
         body: JSON.stringify(review)
     })
 
-    let newReview
+    let newReviewObj
     if(response.ok) {
-        newReview = response.json();
-        await dispatch(createReview(newReview))
+        newReviewObj = await response.json();
+        await dispatch(createReview(newReviewObj.review))
     } 
-    
-    return newReview;  
+    return review;  
 };
 
 
@@ -130,10 +128,9 @@ const productsReducer = (state = initialState, action) => {
             return newState
         case CREATE_REVIEW:
             newState = { ...state }
-            const index = newState.products.find(p => p.id = action.newReview.productId).id
-            newState.products[index].reviews.push(action.newReview)
+            console.log(newState);
+            newState[action.newReview.productId].reviews.push(action.newReview)
             return newState
-
         default:
             return state;
     }
