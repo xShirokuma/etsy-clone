@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector,useDispatch } from "react-redux";
-// import { thunkEditReview } from "../../store/products"
+import { thunkEditReview } from "../../store/products"
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import './EditReview.css'
@@ -9,7 +9,7 @@ const EditReview = ({productId, review}) => {
     const history = useHistory()
     const dispatch = useDispatch()
     const {closeModal} =  useModal();
-
+console.log("what if review:", review)
     const [reviews, setReviews] = useState(review?.review);
     const [stars, setStars] = useState(review?.stars);
     const [errors, setErrors] = useState({});
@@ -28,11 +28,11 @@ const EditReview = ({productId, review}) => {
     const handleSubmit = async(e) => {
         e.preventDefault();
         const editreview = {
-            review,
+            ...review,
+            review: reviews,
             stars,
-            
         }
-    // let editedReview = await dispatch(thunkEditReview(editreview, productId))
+    let editedReview = await dispatch(thunkEditReview(editreview, productId))
     // if (editedReview){
     //     history.push(`/products/${productId}`) 
     // }
@@ -49,7 +49,7 @@ const EditReview = ({productId, review}) => {
             <input 
                 type='text'
                 placeholder='Review'
-                value={review}
+                value={reviews}
                 onChange={(e) => setReviews(e.target.value)}/>
         </label>
 
