@@ -4,6 +4,7 @@ const EDIT_PRODUCT = "products/EDIT_PRODUCT"
 const DELETE_PRODUCT = "products/DELETE_PRODUCT"
 const CREATE_REVIEW = "products/CREATE_REVIEW"
 const DELETE_REVIEW ="products/DELETE_REVIEW"
+const EDIT_REVIEW = "products/EDIT_REVIEW"
 
 //action creator
 const getProducts = (products) => ({
@@ -28,6 +29,10 @@ const createReview = (newReview) => ({
 })
 const deleteReivew = (review) => ({
     type: DELETE_REVIEW,
+    review
+})
+const editReview = (review) => ({
+    type: EDIT_REVIEW,
     review
 })
 
@@ -116,6 +121,21 @@ export const thunkDeleteReview = (productId, reviewId) => async (dispatch) => {
     }
   }
 
+  export const thunkEditReview = (editreview, productId) => async (dispatch) => {
+    // console.log("inside the delete thunk",productId)
+    // console.log("reviewId in thunk:", reviewId)
+    // console.log("productId in thunk:", productId)
+    const response = await fetch(`/api/products/${productId}/reviews/${editreview.id}`,{
+        method:'PUT',
+        headers:{ "Content-Type" : 'application/json' },
+        body: JSON.stringify(editreview)
+    })
+    if(response.ok) {
+        const reviewEditObj = await response.json();
+        dispatch(editReview(reviewEditObj.review))
+        return reviewEditObj.review;  
+    };
+  }
 
 
 
@@ -150,6 +170,11 @@ const productsReducer = (state = initialState, action) => {
         case DELETE_REVIEW:
             newState = { ...state}
             delete newState[action.review.productId].reviews[action.review.id]
+            return newState
+        case EDIT_REVIEW:
+            newState = { ...state}
+            state[action.review.productId].reviews[action.review.id] = action.review
+            newState[action.review.productId].reviews = [...state[action.review.productId].reviews]
             return newState
         default:
             return state;

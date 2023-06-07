@@ -46,22 +46,22 @@ const ProductDetails = () => {
       {product?.reviews.length ? `⭐ ${reviewAvg()}` : ''}
       {product?.reviews.length ? (
         <div>
-          {product.reviews.map((r) => (
-            <div key={r.id}>
-              <div>{r.review}</div>
-              <div>{r.stars}</div>
-              {r.images.map((i) => (
+          {product.reviews.map((review) => (
+            <div key={review.id}>
+              <div>{review.review}</div>
+              <div>{review.stars}</div>
+              {review.images.map((i) => (
                 <div key={i.id}>
                   <img src={i.imageUrl} alt="Review Image" />
                 </div>
               ))}
               <OpenModalButton
                 buttonText="Edit"
-                modalComponent={<EditReview productId={productId} review={r}/>}
+                modalComponent={<EditReview productId={productId} review={review}/>}
               />
               <OpenModalButton
                 buttonText="Delete"
-                modalComponent={<DeleteReview productId={productId} reviewId={r.id}/>}
+                modalComponent={<DeleteReview productId={productId} reviewId={review.id}/>}
               />
             </div>
           ))}

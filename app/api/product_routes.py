@@ -7,11 +7,11 @@ from app.forms import ProductForm, ReviewForm
 product_routes = Blueprint('products', __name__)
 
 @product_routes.route('<int:productId>/reviews/<int:reviewId>', methods = ["PUT"])
-def update_review(reviewId):
+def update_review(productId, reviewId):
     review = Review.query.get(reviewId)
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    #review, stars
+    print("review is ", review.review, review.stars)
     if form.validate_on_submit():
         if form.data["review"]:
             review.review = form.data["review"]
@@ -22,6 +22,7 @@ def update_review(reviewId):
         return {'review': review.to_dict()}
     else:
         print(form.errors)
+        return "Testing"
 
 @product_routes.route('<int:productId>/reviews/<int:reviewId>', methods = ["DELETE"])
 def delete_review(productId, reviewId):
@@ -96,7 +97,6 @@ def get_products():
 @product_routes.route('/<int:productId>', methods=["PUT"])
 def edit_product(productId):
     product = Product.query.get(productId)
-    print("current product", product)
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
