@@ -130,7 +130,7 @@ const productsReducer = (state = initialState, action) => {
             return newState
         case CREATE_REVIEW:
             newState = { ...state }
-            const index = newState.products.find(p => p.id == action.newReview.productId)
+            const index = newState.products.find(p => p.id = action.newReview.productId).id
             newState.products[index].reviews.push(action.newReview)
             return newState
 
