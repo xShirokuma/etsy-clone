@@ -42,5 +42,5 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'user_favorites': [favorite.to_dict_favorites() for favorite in self.user_favorites],
-            'session': self.session
+            'cart_session': self.cart_session
         }
