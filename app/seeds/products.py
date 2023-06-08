@@ -1,4 +1,4 @@
-from app.models import db, Product, environment, SCHEMA
+from app.models import db, Product, User, environment, SCHEMA
 from sqlalchemy.sql import text
 
 # with app.app_context():
@@ -8,13 +8,17 @@ from sqlalchemy.sql import text
 #     print("All tables created!!!")
 
 def seed_products():
+
+    user = User.query.get(1)
+
     product1 = Product(
         userId = 1,
         name = "Personalized cufflinks",
         description = "These Initial cufflinks will become a wonderful personalized accessory for the groom. You may choose any letters and color for the embroidered monograms.",
         price = 90.56,
         previewImage = "https://i.etsystatic.com/5977919/r/il/ce2b8c/2210427839/il_1588xN.2210427839_jnp9.jpg",
-        available = 5
+        available = 5,
+        product_favorites = [user]
     )
     product2 = Product(
         userId = 1,
@@ -22,7 +26,8 @@ def seed_products():
         description = "Ceramic Mug comes with white box. Permanently printed not vinyl",
         price = 10.50,
         previewImage = "https://i.etsystatic.com/17299734/r/il/9851cf/3405866237/il_1588xN.3405866237_tt7t.jpg",
-        available = 10
+        available = 10,
+        product_favorites = [user]
     )
     product3 = Product(
         userId = 2,
@@ -30,7 +35,8 @@ def seed_products():
         description = "It's just a sweet personalized gift for every occasion such as birthday, graduation , bachelorette , wedding , 3rd anniversary, housewarming,Father's Day Gift",
         price = 35.90,
         previewImage = "https://i.etsystatic.com/9696294/r/il/f75bb3/3611273176/il_1588xN.3611273176_9lxh.jpg",
-        available = 6
+        available = 6,
+        product_favorites = [user]
     )
     product4 = Product(
         userId = 3,
@@ -48,6 +54,9 @@ def seed_products():
         previewImage = "https://i.etsystatic.com/9197180/r/il/cee997/3562526079/il_1588xN.3562526079_h3ge.jpg",
         available = 15
     )
+
+
+    user
 
     all_products = [product1, product2, product3, product4, product5]
     _ = [db.session.add(product) for product in all_products]

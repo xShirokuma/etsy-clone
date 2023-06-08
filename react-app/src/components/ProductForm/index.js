@@ -35,9 +35,9 @@ const ProductForm = ({ product, formType }) => {
         if (previewImage==="") {
             errors.previewImage = "previewImage is required";
         }
-        if (url1?.match(/\.(jpeg|jpg|png)$/) === null || url2?.match(/\.(jpeg|jpg|png)$/) === null || url3?.match(/\.(jpeg|jpg|png)$/) === null || url4?.match(/\.(jpeg|jpg|png)$/) === null ) {
-            errors.url1 = "Image URL must end in .png, .jpg, or .jpeg";
-           }
+        // if (url1?.match(/\.(jpeg|jpg|png)$/) === null || url2?.match(/\.(jpeg|jpg|png)$/) === null || url3?.match(/\.(jpeg|jpg|png)$/) === null || url4?.match(/\.(jpeg|jpg|png)$/) === null ) {
+        //     errors.url1 = "Image URL must end in .png, .jpg, or .jpeg";
+        //    }
         if (available==="") {
             errors.available = "Available is required";
         }
@@ -138,7 +138,8 @@ const ProductForm = ({ product, formType }) => {
                 </div>
                 <label>
                     <input 
-                        type='text'
+                        type='url'
+                        accept=".png,.jpg,.jpeg,.gif"
                         placeholder='Url1'
                         value={url1}
                         onChange={(e) => setUrl1(e.target.value)}/>
@@ -150,7 +151,8 @@ const ProductForm = ({ product, formType }) => {
                 </div>
                 <label>
                     <input 
-                        type='text'
+                        type='url'
+                        accept=".png,.jpg,.jpeg,.gif"
                         placeholder='Url2'
                         value={url2}
                         onChange={(e) => setUrl2(e.target.value)}/>
@@ -162,7 +164,8 @@ const ProductForm = ({ product, formType }) => {
                 </div>
                 <label>
                     <input 
-                        type='text'
+                        type='url'
+                        accept=".png,.jpg,.jpeg,.gif"
                         placeholder='Url3'
                         value={url3}
                         onChange={(e) => setUrl3(e.target.value)}/>
@@ -174,7 +177,8 @@ const ProductForm = ({ product, formType }) => {
                 </div>
                 <label>
                     <input 
-                        type='text'
+                        type='url'
+                        accept=".png,.jpg,.jpeg,.gif"
                         placeholder='Url4'
                         value={url4}
                         onChange={(e) => setUrl4(e.target.value)}/>

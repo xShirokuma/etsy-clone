@@ -6,3 +6,4 @@ export {default as ProductDetails} from "./ProductDetails"
 export {default as ProductForm} from "./ProductForm"
 export {default as SignupFormModal} from "./SignupFormModal";
 export {default as ProtectedRoute} from "./auth/ProtectedRoute"
+export {default as FavoriteIcon} from "./FavoriteIcon"

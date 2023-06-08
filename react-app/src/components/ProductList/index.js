@@ -1,46 +1,66 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { fetchProducts } from "../../store/products";
 import "./product.css";
+import FavoriteIcon from "../FavoriteIcon";
 
-const ProductList = () => {
-  const dispatch = useDispatch();
-  const products = Object.values(useSelector((state) => state.products));
+const ProductList = ({products}) => {
+
   const sessionUser = useSelector((state) => state.session.user);
-  console.log(sessionUser)
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
 
   return (
     <div>
       {sessionUser ? (
         <div className="bodyContainer">
-          <div className="welcome-title">
-            <h1>{`Welcome back, ${sessionUser.username}!`}</h1>
-          </div>
-          <div>
-            <h3>
-              Favorties
-            </h3>
+          <div className="background">
+            <div className="homepage-header">
+              <div className="welcome-title">
+                <p>{`Welcome back, ${sessionUser.username}!`}</p>
+              </div>
+              <div className="favorites">
+              <NavLink exact to= "/favorites">
+                <p>Favorties ↦</p>
+                </NavLink>
+                <div className="favorite-card-product">
+                {sessionUser.user_favorites?.slice(-4).map((product) => (
+                  <div key={product.id}>
+                    <div className="fav-imageWithFav">
+                      <NavLink to={`/products/${product.id}`}>
+                        <img
+                          className="product-image"
+                          src={product.previewImage}
+                          alt="products"
+                        />
+                      <div className="price">$ {product.price.toFixed(2)}</div>
+                      </NavLink>
+                      <FavoriteIcon
+                        sessionUser={sessionUser}
+                        product={product}
+                      />
+                    </div>
+                  </div>
+                ))}
+                </div>
+              </div>
+            </div>
           </div>
           <div className="card-product">
             {products?.map((product) => (
               <div key={product.id}>
-                <NavLink to={`/products/${product.id}`}>
-                  <div className="imageWithFav">
+                <div className="imageWithFav">
+                  <NavLink to={`/products/${product.id}`}>
                     <img
                       className="product-image"
                       src={product.previewImage}
                       alt="products"
                     />
-                    <button>
-                      <i className="fa-regular fa-heart fa-lg" />
-                    </button>
-                  </div>
-                  <div>$ {product.price.toFixed(2)}</div>
-                </NavLink>
+                    <div className="price">$ {product.price.toFixed(2)}</div>
+                  </NavLink>
+                  <FavoriteIcon sessionUser={sessionUser} product={product} />
+                </div>
+                {/* <NavLink to={`/products/${product.id}`}>
+                </NavLink> */}
               </div>
             ))}
           </div>
@@ -53,17 +73,17 @@ const ProductList = () => {
           <div className="card-product">
             {products?.map((product) => (
               <div key={product.id}>
-                <NavLink to={`/products/${product.id}`}>
-                  <div className="imageWithFav">
+                <div className="imageWithFav">
+                  <NavLink to={`/products/${product.id}`}>
                     <img
                       className="product-image"
                       src={product.previewImage}
                       alt="products"
                     />
-                    <button>
-                      <i className="fa-regular fa-heart fa-lg" />
-                    </button>
-                  </div>
+                  </NavLink>
+                  <FavoriteIcon sessionUser={sessionUser} product={product} />
+                </div>
+                <NavLink to={`/products/${product.id}`}>
                   <div>$ {product.price.toFixed(2)}</div>
                 </NavLink>
               </div>

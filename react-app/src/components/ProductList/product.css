@@ -9,9 +9,41 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px 0 0 0;
+
     /* background-image: linear-gradient(#c1e3f3 70%, #ffffff 0%); */
 }
+
+.homepage-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0 0 0;
+
+}
+
+.homepage-header .fav-title{
+    padding: 2rem 0 0 0;
+
+}
+
+.background {
+    background-color: blanchedalmond;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.favorite-card-product {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: stretch;
+    align-items: center;
+    gap: 20px;
+    /* transform: translatey(45%); */
+}
+
 
 .card-product {
     display: grid;
@@ -20,7 +52,67 @@ img {
     justify-content: stretch;
     align-items: center;
     gap: 20px;
-    width: 90%;
+    padding-top: 100px;
+}
+
+.fav-imageWithFav {
+    position: relative;
+}
+
+.fav-imageWithFav img {
+    display: block;
+    height: 6rem;
+    width: 7rem;
+    border-radius: 3%;
+}
+
+.fav-imageWithFav button {
+    position: absolute;
+    background-color: white;
+    border: transparent;
+    top: 4%;
+    left: 75%;
+    border-radius: 50%;
+    padding: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.fav-imageWithFav i {
+    font-size: 13px;
+}
+
+.fav-imageWithFav:hover button {
+    opacity: 1;
+}
+
+
+.fav-imageWithFav img:hover {
+    box-shadow: 0 0 8px rgb(184, 184, 184);
+}
+
+.fav-imageWithFav button:hover {
+    transform: scale(1.1) perspective(1px);
+    cursor: pointer;
+}
+
+.fav-imageWithFav .price {
+    position: absolute;
+    background-color: white;
+    border: transparent;
+    bottom: 4%;
+    right: 53%;
+    border-radius: 20px 20px 20px 20px;
+    padding: 2px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    font-weight: bolder;
+    color: black;
 }
 
 .imageWithFav {
@@ -30,10 +122,13 @@ img {
 .imageWithFav img {
     display: block;
     height: 220px;
-    width: 100%;
+    width: 230px;
     border-radius: 3%;
 }
 
+.imageWithFav i {
+    font-size: 15px;
+}
 .imageWithFav img:hover {
     box-shadow: 0 0 8px rgb(184, 184, 184);
 }
@@ -43,15 +138,57 @@ img {
     background-color: white;
     border: transparent;
     top: 4%;
-    left: 85%;
+    left: 82%;
     border-radius: 50%;
     padding: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.imageWithFav:hover button {
+    opacity: 1;
 }
 
 .imageWithFav button:hover {
     transform: scale(1.1) perspective(1px);
     cursor: pointer;
+}
+
+.imageWithFav .price {
+    position: absolute;
+    background-color: white;
+    border: transparent;
+    bottom: 4%;
+    right: 68%;
+    border-radius: 20px 20px 20px 20px;
+    padding: 4px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    font-weight: bolder;
+    color: black;
+}
+
+.welcome-title {
+    font-weight:100;
+    font-size: 30px;
+}
+
+.favorites {
+    transform: translatey(30%);
+}
+
+.favorites p{
+    padding-bottom: 5px;
+    font-size: 15px;
+    color: black;
+}
+
+.welcome-title{
+    /* font-size: 15px; */
+    transform: translatey(40%);
 }
