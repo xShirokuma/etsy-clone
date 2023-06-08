@@ -43,3 +43,15 @@ class Product(db.Model):
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt
        }
+    
+    def to_dict_favorites(self):
+        return {
+            "id": self.id,
+            "userId": self.userId,
+            "name": self.name,
+            "description": self.description,
+            "price": self.price,
+            "previewImage": self.previewImage,
+            "createdAt": self.createdAt,
+            "updatedAt": self.updatedAt
+       }

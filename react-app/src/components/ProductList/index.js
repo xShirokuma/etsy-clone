@@ -5,14 +5,9 @@ import { fetchProducts } from "../../store/products";
 import "./product.css";
 import FavoriteIcon from "../FavoriteIcon";
 
-const ProductList = () => {
-  const dispatch = useDispatch();
-  const products = Object.values(useSelector((state) => state.products));
-  const sessionUser = useSelector((state) => state.session.user);
+const ProductList = ({products}) => {
 
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+  const sessionUser = useSelector((state) => state.session.user);
 
   return (
     <div>
