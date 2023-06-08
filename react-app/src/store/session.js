@@ -1,6 +1,8 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const ADD_FAV = "session/ADD_FAV"
+const DELETE_FAV = "session/DELETE_FAV"
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -10,6 +12,16 @@ const setUser = (user) => ({
 const removeUser = () => ({
 	type: REMOVE_USER,
 });
+
+const addFav = (updatedUser) => ({
+	type: ADD_FAV,
+	updatedUser
+})
+const deleteFav = (updatedUser) => ({
+	type: DELETE_FAV,
+	updatedUser
+})
+
 
 const initialState = { user: null };
 
@@ -94,12 +106,42 @@ export const signUp = (username, email, password) => async (dispatch) => {
 	}
 };
 
+export const thunkAddFav = (productId, userId) => async (dispatch) => {
+	const response = await fetch(`/api/users/${userId}/favorites/products/${productId}`,{
+        method:'PUT',
+        headers:{ "Content-Type" : 'application/json' },
+        // body: JSON.stringify(editreview)
+    })
+    if(response.ok) {
+        const updatedUser = await response.json();
+        dispatch(addFav(updatedUser))
+        return updatedUser;  
+    };
+}
+
+export const thunkDeleteFav = (productId, userId) => async (dispatch) => {
+	const response = await fetch(`/api/users/${userId}/favorites/products/${productId}`,{
+        method:'DELETE',
+	})
+	if(response.ok) {
+        const updatedUser = await response.json();
+        dispatch(deleteFav(updatedUser))
+        return updatedUser;  
+    };
+}
+
+
+//reducer
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_USER:
 			return { user: action.payload };
 		case REMOVE_USER:
 			return { user: null };
+		case ADD_FAV:
+			return { ...action.updatedUser}
+		case DELETE_FAV:
+			return { ...action.updatedUser}
 		default:
 			return state;
 	}

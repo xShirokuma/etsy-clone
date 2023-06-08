@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User
+from app.models import User, Product, db
 
 user_routes = Blueprint('users', __name__)
 
@@ -23,3 +23,21 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+@user_routes.route('/<int:id>/favorites/products/<int:productId>', methods=['PUT'])
+def add_fav(id, productId):
+    user = User.query.get(id)
+    product = Product.query.get(productId)
+    product.product_favorites.append(user)
+
+    db.session.commit()
+    return {'user': user.to_dict()}
+
+@user_routes.route('/<int:id>/favorites/products/<int:productId>', methods=['DELETE'])
+def delete_fav(id, productId):
+    user = User.query.get(id)
+    product = Product.query.get(productId)
+    product.product_favorites.remove(user)
+
+    db.session.commit()
+    return {'user': user.to_dict()}
