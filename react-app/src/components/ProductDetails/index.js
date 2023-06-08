@@ -17,7 +17,7 @@ const ProductDetails = () => {
   const { productId } = useParams();
   const product = useSelector((state) => state.products[productId]);
   const sessionUser = useSelector((state) => state.session.user);
-
+ 
   const reviewAvg = () => {
     let totalStars = 0;
     product.reviews.forEach((review) => {
@@ -63,7 +63,7 @@ const ProductDetails = () => {
               <div>{review.review}</div>
               <div>{review.stars}</div>
               {review.images.map((i) => (
-                <div key={i.id}>
+                <div key={i.id} className={i.imageUrl? "":"hidden"}>
                   <img src={i.imageUrl} alt="Review Image" />
                 </div>
               ))}

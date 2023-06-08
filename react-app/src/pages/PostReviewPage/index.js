@@ -27,9 +27,9 @@ const PostReviewModal = ({productId}) => {
         if (stars > 5 || stars < 1) {
             errors.stars = "Stars must be between 1 and 5";
         }
-        if (url1?.match(/\.(jpeg|jpg|png)$/) === null || url2?.match(/\.(jpeg|jpg|png)$/) === null) {
-            errors.url1 = "Image URL must end in .png, .jpg, or .jpeg";
-        }
+        // if (url1?.match(/\.(jpeg|jpg|png)$/) === null || url2?.match(/\.(jpeg|jpg|png)$/) === null) {
+        //     errors.url1 = "Image URL must end in .png, .jpg, or .jpeg";
+        // }
         setErrors(errors);
     },[review, stars, url1,url2])
 
@@ -83,11 +83,12 @@ const PostReviewModal = ({productId}) => {
 
             <div >
                     <h4>url1</h4>
-                    <h4 className='formErrors'>{errors?.url1}</h4>
+                    {/* <h4 className='formErrors'>{errors?.url1}</h4> */}
                 </div>
                 <label>
                     <input 
                         type='url'
+                        accept=".png,.jpg,.jpeg,.gif"
                         placeholder='Url1'
                         value={url1}
                         onChange={(e) => setUrl1(e.target.value)}/>
@@ -95,11 +96,12 @@ const PostReviewModal = ({productId}) => {
 
                 <div>
                     <h4>url2</h4>
-                    <h4 className='formErrors'>{errors?.url2}</h4>
+                    {/* <h4 className='formErrors'>{errors?.url2}</h4> */}
                 </div>
                 <label>
                     <input 
                         type='url'
+                        accept=".png,.jpg,.jpeg,.gif"
                         placeholder='Url2'
                         value={url2}
                         onChange={(e) => setUrl2(e.target.value)}/>
