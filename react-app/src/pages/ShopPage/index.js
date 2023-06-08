@@ -11,7 +11,7 @@ const ShopPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
-    
+
     if(!sessionUser){
         history.push("/")
     }
@@ -43,20 +43,20 @@ const ShopPage = () => {
                     src={product.previewImage}
                     alt="products"
                 />
-                <div>$ {product.price}</div>
+                <div>$ {product.price.toFixed(2)}</div>
                 </NavLink>
                 <div>
                     <button onClick={(e)=>history.push(`/products/${product.id}/edit`)}>Edit Product</button>
                     {/* <button onClick={(e)=>history.push(`/products/${product.id}/`)}>Delete Product</button> */}
-                    <OpenModalButton 
-                             buttonText="Delete" modalComponent={<DeleteProduct productId={product.id} />} 
-                             /> 
+                    <OpenModalButton
+                             buttonText="Delete" modalComponent={<DeleteProduct productId={product.id} />}
+                             />
                 </div>
             </div>
             ))}
             </div>
         </div>
-        
+
     )
 }
 

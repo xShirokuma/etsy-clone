@@ -23,7 +23,7 @@ const ProductList = ({products}) => {
                 <p>Favorties ↦</p>
                 </NavLink>
                 <div className="favorite-card-product">
-                {products?.map((product) => (
+                {sessionUser.user_favorites?.slice(-4).map((product) => (
                   <div key={product.id}>
                     <div className="fav-imageWithFav">
                       <NavLink to={`/products/${product.id}`}>
