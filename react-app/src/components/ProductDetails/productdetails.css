@@ -1,5 +1,6 @@
 .product-container {
     max-height: fit-content;
+  
   }
 
   .image-carousel{
@@ -129,4 +130,10 @@
 
   .slider-wrapper.axis-horizontal {
     max-height: 480px;
+  }
+  .product-info{
+    display:flex;
+    flex-direction: column;
+    gap:3rem;
+    
   }
