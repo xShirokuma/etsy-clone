@@ -21,6 +21,7 @@ class Product(db.Model):
     images = db.relationship("ProductImage", back_populates="product", cascade="all, delete-orphan")
     user = db.relationship("User", back_populates="products")
     reviews = db.relationship("Review", back_populates="product", cascade="all, delete-orphan")
+    cartItems = db.relationship("CartItem", back_populates="product", cascade="all, delete-orphan")
 
     product_favorites = db.relationship(
         "User",
@@ -43,7 +44,7 @@ class Product(db.Model):
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt
        }
-    
+
     def to_dict_favorites(self):
         return {
             "id": self.id,
@@ -52,6 +53,7 @@ class Product(db.Model):
             "description": self.description,
             "price": self.price,
             "previewImage": self.previewImage,
+            "cartItem": [cartItem.to_dict_favorites() for cartItem in self.cartItems],
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt
        }

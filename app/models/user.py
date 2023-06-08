@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
 
     products = db.relationship("Product", back_populates="user")
     reviews = db.relationship("Review", back_populates="user")
+    session = db.relationship("ShoppingSession", back_populates="user")
 
     user_favorites = db.relationship(
         "Product",
@@ -40,5 +41,6 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'user_favorites': [favorite.to_dict_favorites() for favorite in self.user_favorites]
+            'user_favorites': [favorite.to_dict_favorites() for favorite in self.user_favorites],
+            'session': self.session
         }
