@@ -1,19 +1,18 @@
 """empty message
 
-Revision ID: 802489b49ebd
+Revision ID: df8a31c6a999
 Revises: 
-Create Date: 2023-06-07 19:33:37.176924
+Create Date: 2023-06-08 15:38:54.556903
 
 """
 from alembic import op
 import sqlalchemy as sa
 import os
-
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = '802489b49ebd'
+revision = 'df8a31c6a999'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -48,7 +47,7 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE products SET SCHEMA {SCHEMA};")
-    
+
     op.create_table('favorites',
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('product_id', sa.Integer(), nullable=False),
@@ -58,7 +57,7 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE favorites SET SCHEMA {SCHEMA};")
-    
+       
     op.create_table('productImages',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('productId', sa.Integer(), nullable=False),
@@ -70,7 +69,7 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE productImages SET SCHEMA {SCHEMA};")
-    
+       
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('productId', sa.Integer(), nullable=False),
@@ -85,7 +84,7 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
-    
+       
     op.create_table('reviewImages',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('reviewId', sa.Integer(), nullable=False),
@@ -97,7 +96,7 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE reviewImages SET SCHEMA {SCHEMA};")
-    
+       
     # ### end Alembic commands ###
 
 
