@@ -22,7 +22,7 @@ function Navigation({ isLoaded }){
 					</form>
 				</li>
 				<li className={sessionUser? '':'hidden'}>
-					<NavLink exact to= "/favorite">
+					<NavLink exact to= "/favorites">
         				<i className="fa-regular fa-heart fa-xl" />
       				</NavLink>
 				</li>
@@ -38,7 +38,7 @@ function Navigation({ isLoaded }){
 				</li>
 				)}
 				<li>
-					<NavLink exact to= "/">
+					<NavLink exact to= "/shoppingcart">
 						<i className="fa-solid fa-cart-shopping fa-lg" />
 					</NavLink>
 				</li>
