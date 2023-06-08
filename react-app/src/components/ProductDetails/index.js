@@ -42,18 +42,20 @@ const ProductDetails = () => {
 
   return (
     <div className="product-single">
-      <h1>Product Details</h1>
-      <div>{product?.name}</div>
-      <div>
-        <ImageCarousel />
+      <div className="product-container">
+        <div>
+          <ImageCarousel />
+        </div>
+        <div className="product-info">
+          {product?.name}
+          Available:{product?.available}${product?.price.toFixed(2)}
+          <h2>Description</h2>
+          {product?.description}
+        </div>
       </div>
-      <h2>Description</h2>
-      <div>{product?.description}</div>
-      <div>${product?.price.toFixed(2)}</div>
-      <div>Available:{product?.available}</div>
       <h2>Reviews</h2>
       {product?.reviews.length ? `${product.reviews.length} Review(s)` : "New"}
-      {product?.reviews.length ? `⭐ ${reviewAvg()}` : ''}
+      {product?.reviews.length ? `⭐ ${reviewAvg()}` : ""}
       {product?.reviews.length ? (
         <div>
           {product.reviews.map((review) => (
@@ -67,14 +69,21 @@ const ProductDetails = () => {
               ))}
               {sessionUser && review?.userId === sessionUser.id && (
                 <div>
-              <OpenModalButton
-                buttonText="Edit"
-                modalComponent={<EditReview productId={productId} review={review}/>}
-              />
-              <OpenModalButton
-                buttonText="Delete"
-                modalComponent={<DeleteReview productId={productId} reviewId={review.id}/>}
-                />
+                  <OpenModalButton
+                    buttonText="Edit"
+                    modalComponent={
+                      <EditReview productId={productId} review={review} />
+                    }
+                  />
+                  <OpenModalButton
+                    buttonText="Delete"
+                    modalComponent={
+                      <DeleteReview
+                        productId={productId}
+                        reviewId={review.id}
+                      />
+                    }
+                  />
                 </div>
               )}
             </div>
@@ -85,16 +94,13 @@ const ProductDetails = () => {
       )}
       <div>
         {/* <Link product={product} onClick={(e)=>history.push(`/products/${productId}/review`)} >Post a review</Link> */}
-        {sessionUser &&
-        sessionUser.id !== product?.userId &&
-        !reviewExists && (
-        <OpenModalButton
-          buttonText="Create"
-          modalComponent={<PostReviewModal productId={productId} />}
-        />
+        {sessionUser && sessionUser.id !== product?.userId && !reviewExists && (
+          <OpenModalButton
+            buttonText="Create"
+            modalComponent={<PostReviewModal productId={productId} />}
+          />
         )}
         {/* <button onClick={(e)=>history.push(`/products/${product.id}/delete`)} product={product}>Delete a review</button> */}
-
       </div>
     </div>
   );
