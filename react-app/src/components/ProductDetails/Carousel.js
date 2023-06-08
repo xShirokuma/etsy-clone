@@ -19,7 +19,7 @@ const ImageCarousel = () => {
   return (
       <Carousel className="image-carousel">
         {product?.images.map((image) => (
-          <div key={image.id} classname={image.image? "" : "hidden"}>
+          <div key={image.id} className={image.image? "" : "hidden"}>
             <img src={image.image || "https://res.cloudinary.com/dxrhf8ah9/image/upload/v1684121802/Airbnb-images/ET-IMAGE-COMING-SOON-1000_ys87xr.jpg"} alt={product.name} height='300px'/>
           </div>
         ))}
