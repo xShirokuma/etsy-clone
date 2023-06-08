@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 
 import { authenticate } from "./store/session";
 import { Navigation, ProtectedRoute } from "./components"
-import { HomePage, ShopPage, CreateProductPage, UpdateProductPage, ProductPage, PostReviewPage, FavoritePage } from "./pages";
+import { HomePage, ShopPage, CreateProductPage, UpdateProductPage, ProductPage, PostReviewPage, FavoritePage, ShoppingCartPage } from "./pages";
 import EditReview from "./components/EditReview";
 
 function App() {
@@ -25,8 +25,11 @@ function App() {
           <Route exact path="/shop" >
             <ShopPage />
           </Route>
-          <Route exact path="/favorite" >
+          <Route exact path="/favorites" >
             <FavoritePage />
+          </Route>
+          <Route exact path="/shoppingcart" >
+            <ShoppingCartPage />
           </Route>
           <ProtectedRoute exact path='/products/new'>
             <CreateProductPage />
