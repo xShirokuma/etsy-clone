@@ -32,6 +32,7 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+
     op.create_table('products',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('userId', sa.Integer(), nullable=False),
@@ -47,6 +48,7 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE products SET SCHEMA {SCHEMA};")
+    
     op.create_table('favorites',
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('product_id', sa.Integer(), nullable=False),
@@ -56,6 +58,7 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE favorites SET SCHEMA {SCHEMA};")
+    
     op.create_table('productImages',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('productId', sa.Integer(), nullable=False),
@@ -67,6 +70,7 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE productImages SET SCHEMA {SCHEMA};")
+    
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('productId', sa.Integer(), nullable=False),
@@ -81,6 +85,7 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
+    
     op.create_table('reviewImages',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('reviewId', sa.Integer(), nullable=False),
@@ -92,6 +97,7 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE reviewImages SET SCHEMA {SCHEMA};")
+    
     # ### end Alembic commands ###
 
 
