@@ -1,10 +1,8 @@
 import { NavLink } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../store/products"
 import { useHistory } from "react-router-dom";
-import OpenModalButton from '../../components/OpenModalButton'
-import DeleteProduct from '../../components/DeleteProduct'
+import { FavoriteIcon } from "../../components";
 import "./FavoritePage.css"
 
 const FavoritePage = () => {
@@ -16,22 +14,30 @@ const FavoritePage = () => {
         history.push("/")
     }
 
-    // const products = Object.values(useSelector((state) => (state.)));
-
-    // let sessionUserProducts = []
-    // for (let product of products) {
-    //     if(product.userId === sessionUser?.id){
-    //         sessionUserProducts.push(product)
-    //     }
-    // }
-
-    useEffect(() => {
-        dispatch(fetchProducts());
-    }, [dispatch]);
-
     return (
-        <div>
-            <h1>{sessionUser?.username}'s Favorites</h1>
+        <div className="bodyContainer">
+            <h2><i className="fa-regular fa-circle-user" /> {sessionUser?.username}</h2>
+            <h3>Favorite items:   {sessionUser?.user_favorites?.length} items</h3>
+            <div className="favoritesContainer">
+            {sessionUser.user_favorites?.map((product) => (
+                <div key={product.id}>
+                    <div className="fav-imageWithFav">
+                        <NavLink to={`/products/${product.id}`}>
+                            <img
+                            className="product-image"
+                            src={product.previewImage}
+                            alt="products"
+                            />
+                            <div className="price">$ {product.price.toFixed(2)}</div>
+                        </NavLink>
+                    <FavoriteIcon
+                        sessionUser={sessionUser}
+                        product={product}
+                    />
+                    </div>
+                </div>
+            ))}
+            </div>
         </div>
         
     )

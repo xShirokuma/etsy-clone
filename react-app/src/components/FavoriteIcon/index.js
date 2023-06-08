@@ -40,7 +40,7 @@ const FavoriteIcon = ({sessionUser, product}) => {
 
     return(
         <button onClick={handleFavorite} className={heartColor}>
-            <i className="fa-regular fa-heart fa-lg" />
+            <i className={heartColor? "fa-solid fa-heart fa-lg":"fa-regular fa-heart fa-lg"} />
         </button>
     )
 }
