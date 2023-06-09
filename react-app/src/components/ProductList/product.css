@@ -7,9 +7,8 @@ img {
 .bodyContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-
+    height: 100rem;
     /* background-image: linear-gradient(#c1e3f3 70%, #ffffff 0%); */
 }
 
