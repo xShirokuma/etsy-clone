@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User, Product, db
+from app.models import User, Product, db, CartItem
 
 user_routes = Blueprint('users', __name__)
 
@@ -41,3 +41,17 @@ def delete_fav(id, productId):
 
     db.session.commit()
     return {'user': user.to_dict()}
+
+@user_routes.route('/<int:id>/cart/products/<int:productId>/<int:value>', methods=['PUT'])
+def add_cart(id, productId, value):
+    user = User.query.get(id)
+    newCartItem = CartItem(
+        sessionId=id,
+        productId=productId,
+        quantity=value
+    )
+    db.session.add(newCartItem)
+    user.cart_session.cart.append(newCartItem)
+
+    db.session.commit()
+    return {'newCartItem': newCartItem.to_dict()}

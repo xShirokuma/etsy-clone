@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
 import { fetchProducts } from "../../store/products";
 import ImageCarousel from "./Carousel";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, useParams } from "react-router-dom";
 import OpenModalButton from "../../components/OpenModalButton";
 import DeleteReview from "../../components/DeleteReview";
 import PostReviewModal from "../../pages/PostReviewPage";
 import EditReview from "../EditReview";
 
 import "./productdetails.css";
+import { thunkAddToCart } from "../../store/session";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -40,6 +40,23 @@ const ProductDetails = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
+  let value = 1;
+  const itemquantity = () => {
+    value = document.getElementById("itemquantity").value;
+    console.log("value:", value)
+  }
+  
+  const addToCart = async () => {
+    // dispatch(thunkAddToCart(sessionUser, product))
+    // .then (history.push("/shop"))
+    const checkproduct = sessionUser.cart_session.cart.find(ele=>ele.productId == product.id)
+
+    if(!checkproduct){
+      dispatch(thunkAddToCart(sessionUser, product, value))
+      .then(history.push("/shoppingcart"))
+    }
+  }
+
   return (
     <div className="product-single">
       <div className="product-container">
@@ -54,7 +71,7 @@ const ProductDetails = () => {
           <div className="add-to-cart">
           {/* <h2>Quantity</h2> */}
           <label>Quantity</label>
-          <select name="quantity" placeholder="Quantity">
+          <select name="quantity" placeholder="Quantity" id="itemquantity" onChange={itemquantity}>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -62,7 +79,7 @@ const ProductDetails = () => {
             <option value="5">5</option>
           </select>
           <div>
-          <button> Add to Cart</button>
+          <button onClick={addToCart}> Add to Cart</button>
           </div>
         </div>
         </div>
