@@ -3,8 +3,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../store/products"
 import { useHistory } from "react-router-dom";
-import OpenModalButton from '../../components/OpenModalButton'
-import DeleteProduct from '../../components/DeleteProduct'
 import "./ShoppingCartPage.css"
 
 const ShoppingCartPage = () => {
@@ -16,22 +14,39 @@ const ShoppingCartPage = () => {
     if (sessionUser) {
         title = `${sessionUser.username}'s Shopping Cart`
     }else {
-        title = "Visitor's Shopping Cart"
+        history.push("/")
     }
-    // let sessionUserProducts = []
-    // for (let product of products) {
-    //     if(product.userId === sessionUser?.id){
-    //         sessionUserProducts.push(product)
-    //     }
-    // }
 
     useEffect(() => {
         dispatch(fetchProducts());
     }, [dispatch]);
 
     return (
-        <div>
+        <div className="bodyContainer">
             <h1>{title}</h1>
+            <div className="cartpage">
+            {sessionUser?.cart_session?.cart.map((ele) => (
+                  <div key={ele.product.id}>
+                    <div>
+                      <NavLink to={`/products/${ele.product.id}`}>
+                        <img
+                          className="product-image"
+                          src={ele.product.previewImage}
+                          alt="products"
+                        />
+                      {/* <div className="price">$ {ele.product.price.toFixed(2)}</div> */}
+                      <div>$ {ele.product.price.toFixed(2)}</div>
+                      <div>quantity: {ele.quantity}</div>
+                      </NavLink>
+                      <button>Remove item from your cart</button>
+                      {/* <FavoriteIcon
+                        sessionUser={sessionUser}
+                        product={product}
+                      /> */}
+                    </div>
+                  </div>
+                ))}
+            </div>
         </div> 
         
     )
