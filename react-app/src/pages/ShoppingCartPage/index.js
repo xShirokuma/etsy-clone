@@ -25,7 +25,7 @@ const ShoppingCartPage = () => {
         <div className="bodyContainer">
             <h1>{title}</h1>
             <div className="cartpage">
-            {sessionUser.cart_session?.cart.map((ele) => (
+            {sessionUser?.cart_session?.cart.map((ele) => (
                   <div key={ele.product.id}>
                     <div>
                       <NavLink to={`/products/${ele.product.id}`}>
