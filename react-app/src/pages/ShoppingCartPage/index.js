@@ -35,9 +35,10 @@ const ShoppingCartPage = () => {
                           alt="products"
                         />
                       {/* <div className="price">$ {ele.product.price.toFixed(2)}</div> */}
+                      </NavLink>
                       <div>$ {ele.product.price.toFixed(2)}</div>
                       <div>quantity: {ele.quantity}</div>
-                      </NavLink>
+                      
                       <button>Remove item from your cart</button>
                       {/* <FavoriteIcon
                         sessionUser={sessionUser}

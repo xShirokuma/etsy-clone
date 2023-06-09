@@ -43,7 +43,7 @@ function Navigation({ isLoaded }){
 					</NavLink>
 				</li>
 			</ul>
-			<ul className='category'>
+			<ul className='category' onClick={e=> window.alert("Feature coming soon...")}>
 				<li>
 					Jewelry & Accessories
 				</li>

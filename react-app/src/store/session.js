@@ -4,6 +4,7 @@ const REMOVE_USER = "session/REMOVE_USER";
 const ADD_FAV = "session/ADD_FAV"
 const DELETE_FAV = "session/DELETE_FAV"
 const ADD_CART = "session/ADD_CART"
+const UPDATE_CART ="session/UPDATE_CART"
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -26,6 +27,11 @@ const addCart = (newCartItem) => ({
 	type: ADD_CART,
 	newCartItem
 })
+const updateCart = (updatedCartItem) => ({
+	type: UPDATE_CART,
+	updatedCartItem
+})
+
 
 const initialState = { user: null };
 
@@ -136,7 +142,7 @@ export const thunkDeleteFav = (productId, userId) => async (dispatch) => {
 
 export const thunkAddToCart = (sessionUser, product, value) => async (dispatch) => {
 	const response = await fetch(`/api/users/${sessionUser.id}/cart/products/${product.id}/${value}`,{
-        method:'PUT',
+        method:'POST',
 		headers:{ "Content-Type" : 'application/json' },
 		body: JSON.stringify({
 			sessionId: sessionUser.id,
@@ -148,6 +154,22 @@ export const thunkAddToCart = (sessionUser, product, value) => async (dispatch) 
         const newCartItem = await response.json();
         dispatch(addCart(newCartItem.newCartItem))
         return newCartItem
+    };
+}
+
+export const thunkUpdateCart = (sessionUser, cartId, product, value) => async (dispatch) => {
+console.log("value in thunk", value)
+	const response = await fetch(`/api/users/${sessionUser.id}/cart/products/${product.id}/${cartId}/${value}`,{
+        method:'PUT',
+		headers:{ "Content-Type" : 'application/json' },
+		body: JSON.stringify({
+			quantity: value
+		}),
+	})
+	if(response.ok) {
+        const updatedCartItem = await response.json();
+        dispatch(updateCart(updatedCartItem.updatedCartItem))
+        return updatedCartItem
     };
 }
 
@@ -165,11 +187,14 @@ export default function reducer(state = initialState, action) {
 			return { ...action.updatedUser}
 		case ADD_CART:
 			let newCart = state.user.cart_session.cart
-console.log("newCartItem:", action.newCartItem)
-console.log("newCartI:", newCart)
 			newCart.push(action.newCartItem)
-console.log("newCartAFTER:", newCart)
 			return { ...state, user:{...state.user, cart_session:{...state.user.cart_session, cart: newCart}},
+				   }
+		case UPDATE_CART:
+			let updatedCart = state.user.cart_session.cart
+			let index = state.user.cart_session.cart.findIndex(ele=>ele.productId === action.updatedCartItem.productId)
+			updatedCart[index] = action.updatedCartItem
+			return { ...state, user:{...state.user, cart_session:{...state.user.cart_session, cart: updatedCart}},
 				   }
 		default:
 			return state;
