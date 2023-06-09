@@ -10,6 +10,7 @@ import EditReview from "../EditReview";
 
 import "./productdetails.css";
 import { thunkAddToCart, thunkUpdateCart } from "../../store/session";
+import FavoriteIcon from "../FavoriteIcon";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -47,18 +48,18 @@ const ProductDetails = () => {
   }
   
   const addToCart = async () => {
-    
     let checkproduct;
 
-    if(!sessionUser) window.alert("Please log in first")
-    else if(sessionUser){
+    if(!sessionUser){
+      window.alert("Please log in first")
+    }else{
+      console.log("checkproduct:", sessionUser)
       checkproduct = sessionUser.cart_session.cart.find(ele=>ele.productId == product.id)
 
       if(!checkproduct){
         dispatch(thunkAddToCart(sessionUser, product, value))
         .then(history.push("/shoppingcart"))
       }else if(checkproduct){
-        // console.log("checkproduct:", checkproduct)
         value = parseInt(parseInt(value) + checkproduct.quantity)
         let cartId = checkproduct.id
         console.log("valuesssss:", value)
@@ -80,19 +81,25 @@ const ProductDetails = () => {
           <h2>Description</h2>
           {product?.description}
           <div className="add-to-cart">
-          {/* <h2>Quantity</h2> */}
-          <label>Quantity</label>
-          <select name="quantity" placeholder="Quantity" id="itemquantity" onChange={itemquantity}>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-          <div>
-          <button onClick={addToCart}> Add to Cart</button>
+            <label>Quantity</label>
+            <select name="quantity" placeholder="Quantity" id="itemquantity" onChange={itemquantity}>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <div>
+              <button onClick={addToCart} className="add-to-cart-button">Add to Cart</button>
+            </div>
+            <div className="fav-in-page-detail">
+              <FavoriteIcon
+                sessionUser={sessionUser}
+                product={product}
+                onpagedetails={"YES"}
+              />
+            </div>
           </div>
-        </div>
         </div>
         
         

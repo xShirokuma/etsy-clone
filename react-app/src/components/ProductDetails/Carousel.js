@@ -5,13 +5,13 @@ import { fetchProducts } from "../../store/products";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./productdetails.css";
-
+import FavoriteIcon from "../FavoriteIcon";
 
 const ImageCarousel = () => {
   const dispatch = useDispatch();
   const { productId } = useParams();
   const product = useSelector((state) => state.products[productId]);
-
+  const sessionUser = useSelector((state) => state.session.user);
   // useEffect(() => {
   //   dispatch(fetchProducts());
   // }, [dispatch]);
