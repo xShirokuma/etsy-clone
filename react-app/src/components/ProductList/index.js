@@ -8,7 +8,7 @@ import FavoriteIcon from "../FavoriteIcon";
 const ProductList = ({products}) => {
 
   const sessionUser = useSelector((state) => state.session.user);
-
+  
   return (
     <div>
       {sessionUser ? (
