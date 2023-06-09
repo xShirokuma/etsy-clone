@@ -70,6 +70,10 @@
   color: black;
 }
 
+.nologin {
+  grid-template-columns: 2fr 18fr 1fr 1fr;
+}
+
 #logo a {
   color: rgb(255, 115, 0);
   font-size: 35px;

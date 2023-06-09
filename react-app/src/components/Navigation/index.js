@@ -9,14 +9,14 @@ function Navigation({ isLoaded }){
 
 	return (
 		<div className='headerContainer'>
-			<ul className='navigation'>
+			<ul className={sessionUser? 'navigation': 'navigation nologin'}>
 				<li id="logo">
 					<NavLink exact to="/">Home</NavLink>
 				</li>
 				<li>
 					<form>
-						<input type='search' placeholder='Search for anything' disabled="True"></input>
-						<button>
+						<input type='search' placeholder='Search for anything' ></input>
+						<button disabled="True">
 							<i className="fa-solid fa-magnifying-glass fa-xl" />
 						</button>
 					</form>

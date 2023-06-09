@@ -30,7 +30,7 @@ const ShoppingCartPage = () => {
     }, [dispatch]);
 
     return (
-        <div>
+        <div className="bodyContainer">
             <h1>{title}</h1>
         </div> 
         
