@@ -49,12 +49,19 @@ const ProductDetails = () => {
   const addToCart = async () => {
     // dispatch(thunkAddToCart(sessionUser, product))
     // .then (history.push("/shop"))
-    const checkproduct = sessionUser.cart_session.cart.find(ele=>ele.productId == product.id)
+    let checkproduct;
 
-    if(!checkproduct){
-      dispatch(thunkAddToCart(sessionUser, product, value))
-      .then(history.push("/shoppingcart"))
+    if(!sessionUser) window.alert("Please log in first")
+    else if(sessionUser){
+      checkproduct = sessionUser.cart_session.cart.find(ele=>ele.productId == product.id)
+
+      if(!checkproduct){
+        dispatch(thunkAddToCart(sessionUser, product, value))
+        .then(history.push("/shoppingcart"))
+      }
     }
+    
+  
   }
 
   return (
