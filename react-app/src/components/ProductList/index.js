@@ -67,7 +67,8 @@ const ProductList = ({products}) => {
         <div className="bodyContainer">
           <div className="background">
           <div className="loggedout-welcome-title">
-            <p>Welcome to </p><h1>Etsy</h1>
+            <p>Welcome to </p>
+            <h1>Shopsy</h1>
           </div>
           </div>
           <div className="card-product">

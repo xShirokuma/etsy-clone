@@ -14,7 +14,7 @@ const FavoriteIcon = ({sessionUser, product}) => {
 
     if(sessionUser?.user_favorites){
         for (let fav of sessionUser?.user_favorites){
-            if(fav.id == product.id) heartColor="redheart"
+            if(fav.id == product?.id) heartColor="redheart"
         }
     }
 
