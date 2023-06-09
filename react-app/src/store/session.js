@@ -5,6 +5,7 @@ const ADD_FAV = "session/ADD_FAV"
 const DELETE_FAV = "session/DELETE_FAV"
 const ADD_CART = "session/ADD_CART"
 const UPDATE_CART ="session/UPDATE_CART"
+const DELETE_CART = "session/DELETE_CART"
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -31,6 +32,11 @@ const updateCart = (updatedCartItem) => ({
 	type: UPDATE_CART,
 	updatedCartItem
 })
+const deleteCart = (updateddeleteCartItem) => ({
+	type: DELETE_CART,
+	updateddeleteCartItem
+})
+
 
 
 const initialState = { user: null };
@@ -173,6 +179,21 @@ console.log("value in thunk", value)
     };
 }
 
+export const thunkDeleteCart = (sessionUserId,cartId, productId,) => async (dispatch) => {
+	console.log("value in thunk", cartId,productId,sessionUserId)
+		const response = await fetch(`/api/users/${sessionUserId}/cart/products/${productId}/${cartId}`,{
+			method:'DELETE',
+			headers:{ "Content-Type" : 'application/json' },
+			
+		})
+		if(response.ok) {
+			const updateddeleteCartItem = await response.json();
+			console.log("inside the dleete thunk",updateddeleteCartItem)
+			dispatch(deleteCart(updateddeleteCartItem))
+			return updateddeleteCartItem
+		};
+	}
+
 
 //reducer
 export default function reducer(state = initialState, action) {
@@ -194,6 +215,14 @@ export default function reducer(state = initialState, action) {
 			let updatedCart = state.user.cart_session.cart
 			let index = state.user.cart_session.cart.findIndex(ele=>ele.productId === action.updatedCartItem.productId)
 			updatedCart[index] = action.updatedCartItem
+			return { ...state, user:{...state.user, cart_session:{...state.user.cart_session, cart: updatedCart}},
+				   }
+		case DELETE_CART:
+			let updateddeleteCart = state.user.cart_session.cart
+			console.log("inside reducer",updateddeleteCart)
+			let deleteindex = state.user.cart_session.cart.findIndex(ele=>ele.productId === action.updateddeleteCartItem.productId)
+			console.log("index in reducer",deleteindex)
+			delete updateddeleteCart[deleteindex] 
 			return { ...state, user:{...state.user, cart_session:{...state.user.cart_session, cart: updatedCart}},
 				   }
 		default:

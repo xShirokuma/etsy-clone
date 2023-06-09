@@ -66,12 +66,12 @@ def updated_cart(id, cartId, productId, value):
     db.session.commit()
     return {'updatedCartItem': cartItem.to_dict()}
 
-# @user_routes.route('/<int:id>/cart/products/<int:productId>/<int:cartId>', methods=['DELETE'])
-# def delete_cart(id, cartId, productId):
-#     user = User.query.get(id)
+@user_routes.route('/<int:id>/cart/products/<int:productId>/<int:cartId>', methods=['DELETE'])
+def delete_cart(id, cartId, productId):
+    user = User.query.get(id)
 
-#     cartItem = CartItem.query.get(cartId)
-#     db.session.delete(cartItem)
+    cartItem = CartItem.query.get(cartId)
+    db.session.delete(cartItem)
 
-#     db.session.commit()
-#     return {'user': user.to_dict()}
+    db.session.commit()
+    return {'user': user.to_dict()}
