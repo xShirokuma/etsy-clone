@@ -22,7 +22,7 @@ class ShoppingSession(db.Model):
             "id": self.id,
             "userId": self.userId,
             "total": self.total,
+            "cart": [cartItem.to_dict() for cartItem in self.cart],
             "createdAt": self.createdAt,
-            "updatedAt": self.updatedAt,
-            "cart": self.cart
+            "updatedAt": self.updatedAt
        }

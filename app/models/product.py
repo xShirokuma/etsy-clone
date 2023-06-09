@@ -53,7 +53,6 @@ class Product(db.Model):
             "description": self.description,
             "price": self.price,
             "previewImage": self.previewImage,
-            "cartItem": [cartItem.to_dict_favorites() for cartItem in self.cartItems],
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt
        }
