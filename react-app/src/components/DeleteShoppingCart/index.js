@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector,useDispatch } from "react-redux";
-import { thunkDeleteCart } from "../../store/session"
+import { thunkDeleteCartItem } from "../../store/session"
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import './DeleteShoppingCart.css'
@@ -13,7 +13,7 @@ const DeleteShoppingCart = ({cartId, productId,sessionuserId}) => {
 
     const handleSubmityes = async (e) => {
       e.preventDefault();
-      const deletedProduct = await dispatch(thunkDeleteCart(cartId, productId, sessionuserId))
+      const deletedProduct = await dispatch(thunkDeleteCartItem(sessionuserId, cartId, productId))
       await closeModal()
     }
 

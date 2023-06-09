@@ -5,6 +5,7 @@ const ADD_FAV = "session/ADD_FAV"
 const DELETE_FAV = "session/DELETE_FAV"
 const ADD_CART = "session/ADD_CART"
 const UPDATE_CART ="session/UPDATE_CART"
+const DELETE_CART_ITEM = "session/DELETE_CART_ITEM"
 const DELETE_CART = "session/DELETE_CART"
 
 const setUser = (user) => ({
@@ -32,9 +33,9 @@ const updateCart = (updatedCartItem) => ({
 	type: UPDATE_CART,
 	updatedCartItem
 })
-const deleteCart = (updateddeleteCartItem) => ({
-	type: DELETE_CART,
-	updateddeleteCartItem
+const deleteCart = (cartItem) => ({
+	type: DELETE_CART_ITEM,
+	cartItem
 })
 
 
@@ -179,24 +180,31 @@ console.log("value in thunk", value)
     };
 }
 
-export const thunkDeleteCart = (sessionUserId,cartId, productId,) => async (dispatch) => {
+export const thunkDeleteCartItem = (sessionUserId,cartId, productId,) => async (dispatch) => {
 	console.log("value in thunk", cartId,productId,sessionUserId)
 		const response = await fetch(`/api/users/${sessionUserId}/cart/products/${productId}/${cartId}`,{
 			method:'DELETE',
-			headers:{ "Content-Type" : 'application/json' },
-			
+			headers:{ "Content-Type" : 'application/json' }
 		})
 		if(response.ok) {
-			const updateddeleteCartItem = await response.json();
-			console.log("inside the dleete thunk",updateddeleteCartItem)
-			dispatch(deleteCart(updateddeleteCartItem))
-			return updateddeleteCartItem
+			const cartItemObj = await response.json();
+			const cartItem = cartItemObj.cartItem
+			console.log("inside the dleete thunk", cartItem)
+			dispatch(deleteCart(cartItem))
+			return cartItem
 		};
 	}
 
 
 //reducer
 export default function reducer(state = initialState, action) {
+	let index
+	let newState
+	let cartItemId
+	let stateCart
+	let newUser
+	let newCartSession
+	let newStateCart
 	switch (action.type) {
 		case SET_USER:
 			return { user: action.payload };
@@ -213,18 +221,32 @@ export default function reducer(state = initialState, action) {
 				   }
 		case UPDATE_CART:
 			let updatedCart = state.user.cart_session.cart
-			let index = state.user.cart_session.cart.findIndex(ele=>ele.productId === action.updatedCartItem.productId)
+			index = state.user.cart_session.cart.findIndex(ele=>ele.productId === action.updatedCartItem.productId)
 			updatedCart[index] = action.updatedCartItem
 			return { ...state, user:{...state.user, cart_session:{...state.user.cart_session, cart: updatedCart}},
 				   }
+		case DELETE_CART_ITEM:
+			newState = { ...state }
+			cartItemId = action.cartItem.id
+			stateCart = state.user.cart_session.cart
+			newUser = { ...state.user }
+			newCartSession = { ...state.user.cart_session }
+			newStateCart = [...stateCart]
+			newState.user = newUser
+			newState.user.cart_session = newCartSession
+			newState.user.cart_session.cart = newStateCart
+			index = stateCart.findIndex(cartItem => cartItem.id === cartItemId)
+			newStateCart.splice(index, 1)
+			return newState
 		case DELETE_CART:
-			let updateddeleteCart = state.user.cart_session.cart
-			console.log("inside reducer",updateddeleteCart)
-			let deleteindex = state.user.cart_session.cart.findIndex(ele=>ele.productId === action.updateddeleteCartItem.productId)
-			console.log("index in reducer",deleteindex)
-			delete updateddeleteCart[deleteindex] 
-			return { ...state, user:{...state.user, cart_session:{...state.user.cart_session, cart: updatedCart}},
-				   }
+			newState = { ...state }
+			newUser = { ...state.user }
+			newCartSession = { ...state.user.cart_session }
+			newStateCart = []
+			newState.user = newUser
+			newState.user.cart_session = newCartSession
+			newState.user.cart_session.cart = newStateCart
+			return newState
 		default:
 			return state;
 	}
