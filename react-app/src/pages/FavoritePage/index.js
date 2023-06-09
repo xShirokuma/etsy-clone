@@ -19,7 +19,7 @@ const FavoritePage = () => {
             <h2><i className="fa-regular fa-circle-user" /> {sessionUser?.username}</h2>
             <h3>Favorite items:   {sessionUser?.user_favorites?.length} items</h3>
             <div className="favoritesContainer">
-            {sessionUser.user_favorites?.map((product) => (
+            {sessionUser?.user_favorites?.map((product) => (
                 <div key={product.id}>
                     <div className="fav-imageWithFav">
                         <NavLink to={`/products/${product.id}`}>
