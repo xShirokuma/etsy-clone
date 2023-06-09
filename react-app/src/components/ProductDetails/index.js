@@ -9,7 +9,7 @@ import PostReviewModal from "../../pages/PostReviewPage";
 import EditReview from "../EditReview";
 
 import "./productdetails.css";
-import { thunkAddToCart } from "../../store/session";
+import { thunkAddToCart, thunkUpdateCart } from "../../store/session";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -47,8 +47,7 @@ const ProductDetails = () => {
   }
   
   const addToCart = async () => {
-    // dispatch(thunkAddToCart(sessionUser, product))
-    // .then (history.push("/shop"))
+    
     let checkproduct;
 
     if(!sessionUser) window.alert("Please log in first")
@@ -58,10 +57,15 @@ const ProductDetails = () => {
       if(!checkproduct){
         dispatch(thunkAddToCart(sessionUser, product, value))
         .then(history.push("/shoppingcart"))
+      }else if(checkproduct){
+        // console.log("checkproduct:", checkproduct)
+        value = parseInt(parseInt(value) + checkproduct.quantity)
+        let cartId = checkproduct.id
+        console.log("valuesssss:", value)
+        dispatch(thunkUpdateCart(sessionUser, cartId, product, value))
+        .then(history.push("/shoppingcart"))
       }
     }
-    
-  
   }
 
   return (

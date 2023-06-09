@@ -40,7 +40,6 @@ def create_review(productId):
         review = Review(
             productId = productId,
             userId=current_user.id,
-            # userId = 3,
             review=form.data["review"],
             stars=form.data["stars"]
         )

@@ -42,7 +42,7 @@ def delete_fav(id, productId):
     db.session.commit()
     return {'user': user.to_dict()}
 
-@user_routes.route('/<int:id>/cart/products/<int:productId>/<int:value>', methods=['PUT'])
+@user_routes.route('/<int:id>/cart/products/<int:productId>/<int:value>', methods=['POST'])
 def add_cart(id, productId, value):
     user = User.query.get(id)
     newCartItem = CartItem(
@@ -55,3 +55,23 @@ def add_cart(id, productId, value):
 
     db.session.commit()
     return {'newCartItem': newCartItem.to_dict()}
+
+@user_routes.route('/<int:id>/cart/products/<int:productId>/<int:cartId>/<int:value>', methods=['PUT'])
+def updated_cart(id, cartId, productId, value):
+    user = User.query.get(id)
+
+    cartItem = CartItem.query.get(cartId)
+    cartItem.quantity = value
+
+    db.session.commit()
+    return {'updatedCartItem': cartItem.to_dict()}
+
+# @user_routes.route('/<int:id>/cart/products/<int:productId>/<int:cartId>', methods=['DELETE'])
+# def delete_cart(id, cartId, productId):
+#     user = User.query.get(id)
+
+#     cartItem = CartItem.query.get(cartId)
+#     db.session.delete(cartItem)
+
+#     db.session.commit()
+#     return {'user': user.to_dict()}
