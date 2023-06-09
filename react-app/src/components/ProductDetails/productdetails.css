@@ -146,7 +146,3 @@ li.slide.selected{
     gap:3rem;
     
   }
-
-.favorite-button {
-  transform: translate(1000%,0);
-}

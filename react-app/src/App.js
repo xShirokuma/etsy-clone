@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
 import { authenticate } from "./store/session";
-import { Navigation, ProtectedRoute } from "./components"
+import { Navigation, ProtectedRoute, Footer } from "./components"
 import { HomePage, ShopPage, CreateProductPage, UpdateProductPage, ProductPage, PostReviewPage, FavoritePage, ShoppingCartPage } from "./pages";
 import EditReview from "./components/EditReview";
 
@@ -52,6 +52,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer isLoaded={isLoaded} />
     </>
   );
 }
