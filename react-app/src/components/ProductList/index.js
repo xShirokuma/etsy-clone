@@ -20,7 +20,7 @@ const ProductList = ({products}) => {
               </div>
               <div className="favorites">
               <NavLink exact to= "/favorites">
-                <p>Favorties ↦</p>
+                <p>Favorites ↦</p>
                 </NavLink>
                 <div className="favorite-card-product">
                 {sessionUser.user_favorites?.slice(-4).map((product) => (
