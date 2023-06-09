@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&family=Pacifico&display=swap');
+
 img {
     height: 100px;
     width: 150px;
@@ -190,4 +192,25 @@ img {
 .welcome-title{
     /* font-size: 15px; */
     transform: translatey(40%);
+}
+
+.loggedout-welcome-title {
+    display: flex;
+    justify-content: center;
+    padding: 65px;
+    /* font-family: 'Exo 2', sans-serif; */
+}
+
+.loggedout-welcome-title p {
+    transform: translateY(50%);
+    font-family: 'Pacifico', cursive;
+
+}
+
+
+.loggedout-welcome-title h1 {
+    /* font-family: 'Exo 2', sans-serif; */
+    font-family: 'Pacifico', cursive;
+    font-weight: lighter;
+    font-size: 50px;
 }

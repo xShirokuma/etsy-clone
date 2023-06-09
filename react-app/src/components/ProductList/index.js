@@ -59,16 +59,16 @@ const ProductList = ({products}) => {
                   </NavLink>
                   <FavoriteIcon sessionUser={sessionUser} product={product} />
                 </div>
-                {/* <NavLink to={`/products/${product.id}`}>
-                </NavLink> */}
               </div>
             ))}
           </div>
         </div>
       ) : (
         <div className="bodyContainer">
-          <div className="welcome-title">
-            <h1>Welcome to Esty</h1>
+          <div className="background">
+          <div className="loggedout-welcome-title">
+            <p>Welcome to </p><h1>Etsy</h1>
+          </div>
           </div>
           <div className="card-product">
             {products?.map((product) => (
@@ -80,11 +80,11 @@ const ProductList = ({products}) => {
                       src={product.previewImage}
                       alt="products"
                     />
+                  <div className="price" >$ {product.price.toFixed(2)}</div>
                   </NavLink>
                   <FavoriteIcon sessionUser={sessionUser} product={product} />
                 </div>
                 <NavLink to={`/products/${product.id}`}>
-                  <div>$ {product.price.toFixed(2)}</div>
                 </NavLink>
               </div>
             ))}
