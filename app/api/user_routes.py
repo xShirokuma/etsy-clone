@@ -68,10 +68,8 @@ def updated_cart(id, cartId, productId, value):
 
 @user_routes.route('/<int:id>/cart/products/<int:productId>/<int:cartId>', methods=['DELETE'])
 def delete_cart(id, cartId, productId):
-    user = User.query.get(id)
-
-    cartItem = CartItem.query.get(cartId)
-    db.session.delete(cartItem)
-
+    cart_item = CartItem.query.get(cartId)
+    deleted_cart_item = {'cartItem': cart_item.to_dict()}
+    db.session.delete(cart_item)
     db.session.commit()
-    return {'user': user.to_dict()}
+    return deleted_cart_item
