@@ -3,7 +3,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../store/products"
 import { useHistory } from "react-router-dom";
+import OpenModalButton from "../../components/OpenModalButton";
 import "./ShoppingCartPage.css"
+import DeleteShoppingCart from "../../components/DeleteShoppingCart";
 
 const ShoppingCartPage = () => {
     const dispatch = useDispatch();
@@ -39,7 +41,17 @@ const ShoppingCartPage = () => {
                       <div>$ {ele.product.price.toFixed(2)}</div>
                       <div>quantity: {ele.quantity}</div>
                       
-                      <button>Remove item from your cart</button>
+                    <OpenModalButton
+                    buttonText="Delete Product"
+                    modalComponent={
+                      <DeleteShoppingCart
+                        cartId={ele.id}
+                        productId={ele.product.id}
+                        sessionuserId={sessionUser.id}
+                      
+                      />
+                    }
+                    />
                       {/* <FavoriteIcon
                         sessionUser={sessionUser}
                         product={product}
