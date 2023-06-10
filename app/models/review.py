@@ -19,14 +19,21 @@ class Review(db.Model):
     user = db.relationship("User", back_populates="reviews")
     product = db.relationship("Product", back_populates="reviews")
 
+    def formatted_updatedAt(self):
+        return self.updatedAt.strftime('%B %d, %Y')
+    
+    def formatted_createdAt(self):
+        return self.createdAt.strftime('%B %d, %Y')
+
     def to_dict(self):
         return {
             "id": self.id,
             "productId": self.productId,
             "userId": self.userId,
+            "user": self.user.to_dict_review_user(),
             "review": self.review,
             "stars": self.stars,
             "images": [image.to_dict() for image in self.images],
-            "createdAt": self.createdAt,
-            "updatedAt": self.updatedAt
+            "createdAt": self.formatted_createdAt(),
+            "updatedAt": self.formatted_updatedAt()
        }

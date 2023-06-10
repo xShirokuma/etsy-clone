@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&family=Pacifico&display=swap');
+
 .profile-dropdown {
   position: absolute;
 }
@@ -36,7 +38,7 @@
   align-items: center;
   width: 95%;
   margin: 0;
-  padding: 10px 0 20px 0;
+  padding: 10px 0 15px 0;
 }
 
 .navigation button {
@@ -46,14 +48,14 @@
 }
 
 .navigation form {
-  border: solid black 2px;
+  border: solid  rgb(120, 120, 120) 2px;
   border-radius: 25px;
-  width: 95%;
+  width: 98%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 13px;
+  padding: 10px;
 }
 
 .navigation input {
@@ -75,6 +77,13 @@
 }
 
 #logo a {
-  color: rgb(255, 115, 0);
+  color: rgb(88, 141, 255);
   font-size: 35px;
+  font-family: 'Pacifico', cursive;
+  padding-right: 15px;
+}
+
+.fa-solid.fa-shop, .fa-regular.fa-heart, .fa-solid.fa-cart-shopping, .fa-user-circle{
+  color: rgb(120, 120, 120);
+  font-size: medium;
 }

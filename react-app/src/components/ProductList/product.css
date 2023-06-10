@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&family=Pacifico&display=swap');
+
 img {
     height: 100px;
     width: 150px;
@@ -31,6 +33,8 @@ img {
     margin: 0;
     padding: 0;
     width: 100%;
+    border-bottom: solid 1px rgb(222, 219, 219);
+
 }
 
 .favorite-card-product {
@@ -40,7 +44,6 @@ img {
     justify-content: stretch;
     align-items: center;
     gap: 20px;
-    /* transform: translatey(45%); */
 }
 
 
@@ -51,7 +54,8 @@ img {
     justify-content: stretch;
     align-items: center;
     gap: 20px;
-    padding-top: 100px;
+    padding-top: 50px;
+    transform: translatey(20px);
 }
 
 .fav-imageWithFav {
@@ -190,4 +194,40 @@ img {
 .welcome-title{
     /* font-size: 15px; */
     transform: translatey(40%);
+    font-weight: 100;
+}
+
+.loggedout-welcome-title {
+    display: flex;
+    justify-content: center;
+    /* padding: 10px; */
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(-15%);
+    /* font-family: 'Exo 2', sans-serif; */
+}
+
+.loggedout-welcome-title p {
+    transform: translate(40%, 150%);
+    font-family: 'Pacifico', cursive;
+    font-size: 25px;
+    font-weight: 100;
+    color: rgb(120, 120, 120);
+}
+
+
+.loggedout-welcome-title h1 {
+    /* font-family: 'Exo 2', sans-serif; */
+    font-family: 'Pacifico', cursive;
+    font-weight: lighter;
+    font-size: 80px;
+    text-decoration: underline;
+    color: rgb(88, 141, 255);
+}
+
+.start-shopping {
+    padding: 15px 0;
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
+    color: coral;
 }

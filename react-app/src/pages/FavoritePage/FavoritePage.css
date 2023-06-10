@@ -1,6 +1,6 @@
-.bodyContainer {
+/* .bodyContainer {
     padding-top: 10px;
-}
+} */
 
 .favoritesContainer {
     display: grid;
@@ -10,10 +10,29 @@
     width: 90%;
     padding: 20px 0 0 0;
     gap: 20px;
+    padding-bottom: 40px;
+    border-bottom: 1px rgb(146, 144, 144) solid;
 }
 
 .favoritesContainer .product-image {
     width: 95%;
     height: 11rem;
     border-radius: 0;
+}
+
+.recommond-products {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+    width: 90%;
+    padding: 20px 0 0 0;
+    gap: 20px;
+    padding-bottom: 40px;
+}
+
+.recommond-products .product-image {
+    width: 95%;
+    height: 10rem;
+    border-radius: 5%;
 }

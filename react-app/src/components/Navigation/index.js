@@ -11,7 +11,7 @@ function Navigation({ isLoaded }){
 		<div className='headerContainer'>
 			<ul className={sessionUser? 'navigation': 'navigation nologin'}>
 				<li id="logo">
-					<NavLink exact to="/">Home</NavLink>
+					<NavLink exact to="/">Shopsy</NavLink>
 				</li>
 				<li>
 					<form>
@@ -43,7 +43,7 @@ function Navigation({ isLoaded }){
 					</NavLink>
 				</li>
 			</ul>
-			<ul className='category'>
+			{/* <ul className='category' onClick={e=> window.alert("Feature coming soon...")}>
 				<li>
 					Jewelry & Accessories
 				</li>
@@ -65,7 +65,7 @@ function Navigation({ isLoaded }){
 				<li>
 					Gift & Gift Cards
 				</li>
-			</ul>
+			</ul> */}
 		</div>
 		
 	);

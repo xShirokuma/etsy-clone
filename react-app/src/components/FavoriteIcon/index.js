@@ -5,7 +5,7 @@ import { thunkAddFav, thunkDeleteFav } from "../../store/session";
 
 import "./FavoriteIcon.css"
 
-const FavoriteIcon = ({sessionUser, product}) => {
+const FavoriteIcon = ({sessionUser, product, onpagedetails}) => {
     const dispatch = useDispatch();
 
     let [heartColor, setHeartColor] = useState("")
@@ -14,7 +14,7 @@ const FavoriteIcon = ({sessionUser, product}) => {
 
     if(sessionUser?.user_favorites){
         for (let fav of sessionUser?.user_favorites){
-            if(fav.id == product.id) heartColor="redheart"
+            if(fav.id == product?.id) heartColor="redheart"
         }
     }
 
@@ -41,6 +41,9 @@ const FavoriteIcon = ({sessionUser, product}) => {
     return(
         <button onClick={handleFavorite} className={heartColor}>
             <i className={heartColor? "fa-solid fa-heart fa-lg":"fa-regular fa-heart fa-lg"} />
+            <p className={onpagedetails? "":"hidden"}>
+                {heartColor? "Added to Collection":"Add to Collection"} 
+            </p>
         </button>
     )
 }

@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from.favorties import favorites
+from.favorites import favorites
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -43,4 +43,10 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'user_favorites': [favorite.to_dict_favorites() for favorite in self.user_favorites],
             'cart_session': self.cart_session.to_dict()
+        }
+
+    def to_dict_review_user(self):
+        return {
+            'id': self.id,
+            'username': self.username
         }

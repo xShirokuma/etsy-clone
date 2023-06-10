@@ -3,7 +3,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../store/products"
 import { useHistory } from "react-router-dom";
+import OpenModalButton from "../../components/OpenModalButton";
 import "./ShoppingCartPage.css"
+import DeleteShoppingCart from "../../components/DeleteShoppingCart";
+import { placeOrderThunk } from "../../store/session";
 
 const ShoppingCartPage = () => {
     const dispatch = useDispatch();
@@ -21,6 +24,12 @@ const ShoppingCartPage = () => {
         dispatch(fetchProducts());
     }, [dispatch]);
 
+    const checkout = () => {
+      history.push("/")
+      window.alert("Order Placed!")
+      dispatch(placeOrderThunk(sessionUser.id))
+    }
+
     return (
         <div className="bodyContainer">
             <h1>{title}</h1>
@@ -35,10 +44,21 @@ const ShoppingCartPage = () => {
                           alt="products"
                         />
                       {/* <div className="price">$ {ele.product.price.toFixed(2)}</div> */}
+                      </NavLink>
                       <div>$ {ele.product.price.toFixed(2)}</div>
                       <div>quantity: {ele.quantity}</div>
-                      </NavLink>
-                      <button>Remove item from your cart</button>
+                      
+                    <OpenModalButton
+                    buttonText="Delete Product"
+                    modalComponent={
+                      <DeleteShoppingCart
+                        cartId={ele.id}
+                        productId={ele.product.id}
+                        sessionuserId={sessionUser.id}
+                      
+                      />
+                    }
+                    />
                       {/* <FavoriteIcon
                         sessionUser={sessionUser}
                         product={product}
@@ -47,6 +67,7 @@ const ShoppingCartPage = () => {
                   </div>
                 ))}
             </div>
+            <button onClick={checkout}>Proceed to checkout</button>
         </div> 
         
     )
