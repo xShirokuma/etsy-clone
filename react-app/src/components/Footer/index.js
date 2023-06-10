@@ -50,17 +50,17 @@ function Footer({ isLoaded }) {
       <div>
         <div>
           <h3>
-            <i class="fa-regular fa-copyright"></i>2023 Shopsy inspired by Esty
+            <i className="fa-regular fa-copyright"></i>2023 Shopsy inspired by Esty
           </h3>
         </div>
         <div>
           <div>Made with:</div>
           <div className="madeIcons">
-            <i class="fa-brands fa-react"></i>
-            <i class="fa-brands fa-html5"></i>
-            <i class="fa-brands fa-css3-alt"></i>
-            <i class="fa-brands fa-square-js"></i>
-            <i class="fa-brands fa-python"></i>
+            <i className="fa-brands fa-react"></i>
+            <i className="fa-brands fa-html5"></i>
+            <i className="fa-brands fa-css3-alt"></i>
+            <i className="fa-brands fa-square-js"></i>
+            <i className="fa-brands fa-python"></i>
           </div>
         </div>
       </div>
