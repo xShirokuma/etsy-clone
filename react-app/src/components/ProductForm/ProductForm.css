@@ -2,3 +2,29 @@
     color: red;
     font-size: 14px;
 }
+.productForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin:0px 500px;
+    border-radius: 25px 25px;
+    border:solid rgb(225, 223, 223) 2px;
+    margin-top:5px;
+    padding:15px;    
+}
+form{
+    padding:5px;
+}
+input{
+padding: 6px 80px;
+text-align: flex-start;
+
+}
+.createbutton-product{
+    width: 330px;
+    height: 35px;
+    background-color: black;
+    color: white;
+    font-size: 16px; 
+    margin-top:10px; 
+}
