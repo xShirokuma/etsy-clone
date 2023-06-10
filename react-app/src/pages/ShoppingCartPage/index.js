@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import OpenModalButton from "../../components/OpenModalButton";
 import "./ShoppingCartPage.css"
 import DeleteShoppingCart from "../../components/DeleteShoppingCart";
+import { placeOrderThunk } from "../../store/session";
 
 const ShoppingCartPage = () => {
     const dispatch = useDispatch();
@@ -22,6 +23,12 @@ const ShoppingCartPage = () => {
     useEffect(() => {
         dispatch(fetchProducts());
     }, [dispatch]);
+
+    const checkout = () => {
+      history.push("/")
+      window.alert("Order Placed!")
+      dispatch(placeOrderThunk(sessionUser.id))
+    }
 
     return (
         <div className="bodyContainer">
@@ -60,7 +67,7 @@ const ShoppingCartPage = () => {
                   </div>
                 ))}
             </div>
-            <button>Proceed to checkout</button>
+            <button onClick={checkout}>Proceed to checkout</button>
         </div> 
         
     )

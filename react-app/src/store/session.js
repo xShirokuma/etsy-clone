@@ -33,7 +33,13 @@ const updateCart = (updatedCartItem) => ({
 	type: UPDATE_CART,
 	updatedCartItem
 })
-const deleteCart = (cartItem) => ({
+
+const deleteCart = (cartSession) => ({
+	type: DELETE_CART,
+	cartSession
+})
+
+const deleteCartItem = (cartItem) => ({
 	type: DELETE_CART_ITEM,
 	cartItem
 })
@@ -190,9 +196,26 @@ export const thunkDeleteCartItem = (sessionUserId,cartId, productId,) => async (
 			const cartItemObj = await response.json();
 			const cartItem = cartItemObj.cartItem
 			console.log("inside the dleete thunk", cartItem)
-			dispatch(deleteCart(cartItem))
+			dispatch(deleteCartItem(cartItem))
 			return cartItem
 		};
+	}
+
+	export const placeOrderThunk = (userId) => async (dispatch) => {
+		const options = {
+			method:'DELETE',
+			headers: {
+				"Content-Type": "application/json"
+			}
+		}
+		const response = await fetch(`/api/users/${userId}/cart`, options)
+		
+		if(response.ok) {
+			const cartSessionObj = await response.json()
+			const cartSession = cartSessionObj.cart_session
+			dispatch(deleteCart(cartSession))
+			return cartSession
+		}
 	}
 
 
