@@ -179,7 +179,7 @@ console.log("value in thunk", value)
     };
 }
 
-export const thunkDeleteCart = (sessionUserId,cartId, productId,) => async (dispatch) => {
+export const thunkDeleteCart = (sessionUserId,cartId, productId) => async (dispatch) => {
 	console.log("value in thunk", cartId,productId,sessionUserId)
 		const response = await fetch(`/api/users/${sessionUserId}/cart/products/${productId}/${cartId}`,{
 			method:'DELETE',
