@@ -16,6 +16,7 @@ function App() {
 
   return (
     <>
+    <div className="content-container">
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
@@ -52,7 +53,10 @@ function App() {
           </Route>
         </Switch>
       )}
-      <Footer isLoaded={isLoaded} />
+      </div>
+      <div className="footer-container">
+        <Footer isLoaded={isLoaded} />
+      </div>
     </>
   );
 }
