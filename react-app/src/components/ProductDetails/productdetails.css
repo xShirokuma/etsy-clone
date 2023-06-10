@@ -1,3 +1,7 @@
+.product-single {
+  padding-top: 20px;
+}
+
 .product-container {
     max-height: fit-content;
   }
@@ -129,6 +133,7 @@ li.slide.selected{
 .product-container {
     display: flex;
     flex-direction: column;
+    gap: 30px;
   }
 
 .thumbs-wrapper.axis-vertical{
@@ -203,6 +208,20 @@ p.price-detail {
 
 .product-info {
   max-width: 350px;
+  padding-left: 30px;
+  padding-top: 20px;
+  gap: 10px;
+}
+
+.product-info-description {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 18%;
+}
+
+.product-info-description div {
+  font-size: 16px;
 }
 
 .description {
@@ -216,6 +235,10 @@ p.price-detail {
 .cart-button {
   padding: 4px 0;
   width: 100%;
+}
+
+.cart-button:hover {
+  transform: scale(1.02);
 }
 
 select {
@@ -251,7 +274,10 @@ label {
 }
 
 .total-reviews {
+  margin-bottom: 20px;
   font-size: 14px;
+  border-bottom: solid 2px rgb(222, 219, 219);
+  width: 88%;
 }
 
 .name-date {
@@ -277,5 +303,9 @@ label {
 
 .border {
   border-bottom: solid 2px rgb(222, 219, 219);
+  width: 88%;
+}
 
+.fav-in-page-detail:hover {
+  transform: scale(1.02);
 }
