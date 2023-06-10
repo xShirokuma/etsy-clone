@@ -40,12 +40,12 @@ console.log("what if review:", review)
     }
    
     return(
+      <div className="log-in-modal">
+        <h1>Edit your review</h1>
         <form onSubmit={handleSubmit}>
-        <div>
-            <h4>Review</h4>
-            <h4 className='formErrors'>{errors?.reviews}</h4>
-        </div>
         <label>
+            Review
+            <h4 className='formErrors'>{errors?.reviews}</h4>
             <input 
                 type='text'
                 placeholder='Review'
@@ -53,7 +53,7 @@ console.log("what if review:", review)
                 onChange={(e) => setReviews(e.target.value)}/>
         </label>
 
-        <div>
+        <div className="review-stars">
             <h4>Stars</h4>
             <h4 className='formErrors'>{errors?.stars}</h4>
         </div>
@@ -138,6 +138,7 @@ console.log("what if review:", review)
         </div>
 
         </form>
+      </div>
 )
 }
 export default EditReview

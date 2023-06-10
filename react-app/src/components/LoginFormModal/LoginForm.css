@@ -1,0 +1,87 @@
+.errors {
+    color: red;
+    font-size: 16px;
+}
+
+#modal-content {
+    background-color: transparent;
+}
+
+.login-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding-top: 25px;
+}
+
+.log-in-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    width: 400px;
+    padding: 5px 20px 20px 20px;
+    border: 2px solid black;
+    border-radius: 25px 25px;
+    height: 55%;
+    background-color: white;
+}
+
+.log-in-modal h1 {
+    margin: 10px 0 0 0;
+    font-size: 28px;
+    font-family: cursive;
+}
+
+.log-in-modal form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: large;
+    margin-bottom: 20px;
+}
+
+.log-in-modal label {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+}
+
+.log-in-modal input {
+    width: 330px;
+    border: 2px solid rgb(225, 223, 223);
+    border-radius: 5px 5px;
+    height: 35px;
+    font-size: 18px;
+}
+
+.log-in-modal input:hover {
+    border: 1px solid rgb(10, 10, 10);
+}
+
+.log-in-modal button {
+    width: 330px;
+    height: 35px;
+    background-color: black;
+    border-radius: 25px 25px;
+    color: white;
+    font-size: 16px;
+}
+
+.log-in-modal .demo-user {
+    background-color: white;
+    color: black;
+}
+
+.log-in-modal button:hover {
+    transform: scale(1.02);
+}
+
+:disabled {
+    background-color: rgb(222, 217, 217);
+}

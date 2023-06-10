@@ -37,8 +37,10 @@ const FavoritePage = () => {
 
     return (
         <div className="bodyContainer">
-            <h2><i className="fa-regular fa-circle-user" /> {sessionUser?.username}</h2>
-            <h3>Favorite items:   {sessionUser?.user_favorites?.length} items</h3>
+            <div className="fav-title">
+                <h2><i className="fa-regular fa-circle-user" /> {sessionUser?.username}</h2>
+                <h3>Favorite items:   {sessionUser?.user_favorites?.length} items</h3>
+            </div>
             <div className="favoritesContainer">
             {sessionUser?.user_favorites?.map((product) => (
                 <div key={product.id}>
@@ -51,6 +53,8 @@ const FavoritePage = () => {
                             />
                             <div className="price">$ {product.price.toFixed(2)}</div>
                         </NavLink>
+                            {/* <div className="fav-product-name">{product.name}</div>
+                            <div className="fav-product-pice">$ {product.price.toFixed(2)}</div> */}
                         <FavoriteIcon
                             sessionUser={sessionUser}
                             product={product}
@@ -60,7 +64,7 @@ const FavoritePage = () => {
             ))}
             </div>
             
-            <h3>Popular items we think you'll love</h3>
+            <h3 id="recommond-title">🌟🌟🌟 Popular items we think you'll love 🌟🌟🌟</h3>
             <div className="recommond-products">
             {recommandProducts.map((product) => (
                 <div key={product.id}>
