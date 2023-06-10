@@ -90,16 +90,15 @@ const ProductDetails = () => {
         <div>
           <ImageCarousel />
         </div>
-      <div className="reviews">
-        <div>
-          <h2>Reviews</h2>
-        </div>
+        <div className="reviews">
+          <div>
+            <h2>Reviews</h2>
+          </div>
         <div className="total-reviews">
           {reviewsLength()}
           {product?.reviews.length ? ` ⭐ ${reviewAvg()}` : ""}
         </div>
         <div className="create-review-button">
-          {/* <Link product={product} onClick={(e)=>history.push(`/products/${productId}/review`)} >Post a review</Link> */}
           {sessionUser &&
             sessionUser.id !== product?.userId &&
             !reviewExists && (
@@ -108,7 +107,6 @@ const ProductDetails = () => {
                 modalComponent={<PostReviewModal productId={productId} />}
               />
             )}
-          {/* <button onClick={(e)=>history.push(`/products/${product.id}/delete`)} product={product}>Delete a review</button> */}
         </div>
         {product?.reviews.length ? (
           <div className="review-map">
@@ -159,8 +157,10 @@ const ProductDetails = () => {
           <p className="price-detail">${product?.price.toFixed(2)}</p>
           <h2>{product?.name}</h2>
           <div className="available">Available: {product?.available}</div>
-          <h3>Description</h3>
-          <div className="description">{product?.description}</div>
+          <div className="product-info-description">
+            <h3>Description</h3>
+            <div className="description">{product?.description}</div>
+          </div>
           <div className="add-to-cart">
             <div>
               <label>Quantity</label>

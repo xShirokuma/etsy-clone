@@ -22,9 +22,9 @@ const DeleteReview = ({productId, reviewId}) => {
     }
         
   return(
-    <div>
+    <div className="log-in-modal delete-review-modal">
       <h1>Confirm Delete</h1>
-      <p>Are you sure you want to remove this review?</p>
+      <h4>Are you sure you want to remove this review?</h4>
       <form>
         <div className="delete-buttons">
           <button  onClick={handleSubmityes}>Yes </button>

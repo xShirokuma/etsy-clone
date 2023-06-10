@@ -51,90 +51,89 @@ const PostReviewModal = ({ productId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <h4>Review</h4>
-        <h4 className="formErrors">{errors?.review}</h4>
-      </div>
-      <label>
-        <input
-          type="text"
-          placeholder="Review"
-          value={review}
-          onChange={(e) => setReview(e.target.value)}
-        />
-      </label>
-
-      <div>
-        <h4>Stars</h4>
-        <h4 className="formErrors">{errors?.stars}</h4>
-        <div className="stars">
-          <i
-            className={
-              stars >= 1
-                ? "fa-sharp fa-solid fa-star"
-                : "fa-regular fa-star fa-lg"
-            }
+    <div className="log-in-modal">
+      <h1>Post your review</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Review
+          <h4 className="formErrors">{errors?.review}</h4>
+          <input
+            type="text"
+            placeholder="Enter your review here"
+            value={review}
+            onChange={(e) => setReview(e.target.value)}
+          />
+        </label>
+        <div className="review-stars">
+          <h4>Stars</h4>
+          <h4 className="formErrors">{errors?.stars}</h4>
+          <div className="stars">
+            <i
+              className={
+                stars >= 1
+                  ? "fa-sharp fa-solid fa-star"
+                  : "fa-regular fa-star fa-lg"
+              }
             // onMouseEnter={() => {setStars(1)} }
             // onMouseLeave={() => {setStars(0)} }
-            style={stars >= 1 ? { color: "#FCE79A" } : {}}
-            onClick={() => {
-              setStars(1);
-            }}
-          ></i>
-          <i
-            className={
-              stars >= 2
-                ? "fa-sharp fa-solid fa-star"
-                : "fa-regular fa-star fa-lg"
-            }
+              style={stars >= 1 ? { color: "#FCE79A" } : {}}
+              onClick={() => {
+                setStars(1);
+              }}
+            ></i>
+            <i
+              className={
+                stars >= 2
+                  ? "fa-sharp fa-solid fa-star"
+                  : "fa-regular fa-star fa-lg"
+              }
             // onMouseEnter={() => {setStars(2)} }
             // onMouseLeave={() => {setStars(0)} }
-            style={stars >= 2 ? { color: "#FCE79A" } : {}}
-            onClick={() => {
-              setStars(2);
-            }}
-          ></i>
-          <i
-            className={
-              stars >= 3
-                ? "fa-sharp fa-solid fa-star"
-                : "fa-regular fa-star fa-lg"
-            }
-            style={stars >= 3 ? { color: "#FCE79A" } : {}}
+              style={stars >= 2 ? { color: "#FCE79A" } : {}}
+              onClick={() => {
+                setStars(2);
+              }}
+            ></i>
+            <i
+              className={
+                stars >= 3
+                  ? "fa-sharp fa-solid fa-star"
+                  : "fa-regular fa-star fa-lg"
+              }
+              style={stars >= 3 ? { color: "#FCE79A" } : {}}
             // onMouseEnter={() => {setStars(3)} }
             // onMouseLeave={() => {setStars(0)} }
-            onClick={() => {
-              setStars(3);
-            }}
-          ></i>
-          <i
-            className={
-              stars >= 4
-                ? "fa-sharp fa-solid fa-star"
-                : "fa-regular fa-star fa-lg"
-            }
+              onClick={() => {
+                setStars(3);
+              }}
+            ></i>
+            <i
+              className={
+                stars >= 4
+                  ? "fa-sharp fa-solid fa-star"
+                  : "fa-regular fa-star fa-lg"
+              }
             // onMouseEnter={() => {setStars(4)} }
             // onMouseLeave={() => {setStars(0)} }
-            style={stars >= 4 ? { color: "#FCE79A" } : {}}
-            onClick={() => {
-              setStars(4);
-            }}
-          ></i>
-          <i
-            className={
-              stars >= 5
-                ? "fa-sharp fa-solid fa-star"
-                : "fa-regular fa-star fa-lg"
-            }
+              style={stars >= 4 ? { color: "#FCE79A" } : {}}
+              onClick={() => {
+                setStars(4);
+              }}
+            ></i>
+            <i
+              className={
+                stars >= 5
+                  ? "fa-sharp fa-solid fa-star"
+                  : "fa-regular fa-star fa-lg"
+              }
             // onMouseEnter={() => {setStars(5)} }
             // onMouseLeave={() => {setStars(0)} }
-            style={stars >= 5 ? { color: "#FCE79A" } : {}}
-            onClick={() => {
-              setStars(5);
-            }}
-          ></i>
-          {/* <p> Stars</p> */}
+              style={stars >= 5 ? { color: "#FCE79A" } : {}}
+              onClick={() => {
+                setStars(5);
+              }}
+            ></i>
+            {/* <p> Stars</p> */}
         </div>
         {/* </div>
             <label>
@@ -145,28 +144,26 @@ const PostReviewModal = ({ productId }) => {
                     onChange={(e) => setStars(e.target.value)}/>
             </label>
             <div > */}
-        <h4>url1</h4>
         {/* <h4 className='formErrors'>{errors?.url1}</h4> */}
       </div>
-      <label>
+      <label>Image 
         <input
           type="url"
           accept=".png,.jpg,.jpeg,.gif"
-          placeholder="Url1"
+          placeholder="Review Image 1"
           value={url1}
           onChange={(e) => setUrl1(e.target.value)}
         />
       </label>
 
       <div>
-        <h4>url2</h4>
         {/* <h4 className='formErrors'>{errors?.url2}</h4> */}
       </div>
-      <label>
+      <label>Image
         <input
           type="url"
           accept=".png,.jpg,.jpeg,.gif"
-          placeholder="Url2"
+          placeholder="Review Image 2"
           value={url2}
           onChange={(e) => setUrl2(e.target.value)}
         />
@@ -182,6 +179,7 @@ const PostReviewModal = ({ productId }) => {
         </button>
       </div>
     </form>
+    </div>
   );
 };
 
