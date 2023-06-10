@@ -76,20 +76,24 @@ const ProductDetails = () => {
           <ImageCarousel />
         </div>
         <div className="product-info">
-          {product?.name}
-          Available:{product?.available}${product?.price.toFixed(2)}
-          <h2>Description</h2>
-          {product?.description}
+          <p className="price-detail">${product?.price.toFixed(2)}</p>
+          <h2>{product?.name}</h2>
+          <div className="available">Available: {product?.available}</div>
+          <h3>Description</h3>
+          <div className="description">{product?.description}</div>
           <div className="add-to-cart">
+            <div>
             <label>Quantity</label>
+            </div>
             <select name="quantity" placeholder="Quantity" id="itemquantity" onChange={itemquantity}>
+              {/* <option value="" disabled selected>Select quantity</option> */}
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
-            <div>
+            <div className="cart-button">
               <button onClick={addToCart} className="add-to-cart-button">Add to Cart</button>
             </div>
             <div className="fav-in-page-detail">
