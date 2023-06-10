@@ -18,6 +18,7 @@ const ProductList = ({products}) => {
               <div className="welcome-title">
                 <p>{`Welcome back, ${sessionUser.username}!`}</p>
               </div>
+              {sessionUser.user_favorites.length ? (
               <div className="favorites">
               <NavLink exact to= "/favorites">
                 <p>Favorites ↦</p>
@@ -43,6 +44,9 @@ const ProductList = ({products}) => {
                 ))}
                 </div>
               </div>
+                ) : (
+                  <div className="start-shopping">Start shopping today!</div>
+                )}
             </div>
           </div>
           <div className="card-product">

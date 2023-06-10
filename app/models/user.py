@@ -44,3 +44,9 @@ class User(db.Model, UserMixin):
             'user_favorites': [favorite.to_dict_favorites() for favorite in self.user_favorites],
             'cart_session': self.cart_session.to_dict()
         }
+
+    def to_dict_review_user(self):
+        return {
+            'id': self.id,
+            'username': self.username
+        }
