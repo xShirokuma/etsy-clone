@@ -10,8 +10,6 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100rem;
-    /* background-image: linear-gradient(#c1e3f3 70%, #ffffff 0%); */
 }
 
 .homepage-header {
@@ -25,7 +23,6 @@ img {
 
 .homepage-header .fav-title{
     padding: 2rem 0 0 0;
-
 }
 
 .background {
