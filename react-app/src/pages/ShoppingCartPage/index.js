@@ -67,6 +67,7 @@ const ShoppingCartPage = () => {
                   </div>
                 ))}
             </div>
+            
             <button onClick={checkout}>Proceed to checkout</button>
         </div> 
         
