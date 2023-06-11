@@ -23,9 +23,9 @@ const DeleteShoppingCart = ({cartId, productId,sessionuserId}) => {
     }
         
   return(
-    <div>
+    <div className="log-in-modal delete-product-cart">
       <h1>Confirm Delete</h1>
-      <p>Are you sure you want to remove this product?</p>
+      <h4>Are you sure you want to remove this product ?</h4>
       <form>
         <div className="delete-buttons">
           <button  onClick={handleSubmityes}>Yes </button>

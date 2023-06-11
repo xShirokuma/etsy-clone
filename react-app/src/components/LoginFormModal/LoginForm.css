@@ -58,6 +58,7 @@
     border-radius: 5px 5px;
     height: 35px;
     font-size: 18px;
+    padding-left: 10px;
 }
 
 .log-in-modal input:hover {
