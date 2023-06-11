@@ -20,13 +20,6 @@ const PostReviewModal = ({ productId }) => {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    const errors = {};
-    if (review === "") {
-      errors.review = "Review is required";
-    }
-    if (stars > 5 || stars < 1) {
-      errors.stars = "Stars must be between 1 and 5";
-    }
     // if (url1?.match(/\.(jpeg|jpg|png)$/) === null || url2?.match(/\.(jpeg|jpg|png)$/) === null) {
     //     errors.url1 = "Image URL must end in .png, .jpg, or .jpeg";
     // }
@@ -43,6 +36,15 @@ const PostReviewModal = ({ productId }) => {
       url1,
       url2,
     };
+
+    const errors = {};
+    if (review === "") {
+      errors.review = "Review is required";
+    }
+    if (stars > 5 || stars < 1) {
+      errors.stars = "Stars must be between 1 and 5";
+    }
+
     let createdReview = await dispatch(thunkNewReview(newreview, productId));
     // if (createdReview){
     //     history.push(`/products/${productId}`)

@@ -22,26 +22,7 @@ const ProductForm = ({ product, formType }) => {
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
-        const errors = {};
-        if (name==="") {
-         errors.name = "Name is required";
-        }
-        if (description==="") {
-            errors.description = "Description is required";
-        }
-        if (price==="") {
-            errors.price = "Price is required";
-        }
-        if (previewImage==="") {
-            errors.previewImage = "Preview Image is required";
-        }
-        // if (url1?.match(/\.(jpeg|jpg|png)$/) === null || url2?.match(/\.(jpeg|jpg|png)$/) === null || url3?.match(/\.(jpeg|jpg|png)$/) === null || url4?.match(/\.(jpeg|jpg|png)$/) === null ) {
-        //     errors.url1 = "Image URL must end in .png, .jpg, or .jpeg";
-        //    }
-        if (available==="") {
-            errors.available = "Available is required";
-        }
-        setErrors(errors);
+        
     },[name,description,price,available,previewImage,url1,url2,url3,url4])
     
     const handleSubmit = async(e) => {
@@ -76,6 +57,27 @@ const ProductForm = ({ product, formType }) => {
             }
         }
         
+        const errors = {};
+        if (name==="") {
+         errors.name = "Name is required";
+        }
+        if (description==="") {
+            errors.description = "Description is required";
+        }
+        if (price==="") {
+            errors.price = "Price is required";
+        }
+        if (previewImage==="") {
+            errors.previewImage = "Preview Image is required";
+        }
+        // if (url1?.match(/\.(jpeg|jpg|png)$/) === null || url2?.match(/\.(jpeg|jpg|png)$/) === null || url3?.match(/\.(jpeg|jpg|png)$/) === null || url4?.match(/\.(jpeg|jpg|png)$/) === null ) {
+        //     errors.url1 = "Image URL must end in .png, .jpg, or .jpeg";
+        //    }
+        if (available==="") {
+            errors.available = "Available is required";
+        }
+        setErrors(errors);
+
     }
 
     return (
