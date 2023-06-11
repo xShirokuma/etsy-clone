@@ -15,14 +15,7 @@ console.log("what if review:", review)
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
-        const errors = {};
-        if (reviews==="") {
-            errors.reviews = "Review is required";
-        }
-        if (stars > 5 || stars < 1) {
-            errors.stars = "Stars must be between 1 and 5";
-        }
-        setErrors(errors);
+        
     },[review, stars])
 
     const handleSubmit = async(e) => {
@@ -32,11 +25,21 @@ console.log("what if review:", review)
             review: reviews,
             stars,
         }
-    let editedReview = await dispatch(thunkEditReview(editreview, productId))
+
+        const errors = {};
+        if (reviews==="") {
+            errors.reviews = "Review is required";
+        }
+        if (stars > 5 || stars < 1) {
+            errors.stars = "Stars must be between 1 and 5";
+        }
+        setErrors(errors);
+
+        let editedReview = await dispatch(thunkEditReview(editreview, productId))
     // if (editedReview){
     //     history.push(`/products/${productId}`) 
     // }
-    closeModal()
+        closeModal()
     }
    
     return(
