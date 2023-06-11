@@ -70,9 +70,8 @@ const ProductDetails = () => {
       );
 
       if (!checkproduct) {
-        dispatch(thunkAddToCart(sessionUser, product, value)).then(
-          history.push("/shoppingcart")
-        );
+        await dispatch(thunkAddToCart(sessionUser, product, value))
+        history.push("/shoppingcart")
       } else if (checkproduct) {
         value = parseInt(parseInt(value) + checkproduct.quantity);
         let cartId = checkproduct.id;
