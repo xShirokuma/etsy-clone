@@ -70,7 +70,7 @@ def sign_up():
         )
         db.session.add(user)
         db.session.commit()
-        sleep(2)
+        db.session.refresh(user)
         shopping_cart=ShoppingSession(
             userId = user.id,
             total = 0,
