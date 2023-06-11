@@ -16,7 +16,8 @@ form{
     padding:5px;
 }
 input{
-padding: 6px 80px;
+padding: 6px 175px;
+padding-left:2px;
 text-align: flex-start;
 
 }
