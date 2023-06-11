@@ -22,3 +22,48 @@
 .empty-cart div:hover {
     transform: scale(1.05);
 }
+
+.cartpage {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cartpage h1 {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 20px 0;
+}
+
+.product-in-cartpage {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.checkout-btn {
+    width: 200px;
+    height: 50px;
+    font-size: 18px;
+    color: white;
+    background-color: black;
+    border-radius: 30px 30px;
+}
+
+.checkout-btn:hover {
+    transform: scale(1.04);
+}
+
+.delete-item-in-cart-btn button {
+    width: 130px;
+    height: 30px;
+    font-size: 16px;
+    color: white;
+    background-color: black;
+    border-radius: 30px 30px;
+}
+
+.delete-item-in-cart-btn:hover {
+    transform: scale(1.02);
+}
