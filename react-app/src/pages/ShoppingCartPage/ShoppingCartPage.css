@@ -3,3 +3,22 @@
     flex-direction: row;
     gap: 20px;
 } */
+
+.empty-cart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px
+}
+
+.empty-cart div {
+    padding-top: 50px;
+    font-size: 20px;
+    text-decoration: underline;
+    color: purple;
+}
+
+.empty-cart div:hover {
+    transform: scale(1.05);
+}

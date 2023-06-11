@@ -33,24 +33,33 @@ const ShopPage = () => {
         <div className="bodyContainer">
             <div className="shoppage">
                 <div className="shoppage-title">
-                    <h1>{sessionUser?.username}'s Shop</h1>
-                    <button onClick={(e)=>history.push("/products/new")}>Add New Product</button>
+                    <div>
+                      <h1>{sessionUser?.username}'s Shop</h1>
+                        {sessionUserProducts.length > 0 ?
+                        (<h3>You have {sessionUserProducts?.length} items in your shop</h3>)
+                        :(<h3>Your shop is empty, add a product to start your business.</h3>)}
+                    </div>
+                    <button onClick={(e)=>history.push("/products/new")}>Add New Product to Shop</button>
                 </div>
                 <div className="product-in-shop">
                 {sessionUserProducts?.map((product) => (
                 <div key={product.id} className="item-in-shop">
                     <NavLink to={`/products/${product.id}`}>
-                    <img
-                        className="product-image"
-                        src={product.previewImage}
-                        alt="products"
-                    />
-                    <div>$ {product.price.toFixed(2)}</div>
+                        <img
+                            className="product-image"
+                            src={product.previewImage}
+                            alt="products"
+                        />
                     </NavLink>
-                    <div>
-                        <button onClick={(e)=>history.push(`/products/${product.id}/edit`)}>Edit Product</button>
+                    <div className="item-in-shop-info">
+                        <div>Product name: {product.name}</div>
+                        <div>Description: {product.description}</div>
+                        <div>Price listed: $ {product.price.toFixed(2)}</div>
+                    </div>
+                    <div className="item-in-shop-button">
+                        <button onClick={(e)=>history.push(`/products/${product.id}/edit`)} id="edit-product">Edit Product Details</button>
                         <OpenModalButton
-                            buttonText="Delete" modalComponent={<DeleteProduct productId={product.id} />}
+                            buttonText="Delete Product" modalComponent={<DeleteProduct productId={product.id} />}
                         />
                     </div>
                 </div>
