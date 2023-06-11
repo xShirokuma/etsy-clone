@@ -3,6 +3,7 @@ from app.models import User, ShoppingSession, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from time import sleep
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -69,8 +70,9 @@ def sign_up():
         )
         db.session.add(user)
         db.session.commit()
+        sleep(2)
         shopping_cart=ShoppingSession(
-            userId = current_user.id,
+            userId = user.id,
             total = 0,
         )
         db.session.add(shopping_cart)
