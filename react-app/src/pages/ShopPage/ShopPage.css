@@ -1,7 +1,92 @@
 .shoppage {
-    width: 85%;
+    width: 55%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
+.shoppage-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 0 20px 0;
+}
+
+.shoppage-title button {
+    width: 30%;
+    border-radius: 20px 20px;
+    background-color: white;
+    border: rgb(88, 141, 255) 3px solid;
+    font-size: 18px;
+    color: rgb(88, 141, 255);
+   
+}
+
+.shoppage-title button:hover {
+    /* transform: scale(1.04); */
+    background-color: rgb(88, 141, 255);
+    border: rgb(88, 141, 255);
+    font-size: 18px;
+    color: white;
+}
+
+.product-in-shop {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.item-in-shop {
+    border: 2px solid rgb(187, 186, 186);
+    border-radius: 20px 20px;
+    padding: 15px;
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: 2fr 2fr 1fr;
+    justify-content: stretch;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.item-in-shop img {
+    width: 85%;
+    height: 15rem;
+}
+
+.item-in-shop:hover {
+    box-shadow: 0 0 8px rgb(184, 184, 184);
+}
+
+.item-in-shop-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    gap: 20px;
+}
+
+.item-in-shop-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 70px;
+    gap: 40px;
+
+}
+
+.item-in-shop-button button {
+    border-radius: 20px 20px;
+    background-color: black;
+    /* border: rgb(88, 141, 255) 3px solid; */
+    font-size: 16px;
+    color: white;
+    padding: 5px;
+}
+
+.item-in-shop-button button:hover {
+    transform: scale(1.02);
+}
+
+.item-in-shop-button #edit-product {
+    background-color: white;
+    color: black;
+}

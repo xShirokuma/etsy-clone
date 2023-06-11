@@ -315,3 +315,30 @@ label {
 .fav-in-page-detail:hover {
   transform: scale(1.02);
 }
+
+.review-btn {
+  display: flex;
+  gap: 5px;
+}
+
+.review-btn button {
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.review-btn button:hover {
+  transform: scale(1.05);
+}
+
+.create-review-button button {
+  width: 90px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.create-review-button button:hover {
+  transform: scale(1.05);
+}

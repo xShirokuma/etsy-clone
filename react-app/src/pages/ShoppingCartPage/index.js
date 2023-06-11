@@ -67,15 +67,16 @@ const ShoppingCartPage = () => {
                   </div>
                 ))}
             </div>
-            
-            <h2 className={sessionUser?.cart_session?.cart.length >= 1? "hidden":""}>
-              Your cart is empty
-            </h2>
-            <div className={sessionUser?.cart_session?.cart.length >= 1? "hidden":""}>
-              <NavLink exact to="/" >
-                Discover something unique to fill it up
-              </NavLink>
-            </div >
+            <div className="empty-cart">
+              <h2 className={sessionUser?.cart_session?.cart.length >= 1? "hidden":""}>
+                Your cart is empty
+              </h2>
+              <div className={sessionUser?.cart_session?.cart.length >= 1? "hidden":""}>
+                <NavLink exact to="/" >
+                  Discover something unique to fill it up
+                </NavLink>
+              </div >
+            </div>
             <button onClick={checkout} 
               className={sessionUser?.cart_session?.cart.length >= 1? "":"hidden"}>
                 Proceed to checkout

@@ -102,7 +102,7 @@ const ProductDetails = () => {
             sessionUser.id !== product?.userId &&
             !reviewExists && (
               <OpenModalButton
-                buttonText="Create"
+                buttonText="Post Review"
                 modalComponent={<PostReviewModal productId={productId} />}
               />
             )}
@@ -125,15 +125,15 @@ const ProductDetails = () => {
                 </div>
                 <div className="border">
                 {sessionUser && review?.userId === sessionUser.id && (
-                  <div>
+                  <div className="review-btn">
                     <OpenModalButton
-                      buttonText="Edit"
+                      buttonText="Edit Review"
                       modalComponent={
                         <EditReview productId={productId} review={review} />
                       }
                     />
                     <OpenModalButton
-                      buttonText="Delete"
+                      buttonText="Delete Review"
                       modalComponent={
                         <DeleteReview
                           productId={productId}
