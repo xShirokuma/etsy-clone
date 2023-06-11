@@ -1,9 +1,15 @@
 .product-single {
   padding-top: 20px;
+  padding-left: 100px;
+  width: 80%;
 }
 
 .product-container {
     max-height: fit-content;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
   }
 
   .image-carousel{
@@ -208,7 +214,7 @@ p.price-detail {
 
 .product-info {
   max-width: 350px;
-  padding-left: 30px;
+  padding-left: 10px;
   /* padding-top: 10px; */
   gap: 10px;
 }
