@@ -33,7 +33,7 @@ const ProductForm = ({ product, formType }) => {
             errors.price = "Price is required";
         }
         if (previewImage==="") {
-            errors.previewImage = "previewImage is required";
+            errors.previewImage = "Preview Image is required";
         }
         // if (url1?.match(/\.(jpeg|jpg|png)$/) === null || url2?.match(/\.(jpeg|jpg|png)$/) === null || url3?.match(/\.(jpeg|jpg|png)$/) === null || url4?.match(/\.(jpeg|jpg|png)$/) === null ) {
         //     errors.url1 = "Image URL must end in .png, .jpg, or .jpeg";
@@ -100,8 +100,9 @@ const ProductForm = ({ product, formType }) => {
                 <h4 className='formErrors'>{errors?.description}</h4>
             </div>
             <label>
-                <input 
-                    type='text'
+                <textarea 
+                    rows="4"
+                    cols="44"
                     placeholder='Description'
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}/>
@@ -113,7 +114,7 @@ const ProductForm = ({ product, formType }) => {
             </div>
             <label>
                 <input 
-                    type='text'
+                    type='number'
                     placeholder='Price'
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}/>
@@ -121,19 +122,19 @@ const ProductForm = ({ product, formType }) => {
 
             <div className={formType==="Update your product"? "hidden":""}>
                 <div>
-                    <h4>previewImage</h4>
+                    <h4>Preview Image</h4>
                     <h4 className='formErrors'>{errors?.previewImage}</h4>
                 </div>
                 <label>
                     <input 
                         type='text'
-                        placeholder='previewImage'
+                        placeholder='Preview Image'
                         value={previewImage}
                         onChange={(e) => setPreiewImage(e.target.value)}/>
                 </label>
 
                 <div >
-                    <h4>url1</h4>
+                    <h4>Image1</h4>
                     <h4 className='formErrors'>{errors?.url1}</h4>
                 </div>
                 <label>
@@ -146,7 +147,7 @@ const ProductForm = ({ product, formType }) => {
                 </label>
 
                 <div>
-                    <h4>url2</h4>
+                    <h4>Image2</h4>
                     <h4 className='formErrors'>{errors?.url2}</h4>
                 </div>
                 <label>
@@ -159,7 +160,7 @@ const ProductForm = ({ product, formType }) => {
                 </label>
 
                 <div>
-                    <h4>url3</h4>
+                    <h4>Image3</h4>
                     <h4 className='formErrors'>{errors?.url3}</h4>
                 </div>
                 <label>
@@ -172,7 +173,7 @@ const ProductForm = ({ product, formType }) => {
                 </label>
 
                 <div>
-                    <h4>url4</h4>
+                    <h4>Image4</h4>
                     <h4 className='formErrors'>{errors?.url4}</h4>
                 </div>
                 <label>
