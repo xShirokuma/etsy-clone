@@ -49,11 +49,17 @@ console.log("what if review:", review)
         <label>
             Review
             <h4 className='formErrors'>{errors?.reviews}</h4>
-            <input 
+            <textarea 
+                rows="4"
+                cols="44"
+                placeholder='Enter your review here'
+                value={reviews}
+                onChange={(e) => setReviews(e.target.value)}/>
+            {/* <input 
                 type='text'
                 placeholder='Review'
                 value={reviews}
-                onChange={(e) => setReviews(e.target.value)}/>
+                onChange={(e) => setReviews(e.target.value)}/> */}
         </label>
 
         <div className="review-stars">
