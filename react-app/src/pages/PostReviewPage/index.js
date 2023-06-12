@@ -59,12 +59,18 @@ const PostReviewModal = ({ productId }) => {
         <label>
           Review
           <h4 className="formErrors">{errors?.review}</h4>
-          <input
+          <textarea 
+            rows="4"
+            cols="44"
+            placeholder='Enter your review here'
+            value={review}
+            onChange={(e) => setReview(e.target.value)}/>
+          {/* <input
             type="text"
             placeholder="Enter your review here"
             value={review}
             onChange={(e) => setReview(e.target.value)}
-          />
+          /> */}
         </label>
         <div className="review-stars">
           <h4>Stars</h4>
