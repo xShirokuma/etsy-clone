@@ -25,7 +25,7 @@ const ShoppingCartPage = () => {
     }, [dispatch]);
 
     const checkout = () => {
-      history.push("/")
+      // history.push("/")
       window.alert("Order Placed!")
       dispatch(placeOrderThunk(sessionUser.id))
     }

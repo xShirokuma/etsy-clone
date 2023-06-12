@@ -16,7 +16,7 @@
 
 .favoritesContainer .product-image {
     object-fit: cover;
-    min-height: 11rem;
+    min-height: 12rem;
     width: 100%;
     border-radius: 0;
 }
@@ -35,6 +35,7 @@
     padding: 20px 0 0 0;
     gap: 20px;
     padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 .recommond-products .product-image {

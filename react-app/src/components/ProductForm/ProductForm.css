@@ -13,9 +13,13 @@
     padding:15px;    
 }
 
+.productForm:hover {
+    box-shadow: 0 0 8px rgb(184, 184, 184);
+}
+
 .productForm input {
     width: 100%;
-    padding-left: 10px;
+    /* padding-left: 10px; */
 }
 
 form{
@@ -23,10 +27,15 @@ form{
 }
 
 input{
-padding: 6px 175px;
-padding-left:2px;
-text-align: flex-start;
+    padding: 6px 0 6px 1px;
+    padding-left:2px;
+    text-align: flex-start;
 }
+
+textarea {
+    padding: 6px 0 6px 2px;
+}
+
 
 .createbutton-product{
     width: 330px;
