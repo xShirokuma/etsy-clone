@@ -77,7 +77,6 @@ const ProductForm = ({ product, formType }) => {
             errors.available = "Available is required";
         }
         setErrors(errors);
-
     }
 
     return (
