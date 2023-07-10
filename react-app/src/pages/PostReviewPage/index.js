@@ -1,33 +1,50 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
-import { thunkNewReview } from "../../store/products";
-import { useModal } from "../../context/Modal";
-import "./PostReviewPage.css";
+import React, { useState, useEffect, useCallback } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { useHistory, useParams } from "react-router-dom"
+import { thunkNewReview } from "../../store/products"
+import { useModal } from "../../context/Modal"
+import "./PostReviewPage.css"
 
 const PostReviewModal = ({ productId }) => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const { closeModal } = useModal();
-  const { newproductId } = useParams();
-  const sessionUser = useSelector((state) => state.session.user);
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const { closeModal } = useModal()
+  const { newproductId } = useParams()
+  const sessionUser = useSelector((state) => state.session.user)
 
-  const [review, setReview] = useState("");
-  const [stars, setStars] = useState(0);
-  const [url1, setUrl1] = useState("");
-  const [url2, setUrl2] = useState("");
+  const [review, setReview] = useState("")
+  const [stars, setStars] = useState(0)
+  const [url1, setUrl1] = useState("")
+  const [url2, setUrl2] = useState("")
+  const [attemptSubmitted, setAttemptSubmitted] = useState(false)
+  const [errors, setErrors] = useState({})
 
-  const [errors, setErrors] = useState({});
+  const validateErrors = useCallback(() => {
+    const errorHandler = {}
+    if (review === "") {
+      errorHandler.review = "Review is required"
+    }
+    if (stars > 5 || stars < 1) {
+      errorHandler.stars = "Stars must be between 1 and 5"
+    }
+
+    if (attemptSubmitted) setErrors(errorHandler)
+    if (Object.keys(errorHandler).length !== 0) {
+      return false
+    } else return true
+  }, [attemptSubmitted, review, stars])
 
   useEffect(() => {
-    // if (url1?.match(/\.(jpeg|jpg|png)$/) === null || url2?.match(/\.(jpeg|jpg|png)$/) === null) {
-    //     errors.url1 = "Image URL must end in .png, .jpg, or .jpeg";
-    // }
-    setErrors(errors);
-  }, [review, stars, url1, url2]);
+    validateErrors()
+  }, [validateErrors])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
+    setAttemptSubmitted(true)
+    if (!validateErrors()) {
+      return
+    }
+
     const newreview = {
       productId: productId,
       userId: sessionUser.id,
@@ -35,22 +52,22 @@ const PostReviewModal = ({ productId }) => {
       stars,
       url1,
       url2,
-    };
+    }
 
-    const errors = {};
+    const errors = {}
     if (review === "") {
-      errors.review = "Review is required";
+      errors.review = "Review is required"
     }
     if (stars > 5 || stars < 1) {
-      errors.stars = "Stars must be between 1 and 5";
+      errors.stars = "Stars must be between 1 and 5"
     }
 
-    let createdReview = await dispatch(thunkNewReview(newreview, productId));
+    let createdReview = await dispatch(thunkNewReview(newreview, productId))
     // if (createdReview){
     //     history.push(`/products/${productId}`)
     // }
-    closeModal();
-  };
+    closeModal()
+  }
 
   return (
     <div className="log-in-modal">
@@ -59,12 +76,13 @@ const PostReviewModal = ({ productId }) => {
         <label>
           Review
           <h4 className="formErrors">{errors?.review}</h4>
-          <textarea 
+          <textarea
             rows="4"
             cols="44"
-            placeholder='Enter your review here'
+            placeholder="Enter your review here"
             value={review}
-            onChange={(e) => setReview(e.target.value)}/>
+            onChange={(e) => setReview(e.target.value)}
+          />
           {/* <input
             type="text"
             placeholder="Enter your review here"
@@ -82,26 +100,24 @@ const PostReviewModal = ({ productId }) => {
                   ? "fa-sharp fa-solid fa-star"
                   : "fa-regular fa-star fa-lg"
               }
-            // onMouseEnter={() => {setStars(1)} }
-            // onMouseLeave={() => {setStars(0)} }
+              // onMouseEnter={() => {setStars(1)} }
+              // onMouseLeave={() => {setStars(0)} }
               style={stars >= 1 ? { color: "#FCE79A" } : {}}
               onClick={() => {
-                setStars(1);
-              }}
-            ></i>
+                setStars(1)
+              }}></i>
             <i
               className={
                 stars >= 2
                   ? "fa-sharp fa-solid fa-star"
                   : "fa-regular fa-star fa-lg"
               }
-            // onMouseEnter={() => {setStars(2)} }
-            // onMouseLeave={() => {setStars(0)} }
+              // onMouseEnter={() => {setStars(2)} }
+              // onMouseLeave={() => {setStars(0)} }
               style={stars >= 2 ? { color: "#FCE79A" } : {}}
               onClick={() => {
-                setStars(2);
-              }}
-            ></i>
+                setStars(2)
+              }}></i>
             <i
               className={
                 stars >= 3
@@ -109,41 +125,38 @@ const PostReviewModal = ({ productId }) => {
                   : "fa-regular fa-star fa-lg"
               }
               style={stars >= 3 ? { color: "#FCE79A" } : {}}
-            // onMouseEnter={() => {setStars(3)} }
-            // onMouseLeave={() => {setStars(0)} }
+              // onMouseEnter={() => {setStars(3)} }
+              // onMouseLeave={() => {setStars(0)} }
               onClick={() => {
-                setStars(3);
-              }}
-            ></i>
+                setStars(3)
+              }}></i>
             <i
               className={
                 stars >= 4
                   ? "fa-sharp fa-solid fa-star"
                   : "fa-regular fa-star fa-lg"
               }
-            // onMouseEnter={() => {setStars(4)} }
-            // onMouseLeave={() => {setStars(0)} }
+              // onMouseEnter={() => {setStars(4)} }
+              // onMouseLeave={() => {setStars(0)} }
               style={stars >= 4 ? { color: "#FCE79A" } : {}}
               onClick={() => {
-                setStars(4);
-              }}
-            ></i>
+                setStars(4)
+              }}></i>
             <i
               className={
                 stars >= 5
                   ? "fa-sharp fa-solid fa-star"
                   : "fa-regular fa-star fa-lg"
               }
-            // onMouseEnter={() => {setStars(5)} }
-            // onMouseLeave={() => {setStars(0)} }
+              // onMouseEnter={() => {setStars(5)} }
+              // onMouseLeave={() => {setStars(0)} }
               style={stars >= 5 ? { color: "#FCE79A" } : {}}
               onClick={() => {
-                setStars(5);
-              }}
-            ></i>
+                setStars(5)
+              }}></i>
             {/* <p> Stars</p> */}
-        </div>
-        {/* </div>
+          </div>
+          {/* </div>
             <label>
                 <input 
                     type='number'
@@ -152,43 +165,39 @@ const PostReviewModal = ({ productId }) => {
                     onChange={(e) => setStars(e.target.value)}/>
             </label>
             <div > */}
-        {/* <h4 className='formErrors'>{errors?.url1}</h4> */}
-      </div>
-      <label>Image 
-        <input
-          type="url"
-          accept=".png,.jpg,.jpeg,.gif"
-          placeholder="Review Image 1"
-          value={url1}
-          onChange={(e) => setUrl1(e.target.value)}
-        />
-      </label>
+          {/* <h4 className='formErrors'>{errors?.url1}</h4> */}
+        </div>
+        <label>
+          Image
+          <input
+            type="url"
+            accept=".png,.jpg,.jpeg,.gif"
+            placeholder="Review Image 1"
+            value={url1}
+            onChange={(e) => setUrl1(e.target.value)}
+          />
+        </label>
 
-      <div>
-        {/* <h4 className='formErrors'>{errors?.url2}</h4> */}
-      </div>
-      <label>Image
-        <input
-          type="url"
-          accept=".png,.jpg,.jpeg,.gif"
-          placeholder="Review Image 2"
-          value={url2}
-          onChange={(e) => setUrl2(e.target.value)}
-        />
-      </label>
+        <div>{/* <h4 className='formErrors'>{errors?.url2}</h4> */}</div>
+        <label>
+          Image
+          <input
+            type="url"
+            accept=".png,.jpg,.jpeg,.gif"
+            placeholder="Review Image 2"
+            value={url2}
+            onChange={(e) => setUrl2(e.target.value)}
+          />
+        </label>
 
-      <div>
-        <button
-          className="createbutton-product"
-          type="submit"
-          disabled={!!Object.values(errors).length}
-        >
-          Post your review
-        </button>
-      </div>
-    </form>
+        <div>
+          <button className="createbutton-product" type="submit">
+            Post your review
+          </button>
+        </div>
+      </form>
     </div>
-  );
-};
+  )
+}
 
-export default PostReviewModal;
+export default PostReviewModal
