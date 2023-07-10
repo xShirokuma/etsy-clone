@@ -10,7 +10,6 @@ const DeleteProduct = ({productId}) => {
     const dispatch = useDispatch()
     const {closeModal} =  useModal();
     const deleteproduct = useSelector(state => state?.products[productId])
-    console.log("component", deleteproduct)
 
     const handleSubmityes = async (e) => {
         e.preventDefault();
@@ -27,7 +26,7 @@ const DeleteProduct = ({productId}) => {
     }
 
     return(
-            
+
       <div className="log-in-modal delete-product-modal">
         <h1>Confirm Delete</h1>
         <h4>Are you sure you want to remove this product from the listings?</h4>
@@ -37,7 +36,7 @@ const DeleteProduct = ({productId}) => {
             <button  onClick={handleSubmitno}> No </button>
           </div>
         </form>
-      </div> 
+      </div>
     )
 }
 

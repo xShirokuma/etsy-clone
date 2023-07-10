@@ -138,7 +138,7 @@ export const thunkAddFav = (productId, userId) => async (dispatch) => {
     if(response.ok) {
         const updatedUser = await response.json();
         dispatch(addFav(updatedUser))
-        return updatedUser;  
+        return updatedUser;
     };
 }
 
@@ -149,7 +149,7 @@ export const thunkDeleteFav = (productId, userId) => async (dispatch) => {
 	if(response.ok) {
         const updatedUser = await response.json();
         dispatch(deleteFav(updatedUser))
-        return updatedUser;  
+        return updatedUser;
     };
 }
 
@@ -170,9 +170,9 @@ export const thunkAddToCart = (sessionUser, product, value) => async (dispatch) 
     };
 }
 
-export const thunkUpdateCart = (sessionUser, cartId, product, value) => async (dispatch) => {
+export const thunkUpdateCart = (sessionUserId, cartId, productId, value) => async (dispatch) => {
 console.log("value in thunk", value)
-	const response = await fetch(`/api/users/${sessionUser.id}/cart/products/${product.id}/${cartId}/${value}`,{
+	const response = await fetch(`/api/users/${sessionUserId}/cart/products/${productId}/${cartId}/${value}`,{
         method:'PUT',
 		headers:{ "Content-Type" : 'application/json' },
 		body: JSON.stringify({
@@ -209,7 +209,7 @@ export const thunkDeleteCartItem = (sessionUserId,cartId, productId,) => async (
 			}
 		}
 		const response = await fetch(`/api/users/${userId}/cart`, options)
-		
+
 		if(response.ok) {
 			const cartSessionObj = await response.json()
 			const cartSession = cartSessionObj.cart_session

@@ -22,9 +22,9 @@ const ProductForm = ({ product, formType }) => {
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
-        
+
     },[name,description,price,available,previewImage,url1,url2,url3,url4])
-    
+
     const handleSubmit = async(e) => {
         e.preventDefault();
         product = {
@@ -42,7 +42,7 @@ const ProductForm = ({ product, formType }) => {
         }
 
         const images = [url1, url2, url3, url4]
-        
+
 
         if(formType === 'Create a New Product'){
             let createdProduct = await dispatch(thunkNewProduct(product,images));
@@ -50,13 +50,12 @@ const ProductForm = ({ product, formType }) => {
                 history.push(`/products/${createdProduct.product.id}`)
             }
         }else if(formType === 'Update your product'){
-            console.log("what is product:", product)
             let updatedProduct = await dispatch(thunkEditProduct(product))
             if(updatedProduct){
                 history.push(`/products/${product.id}`)
             }
         }
-        
+
         const errors = {};
         if (name==="") {
          errors.name = "Name is required";
@@ -90,7 +89,7 @@ const ProductForm = ({ product, formType }) => {
                 <h4 className='formErrors'>{errors?.name}</h4>
             </div>
             <label>
-                <input 
+                <input
                     type='text'
                     placeholder='Name'
                     value={name}
@@ -102,7 +101,7 @@ const ProductForm = ({ product, formType }) => {
                 <h4 className='formErrors'>{errors?.description}</h4>
             </div>
             <label>
-                <textarea 
+                <textarea
                     rows="4"
                     cols="44"
                     placeholder='Description'
@@ -115,7 +114,7 @@ const ProductForm = ({ product, formType }) => {
                 <h4 className='formErrors'>{errors?.price}</h4>
             </div>
             <label>
-                <input 
+                <input
                     type='number'
                     placeholder='Price'
                     value={price}
@@ -128,7 +127,7 @@ const ProductForm = ({ product, formType }) => {
                     <h4 className='formErrors'>{errors?.previewImage}</h4>
                 </div>
                 <label>
-                    <input 
+                    <input
                         type='text'
                         placeholder='Preview Image'
                         value={previewImage}
@@ -140,7 +139,7 @@ const ProductForm = ({ product, formType }) => {
                     <h4 className='formErrors'>{errors?.url1}</h4>
                 </div>
                 <label>
-                    <input 
+                    <input
                         type='url'
                         accept=".png,.jpg,.jpeg,.gif"
                         placeholder='Url1'
@@ -153,7 +152,7 @@ const ProductForm = ({ product, formType }) => {
                     <h4 className='formErrors'>{errors?.url2}</h4>
                 </div>
                 <label>
-                    <input 
+                    <input
                         type='url'
                         accept=".png,.jpg,.jpeg,.gif"
                         placeholder='Url2'
@@ -166,7 +165,7 @@ const ProductForm = ({ product, formType }) => {
                     <h4 className='formErrors'>{errors?.url3}</h4>
                 </div>
                 <label>
-                    <input 
+                    <input
                         type='url'
                         accept=".png,.jpg,.jpeg,.gif"
                         placeholder='Url3'
@@ -179,7 +178,7 @@ const ProductForm = ({ product, formType }) => {
                     <h4 className='formErrors'>{errors?.url4}</h4>
                 </div>
                 <label>
-                    <input 
+                    <input
                         type='url'
                         accept=".png,.jpg,.jpeg,.gif"
                         placeholder='Url4'
@@ -193,7 +192,7 @@ const ProductForm = ({ product, formType }) => {
                 <h4 className='formErrors'>{errors?.available}</h4>
             </div>
             <label>
-                <input 
+                <input
                     type='text'
                     placeholder='Available'
                     value={available}
@@ -205,12 +204,12 @@ const ProductForm = ({ product, formType }) => {
                     {formType}
                 </button>
             </div>
-            
+
         </div>
       </form>
     )
 
 }
 
-    
+
 export default ProductForm

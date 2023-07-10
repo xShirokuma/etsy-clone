@@ -32,7 +32,6 @@ const FavoritePage = () => {
 //     for (let i=1; i<6; i++){
 //         recommandProducts.push(products[products.length - i])
 //     }
-// console.log("recommoe", recommandProducts)
 
 
     return (
@@ -63,7 +62,7 @@ const FavoritePage = () => {
                 </div>
             ))}
             </div>
-            
+
             <h3 id="recommond-title">🌟🌟🌟 Popular items we think you'll love 🌟🌟🌟</h3>
             <div className="recommond-products">
             {recommandProducts.map((product) => (
@@ -84,10 +83,10 @@ const FavoritePage = () => {
                     </div>
                 </div>
             ))}
-           
+
             </div>
         </div>
-        
+
     )
 }
 

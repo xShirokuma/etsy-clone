@@ -76,7 +76,6 @@ const ProductDetails = () => {
   let value = 1;
   const itemquantity = () => {
     value = document.getElementById("itemquantity").value;
-    console.log("value:", value);
   };
 
   const addToCart = async () => {

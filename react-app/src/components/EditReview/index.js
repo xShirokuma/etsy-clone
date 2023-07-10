@@ -9,13 +9,12 @@ const EditReview = ({productId, review}) => {
     const history = useHistory()
     const dispatch = useDispatch()
     const {closeModal} =  useModal();
-console.log("what if review:", review)
     const [reviews, setReviews] = useState(review?.review);
     const [stars, setStars] = useState(review?.stars);
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
-        
+
     },[review, stars])
 
     const handleSubmit = async(e) => {
@@ -37,11 +36,11 @@ console.log("what if review:", review)
 
         let editedReview = await dispatch(thunkEditReview(editreview, productId))
     // if (editedReview){
-    //     history.push(`/products/${productId}`) 
+    //     history.push(`/products/${productId}`)
     // }
         closeModal()
     }
-   
+
     return(
       <div className="log-in-modal">
         <h1>Edit your review</h1>
@@ -49,13 +48,13 @@ console.log("what if review:", review)
         <label>
             Review
             <h4 className='formErrors'>{errors?.reviews}</h4>
-            <textarea 
+            <textarea
                 rows="4"
                 cols="44"
                 placeholder='Enter your review here'
                 value={reviews}
                 onChange={(e) => setReviews(e.target.value)}/>
-            {/* <input 
+            {/* <input
                 type='text'
                 placeholder='Review'
                 value={reviews}
@@ -134,7 +133,7 @@ console.log("what if review:", review)
           ></i>
         </div>
         {/* <label>
-            <input 
+            <input
                 type='number'
                 placeholder='Stars'
                 value={stars}

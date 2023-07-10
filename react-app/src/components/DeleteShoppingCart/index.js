@@ -5,15 +5,14 @@ import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import './DeleteShoppingCart.css'
 
-const DeleteShoppingCart = ({cartId, productId,sessionuserId}) => {
+const DeleteShoppingCart = ({cartId, productId,sessionUserId}) => {
     const history = useHistory()
     const dispatch = useDispatch()
     const {closeModal} =  useModal();
-    console.log("props",cartId,productId,sessionuserId)
 
     const handleSubmityes = async (e) => {
       e.preventDefault();
-      const deletedProduct = await dispatch(thunkDeleteCartItem(sessionuserId, cartId, productId))
+      const deletedProduct = await dispatch(thunkDeleteCartItem(sessionUserId, cartId, productId))
       await closeModal()
     }
 
@@ -21,7 +20,7 @@ const DeleteShoppingCart = ({cartId, productId,sessionuserId}) => {
       e.preventDefault()
       closeModal()
     }
-        
+
   return(
     <div className="log-in-modal delete-product-cart">
       <h1>Confirm Delete</h1>
