@@ -33,7 +33,7 @@
 
   .carousel.carousel-slider button.control-arrow.control-prev:hover,
   .carousel.carousel-slider button.control-arrow.control-next:hover {
-    background-color: white; 
+    background-color: white;
   }
 
   .carousel-slider button.control-arrow.control-next:before {
@@ -45,7 +45,7 @@
     border-right: 6px solid rgb(171, 161, 161);
     margin: 0;
   }
-  
+
   .thumbs-wrapper .control-prev {
     display: none;
   }
@@ -71,7 +71,7 @@
     position: relative;
     max-height: 480px;
   }
-  
+
   .carousel.carousel-slider .control-arrow {
     font-size:12px;
 
@@ -162,7 +162,7 @@ li.slide.selected{
   display:flex;
   flex-direction: column;
   gap:.5rem;
-    
+
   }
 
 .favorite-button {
@@ -341,4 +341,9 @@ label {
 
 .create-review-button button:hover {
   transform: scale(1.05);
+}
+
+.add-to-cart .cart-button button {
+  border: none;
+  width: 100%;
 }
