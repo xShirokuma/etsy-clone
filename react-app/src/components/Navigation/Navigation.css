@@ -60,7 +60,7 @@
 
 .navigation {
   display: grid;
-  grid-template-columns: 2fr 16fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 10fr 1fr 1fr 1fr 1fr;
   justify-content: space-between;
   align-items: center;
   width: 95%;
@@ -114,8 +114,4 @@
 .fa-solid.fa-shop, .fa-regular.fa-heart, .fa-solid.fa-cart-shopping, .fa-user-circle{
   color: rgb(120, 120, 120);
   font-size: medium;
-}
-
-.modal-button div {
-  
 }

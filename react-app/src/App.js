@@ -6,6 +6,7 @@ import { authenticate } from "./store/session";
 import { Navigation, ProtectedRoute, Footer } from "./components"
 import { HomePage, ShopPage, CreateProductPage, UpdateProductPage, ProductPage, PostReviewPage, FavoritePage, ShoppingCartPage } from "./pages";
 import EditReview from "./components/EditReview";
+import PagenotFound from "./components/PagenotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ function App() {
           </Route>
 
           <Route>
-            <h1>Page Not Found</h1>
+            <PagenotFound />
           </Route>
         </Switch>
       )}
