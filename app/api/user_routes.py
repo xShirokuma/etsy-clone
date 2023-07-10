@@ -54,12 +54,14 @@ def delete_fav(id, productId):
 
 @user_routes.route('/<int:id>/cart/products/<int:productId>/<int:value>', methods=['POST'])
 def add_cart(id, productId, value):
+    print(id)
     user = User.query.get(id)
     newCartItem = CartItem(
         sessionId=id,
         productId=productId,
         quantity=value
     )
+    print(user)
     db.session.add(newCartItem)
     user.cart_session.cart.append(newCartItem)
 

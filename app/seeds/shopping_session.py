@@ -27,7 +27,7 @@ def seed_shopping_session():
         total=26.87
     )
 
-    shoppingSession = [shoppingSession1, shoppingSession2, shoppingSession3, shoppingSession4, shoppingSession5, shoppingSession6]
+    shoppingSession = [shoppingSession1, shoppingSession2, shoppingSession3, shoppingSession4, shoppingSession5]
 
     _ = [db.session.add(shopping) for shopping in shoppingSession]
     db.session.commit()
