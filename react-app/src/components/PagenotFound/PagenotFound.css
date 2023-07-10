@@ -1,0 +1,11 @@
+.error-page{
+ background-image: url("../../../public/notfound.PNG");  
+ background-size: 100% 100%;
+ height: 100vh; 
+ display: flex;
+ flex-direction: column;
+ justify-content: center; 
+ text-align: center;
+ gap:2rem;
+ font-size:x-large;
+} 
