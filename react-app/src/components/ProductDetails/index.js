@@ -83,6 +83,7 @@ const ProductDetails = () => {
     }
   };
 
+
   return (
     <div className="product-single">
       <div className="product-container">
@@ -161,13 +162,14 @@ const ProductDetails = () => {
             <div className="description">{product?.description}</div>
           </div>
           <div className="add-to-cart">
-            <div>
+            <div className={product?.userId === sessionUser?.id ? "hidden":""}>
               <label>Quantity</label>
             </div>
             <select
               name="quantity"
               placeholder="Quantity"
               id="itemquantity"
+              className={product?.userId === sessionUser?.id ? "hidden":""}
               onChange={itemquantity}
             >
               {/* <option value="" disabled selected>Select quantity</option> */}
@@ -177,9 +179,15 @@ const ProductDetails = () => {
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
-            <div className="cart-button">
+            <div className={product?.userId === sessionUser?.id ? "hidden":"cart-button"}>
               <button onClick={addToCart} className="add-to-cart-button">
                 Add to Cart
+              </button>
+            </div>
+            <div className={product?.userId !== sessionUser?.id ? "hidden":"cart-button"}>
+              <h3 className="add-to-cart-button-owner-h3">Now viewing your own listed item</h3>
+              <button onClick={()=>history.push("/shop")} className="add-to-cart-button-owner">
+                Update your Item in Shop
               </button>
             </div>
             <div className="fav-in-page-detail">
