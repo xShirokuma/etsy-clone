@@ -178,43 +178,6 @@ export const thunkAddToCart =
     }
   }
 
-export const thunkUpdateCart =
-  (sessionUser, cartId, product, value) => async (dispatch) => {
-    const response = await fetch(
-      `/api/users/${sessionUser.id}/cart/products/${product.id}/${cartId}/${value}`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          quantity: value,
-        }),
-      }
-    )
-
-    if (response.ok) {
-      const updatedCartItem = await response.json()
-      dispatch(updateCart(updatedCartItem.updatedCartItem))
-      return updatedCartItem
-    }
-  }
-
-export const thunkDeleteCartItem =
-  (sessionUserId, cartId, productId) => async (dispatch) => {
-    const response = await fetch(
-      `/api/users/${sessionUserId}/cart/products/${productId}/${cartId}`,
-      {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-      }
-    )
-    if (response.ok) {
-      const cartItemObj = await response.json()
-      const cartItem = cartItemObj.cartItem
-      dispatch(deleteCartItem(cartItem))
-      return cartItem
-    }
-  }
-
 export const placeOrderThunk = (userId) => async (dispatch) => {
   const options = {
     method: "DELETE",
@@ -231,6 +194,38 @@ export const placeOrderThunk = (userId) => async (dispatch) => {
     return cartSession
   }
 }
+
+export const thunkUpdateCart = (sessionUserId, cartId, productId, value) => async (dispatch) => {
+	const response = await fetch(`/api/users/${sessionUserId}/cart/products/${productId}/${cartId}/${value}`,{
+        method:'PUT',
+		headers:{ "Content-Type" : 'application/json' },
+		body: JSON.stringify({
+			quantity: value
+		}),
+	})
+	if(response.ok) {
+        const updatedCartItem = await response.json();
+        dispatch(updateCart(updatedCartItem.updatedCartItem))
+        return updatedCartItem
+    };
+}
+
+export const thunkDeleteCartItem = (sessionUserId,cartId, productId,) => async (dispatch) => {
+	console.log("value in thunk", cartId,productId,sessionUserId)
+		const response = await fetch(`/api/users/${sessionUserId}/cart/products/${productId}/${cartId}`,{
+			method:'DELETE',
+			headers:{ "Content-Type" : 'application/json' }
+		})
+		if(response.ok) {
+			const cartItemObj = await response.json();
+			const cartItem = cartItemObj.cartItem
+			console.log("inside the dleete thunk", cartItem)
+			dispatch(deleteCartItem(cartItem))
+			return cartItem
+		};
+	}
+
+
 
 //reducer
 export default function reducer(state = initialState, action) {

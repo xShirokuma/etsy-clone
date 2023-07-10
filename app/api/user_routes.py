@@ -70,6 +70,7 @@ def add_cart(id, productId, value):
 
 @user_routes.route('/<int:id>/cart/products/<int:productId>/<int:cartId>/<int:value>', methods=['PUT'])
 def updated_cart(id, cartId, productId, value):
+    print(id, cartId, productId, value)
     user = User.query.get(id)
 
     cartItem = CartItem.query.get(cartId)

@@ -63,7 +63,7 @@ const EditReview = ({ productId, review }) => {
             value={reviews}
             onChange={(e) => setReviews(e.target.value)}
           />
-          {/* <input 
+          {/* <input
                 type='text'
                 placeholder='Review'
                 value={reviews}
@@ -137,7 +137,7 @@ const EditReview = ({ productId, review }) => {
             }}></i>
         </div>
         {/* <label>
-            <input 
+            <input
                 type='number'
                 placeholder='Stars'
                 value={stars}
