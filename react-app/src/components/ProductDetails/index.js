@@ -1,59 +1,59 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchProducts } from "../../store/products";
-import ImageCarousel from "./Carousel";
-import { useHistory, Link, useParams } from "react-router-dom";
-import OpenModalButton from "../../components/OpenModalButton";
-import DeleteReview from "../../components/DeleteReview";
-import PostReviewModal from "../../pages/PostReviewPage";
-import EditReview from "../EditReview";
-import LoginFormModal from "../LoginFormModal";
+import React, { useEffect, useState, useRef } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { fetchProducts } from "../../store/products"
+import ImageCarousel from "./Carousel"
+import { useHistory, Link, useParams } from "react-router-dom"
+import OpenModalButton from "../../components/OpenModalButton"
+import DeleteReview from "../../components/DeleteReview"
+import PostReviewModal from "../../pages/PostReviewPage"
+import EditReview from "../EditReview"
+import LoginFormModal from "../LoginFormModal"
 
-import "./productdetails.css";
-import { thunkAddToCart, thunkUpdateCart } from "../../store/session";
-import FavoriteIcon from "../FavoriteIcon";
+import "./productdetails.css"
+import { thunkAddToCart, thunkUpdateCart } from "../../store/session"
+import FavoriteIcon from "../FavoriteIcon"
 
 const ProductDetails = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const ulRef = useRef();
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const ulRef = useRef()
 
-  const { productId } = useParams();
-  const product = useSelector((state) => state.products[productId]);
-  const sessionUser = useSelector((state) => state.session.user);
+  const { productId } = useParams()
+  const product = useSelector((state) => state.products[productId])
+  const sessionUser = useSelector((state) => state.session.user)
 
-  const [showMenu, setShowMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(false)
 
   useEffect(() => {
-    if (!showMenu) return;
+    if (!showMenu) return
 
     const closeMenu = (e) => {
       if (!ulRef.current.contains(e.target)) {
-        setShowMenu(false);
+        setShowMenu(false)
       }
-    };
+    }
 
-    document.addEventListener("click", closeMenu);
+    document.addEventListener("click", closeMenu)
 
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+    return () => document.removeEventListener("click", closeMenu)
+  }, [showMenu])
 
-  const closeMenu = () => setShowMenu(false);
+  const closeMenu = () => setShowMenu(false)
 
   const reviewAvg = () => {
-    let totalStars = 0;
+    let totalStars = 0
     product.reviews.forEach((review) => {
-      totalStars += review.stars;
-    });
-    const average = totalStars / product.reviews.length;
-    return average.toFixed(1);
-  };
+      totalStars += review.stars
+    })
+    const average = totalStars / product.reviews.length
+    return average.toFixed(1)
+  }
 
-  let reviewExists = false;
+  let reviewExists = false
   if (product?.reviews.length) {
     for (let i = 0; i < product.reviews.length; i++) {
       if (product.reviews[i]?.userId === sessionUser?.id) {
-        reviewExists = true;
+        reviewExists = true
       }
     }
   }
@@ -61,43 +61,41 @@ const ProductDetails = () => {
   const reviewsLength = () => {
     if (product?.reviews.length) {
       if (product?.reviews.length === 1) {
-        return `${product.reviews.length} Review`;
+        return `${product.reviews.length} Review`
       } else if (product?.reviews.length > 1) {
-        return `${product.reviews.length} Reviews`;
+        return `${product.reviews.length} Reviews`
       }
     }
-    return "New";
-  };
+    return "New"
+  }
 
   useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+    dispatch(fetchProducts())
+  }, [dispatch])
 
-  let value = 1;
+  let value = 1
   const itemquantity = () => {
-    value = document.getElementById("itemquantity").value;
-    console.log("value:", value);
-  };
+    value = document.getElementById("itemquantity").value
+  }
 
   const addToCart = async () => {
-    let checkproduct;
+    let checkproduct
 
     checkproduct = sessionUser.cart_session.cart.find(
       (ele) => ele.productId == product.id
-    );
+    )
 
     if (!checkproduct) {
-      await dispatch(thunkAddToCart(sessionUser, product, value));
-      history.push("/shoppingcart");
+      await dispatch(thunkAddToCart(sessionUser, product, value))
+      history.push("/shoppingcart")
     } else if (checkproduct) {
-      value = parseInt(parseInt(value) + checkproduct.quantity);
-      let cartId = checkproduct.id;
+      value = parseInt(parseInt(value) + checkproduct.quantity)
+      let cartId = checkproduct.id
       dispatch(thunkUpdateCart(sessionUser, cartId, product, value)).then(
         history.push("/shoppingcart")
-      );
+      )
     }
-  };
-
+  }
 
   return (
     <div className="product-single">
@@ -177,16 +175,15 @@ const ProductDetails = () => {
           <div className="description">{product?.description}</div>
         </div>
         <div className="add-to-cart">
-          <div className={product?.userId === sessionUser?.id ? "hidden":""}>
+          <div className={product?.userId === sessionUser?.id ? "hidden" : ""}>
             <label>Quantity</label>
           </div>
           <select
             name="quantity"
             placeholder="Quantity"
             id="itemquantity"
-              className={product?.userId === sessionUser?.id ? "hidden":""}
-            onChange={itemquantity}
-          >
+            className={product?.userId === sessionUser?.id ? "hidden" : ""}
+            onChange={itemquantity}>
             {/* <option value="" disabled selected>Select quantity</option> */}
             <option value="1">1</option>
             <option value="2">2</option>
@@ -204,17 +201,27 @@ const ProductDetails = () => {
             </div>
           ) : (
             <div>
-            <div className={product?.userId === sessionUser?.id ? "hidden":"cart-button"}>
-              <button onClick={addToCart} className="add-to-cart-button">
-                Add to Cart
-              </button>
-            </div>
-            <div className={product?.userId !== sessionUser?.id ? "hidden":"cart-button"}>
-              <h3 className="add-to-cart-button-owner-h3">Now viewing your own listed item</h3>
-              <button onClick={()=>history.push("/shop")} className="add-to-cart-button-owner">
-                Update your Item in Shop
-              </button>
-            </div>
+              <div
+                className={
+                  product?.userId === sessionUser?.id ? "hidden" : "cart-button"
+                }>
+                <button onClick={addToCart} className="add-to-cart-button">
+                  Add to Cart
+                </button>
+              </div>
+              <div
+                className={
+                  product?.userId !== sessionUser?.id ? "hidden" : "cart-button"
+                }>
+                <h3 className="add-to-cart-button-owner-h3">
+                  Now viewing your own listed item
+                </h3>
+                <button
+                  onClick={() => history.push("/shop")}
+                  className="add-to-cart-button-owner">
+                  Update your Item in Shop
+                </button>
+              </div>
             </div>
           )}
 
@@ -228,7 +235,7 @@ const ProductDetails = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProductDetails;
+export default ProductDetails

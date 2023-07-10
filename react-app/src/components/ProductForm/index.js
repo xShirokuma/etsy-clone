@@ -84,7 +84,6 @@ const ProductForm = ({ product, formType }) => {
         history.push(`/products/${createdProduct.product.id}`)
       }
     } else if (formType === "Update your product") {
-      console.log("what is product:", product)
       let updatedProduct = await dispatch(thunkEditProduct(product))
       if (updatedProduct) {
         history.push(`/products/${product.id}`)
