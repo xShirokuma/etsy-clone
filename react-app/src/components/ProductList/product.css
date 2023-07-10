@@ -188,6 +188,16 @@ img {
     color: black;
 }
 
+.favorite {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.favorite p {
+    padding-left: 5px;
+}
+
 .welcome-title{
     /* font-size: 15px; */
     transform: translatey(40%);
