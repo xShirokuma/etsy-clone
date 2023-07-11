@@ -1,5 +1,7 @@
 .footer {
     display: grid;
+    grid-auto-flow: row;
+    justify-content: center;
     grid-template-columns: 1fr 1fr;
     background-color: blanchedalmond;
     border-top: solid 2px rgb(222, 219, 219);
@@ -9,36 +11,97 @@
 .about {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
     max-width: fit-content;
     margin-bottom: 20px;
 }
 
 .footer h3{
     padding: 15px 0;
+    @media screen and (max-width: 480px) {
+        padding: 0;
+        font-size: 14px;
+    }
+    @media screen and (min-width: 481px) and (max-width: 768px) {
+        padding: 5px;
+        font-size: 16px;
+    }
+    @media screen and (min-width: 769px) and (max-width: 1024px) {
+        padding: 0;
+        font-size: 18px;
+    }
 }
 
 .madeIcons i {
     font-size: 30px;
-    padding: 3px 5px
+    padding: 3px 5px;
+    @media screen and (max-width: 480px) {
+        font-size: 20px;
+    }
+    @media screen and (min-width: 481px) and (max-width: 768px) {
+        font-size: 24px;
+    }
+    @media screen and (min-width: 769px) and (max-width: 1024px) {
+        font-size: 26px;
+    }
 }
 
 .about p{
     padding: 10px;
     color: rgb(119, 114, 114);
-
+    @media screen and (max-width: 480px) {
+        padding: 5px;
+        font-size: 12px;
+    }
+    @media screen and (min-width: 481px) and (max-width: 768px) {
+        padding: 5px;
+        font-size: 12px;
+    }
+    @media screen and (min-width: 769px) and (max-width: 1024px) {
+        padding: 10px;
+        font-size: 14px;
+    }
 }
 
 .about i{
     padding: 0 15px;
     font-size: 28px;
     color: rgb(119, 114, 114);
+    @media screen and (max-width: 480px) {
+        font-size: 20px;
+    }
+    @media screen and (min-width: 481px) and (max-width: 768px) {
+        font-size: 22px;
+    }
+    @media screen and (min-width: 769px) and (max-width: 1024px) {
+        font-size: 26px;
+    }
 }
 
 .about-grid-one {
-    padding-left: 80px;
+    padding-left: 100px;
+    @media screen and (max-width: 480px) {
+        padding-left: 5px;
+    }
+    @media screen and (min-width: 481px) and (max-width: 768px) {
+        padding-left: 10px;
+    }
+    @media screen and (min-width: 769px) and (max-width: 1024px) {
+        padding-left: 30px;
+    }
 }
 
 .fa-regular.fa-copyright {
     color: rgb(119, 114, 114);
     font-size: 15px;
+}
+
+.inspired {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-left: 40px;
+    margin-bottom: 20px;
 }
