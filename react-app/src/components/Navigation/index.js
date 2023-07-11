@@ -1,56 +1,59 @@
-import React, { useEffect, useState, useRef } from "react";
-import { NavLink, Link, useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
-import ProfileButton from "./ProfileButton";
-import LoginFormModal from "../LoginFormModal";
-import OpenModalButton from "../OpenModalButton";
-import "./Navigation.css";
+import React, { useEffect, useState, useRef, useContext } from "react"
+import { NavLink, Link, useHistory } from "react-router-dom"
+import { useSelector } from "react-redux"
+import ProfileButton from "./ProfileButton"
+import LoginFormModal from "../LoginFormModal"
+import OpenModalButton from "../OpenModalButton"
+import "./Navigation.css"
+import { SearchContext } from "../../context/SearchFilter"
 
 function Navigation({ isLoaded }) {
-  const ulRef = useRef();
-  const history = useHistory();
+  const ulRef = useRef()
+  const history = useHistory()
 
-  const sessionUser = useSelector((state) => state.session.user);
-  const products = useSelector((state) => state.products);
-  const [showMenu, setShowMenu] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const sessionUser = useSelector((state) => state.session.user)
+  const { products, setFilteredProducts } = useContext(SearchContext)
+  const [showMenu, setShowMenu] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("")
+  const [searchResults, setSearchResults] = useState([])
 
   const handleSearchQueryChange = (e) => {
-    const query = e.target.value;
-    setSearchQuery(query);
+    const query = e.target.value
+    setSearchQuery(query)
 
     if (query.trim() === "") {
-      setSearchResults([]);
+      setSearchResults([])
+      setFilteredProducts(products)
     } else {
       const results = Object.values(products).filter((product) =>
         product.name.toLowerCase().includes(query.toLowerCase())
-      );
-      setSearchResults(results);
+      )
+      setSearchResults(results)
+      setFilteredProducts(results)
     }
-  };
+  }
 
   const handleSearchResultClick = (product) => {
-    setSearchResults([]);
-    setSearchQuery("");
-    history.push(`/products/${product.id}`);
-  };
+    setSearchResults([])
+    setSearchQuery("")
+    history.push(`/products/${product.id}`)
+  }
 
   useEffect(() => {
-    if (!showMenu) return;
+    if (!showMenu) return
 
     const closeMenu = (e) => {
       if (!ulRef.current.contains(e.target)) {
-        setShowMenu(false);
+        setShowMenu(false)
       }
-    };
+    }
 
-    document.addEventListener("click", closeMenu);
+    document.addEventListener("click", closeMenu)
 
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+    return () => document.removeEventListener("click", closeMenu)
+  }, [showMenu])
 
-  const closeMenu = () => setShowMenu(false);
+  const closeMenu = () => setShowMenu(false)
 
   return (
     <div className="headerContainer">
@@ -77,8 +80,7 @@ function Navigation({ isLoaded }) {
               {searchResults.map((product) => (
                 <li
                   key={product.id}
-                  onClick={() => handleSearchResultClick(product)}
-                >
+                  onClick={() => handleSearchResultClick(product)}>
                   {product.name}
                 </li>
               ))}
@@ -138,7 +140,7 @@ function Navigation({ isLoaded }) {
 				</li>
 			</ul> */}
     </div>
-  );
+  )
 }
 
-export default Navigation;
+export default Navigation
