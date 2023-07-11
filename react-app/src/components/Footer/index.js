@@ -47,7 +47,7 @@ function Footer({ isLoaded }) {
           </div>
         </div>
       </div>
-      <div>
+      <div className="inspired">
         <div>
           <h3>
             <i className="fa-regular fa-copyright"></i>2023 Shopsy inspired by Esty
