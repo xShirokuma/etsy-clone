@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
@@ -8,10 +8,33 @@ import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
   const ulRef = useRef();
+  const history = useHistory();
 
   const sessionUser = useSelector((state) => state.session.user);
-
+  const products = useSelector((state) => state.products);
   const [showMenu, setShowMenu] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleSearchQueryChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+
+    if (query.trim() === "") {
+      setSearchResults([]);
+    } else {
+      const results = Object.values(products).filter((product) =>
+        product.name.toLowerCase().includes(query.toLowerCase())
+      );
+      setSearchResults(results);
+    }
+  };
+
+  const handleSearchResultClick = (product) => {
+    setSearchResults([]);
+    setSearchQuery("");
+    history.push(`/products/${product.id}`);
+  };
 
   useEffect(() => {
     if (!showMenu) return;
@@ -39,11 +62,28 @@ function Navigation({ isLoaded }) {
         </li>
         <li>
           <form>
-            <input type="search" placeholder="Search for anything"></input>
-            <button disabled="True">
+            <input
+              type="search"
+              placeholder="Search for anything"
+              value={searchQuery}
+              onChange={handleSearchQueryChange}
+            />
+            <button disabled={true}>
               <i className="fa-solid fa-magnifying-glass fa-xl" />
             </button>
           </form>
+          {searchResults.length > 0 && (
+            <ul className="search-results">
+              {searchResults.map((product) => (
+                <li
+                  key={product.id}
+                  onClick={() => handleSearchResultClick(product)}
+                >
+                  {product.name}
+                </li>
+              ))}
+            </ul>
+          )}
         </li>
         <li className={sessionUser ? "" : "hidden"}>
           <NavLink exact to="/favorites">
@@ -63,9 +103,7 @@ function Navigation({ isLoaded }) {
         <li>
           {!sessionUser ? (
             <OpenModalButton
-              buttonText={
-                  <i className="fa-solid fa-cart-shopping fa-lg" />
-              }
+              buttonText={<i className="fa-solid fa-cart-shopping fa-lg" />}
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
             />
