@@ -8,7 +8,7 @@ import { SearchContext } from "../../context/SearchFilter"
 const HomePage = () => {
   const dispatch = useDispatch()
   const { filteredProducts } = useContext(SearchContext)
-  console.log(filteredProducts)
+
   useEffect(() => {
     dispatch(fetchProducts())
   }, [dispatch])
