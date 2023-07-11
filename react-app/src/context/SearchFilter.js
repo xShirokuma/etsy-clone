@@ -9,7 +9,7 @@ export const SearchFilter = (props) => {
   const state = useSelector((state) => state)
   const products = Object.values(state.products)
   const [searchQuery, setSearchQuery] = useState("")
-  const [filteredProducts, setFilteredProducts] = useState()
+  const [filteredProducts, setFilteredProducts] = useState(products)
 
   console.log(products)
   console.log(filteredProducts)
@@ -19,8 +19,8 @@ export const SearchFilter = (props) => {
   }, [dispatch])
 
   useEffect(() => {
-    setFilteredProducts(products)
-  }, [products.length])
+    if (filteredProducts.length === 0) setFilteredProducts(products)
+  }, [products])
 
   return (
     <SearchContext.Provider
