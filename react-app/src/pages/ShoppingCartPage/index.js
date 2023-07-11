@@ -138,7 +138,7 @@ const ShoppingCartPage = () => {
             </NavLink>
           </div>
         </div>
-        <div className="checkout">
+        <div className={sessionUser?.cart_session?.cart.length === 0 ? "hidden":"checkout"}>
           <div className="total-items">
             {calculateTotalItems()} item(s) in your cart
           </div>
