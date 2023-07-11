@@ -1,15 +1,11 @@
 .footer {
     display: grid;
+    grid-auto-flow: row;
+    justify-content: center;
     grid-template-columns: 1fr 1fr;
     background-color: blanchedalmond;
     border-top: solid 2px rgb(222, 219, 219);
     color: rgb(119, 114, 114);
-    @media screen and (max-width: 480px) {
-        padding: 0;
-    }
-    @media screen and (min-width: 481px) and (max-width: 768px) {
-        padding: 0;
-    }
 }
 
 .about {
@@ -84,7 +80,7 @@
 }
 
 .about-grid-one {
-    padding-left: 80px;
+    padding-left: 100px;
     @media screen and (max-width: 480px) {
         padding-left: 5px;
     }
@@ -106,5 +102,6 @@
     flex-direction: column;
     justify-content: space-between;
     padding-top: 10px;
+    padding-left: 40px;
     margin-bottom: 20px;
 }
