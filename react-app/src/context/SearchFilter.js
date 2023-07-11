@@ -1,22 +1,23 @@
 import { useState, createContext, useEffect } from "react"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { fetchProducts } from "../store/products"
 
 export const SearchContext = createContext()
 
 export const SearchFilter = (props) => {
+  const dispatch = useDispatch()
   const state = useSelector((state) => state)
   const products = Object.values(state.products)
-
   const [searchQuery, setSearchQuery] = useState("")
-  const [filteredProducts, setFilteredProducts] = useState(products)
+  const [filteredProducts, setFilteredProducts] = useState()
 
-  console.log(`prods: ${products}`)
-  console.log(`filteredProducts ${filteredProducts}`)
-  console.log(filteredProducts.length)
+  useEffect(() => {
+    dispatch(fetchProducts())
+  }, [dispatch])
 
   useEffect(() => {
     setFilteredProducts(products)
-  }, [products.length])
+  }, [])
 
   return (
     <SearchContext.Provider
