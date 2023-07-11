@@ -96,3 +96,9 @@ h1 {
 .overall-total p {
     font-weight: 700;
 }
+
+@media screen and (max-width: 700px) {
+    h1{
+        display: block;
+    }
+  }
