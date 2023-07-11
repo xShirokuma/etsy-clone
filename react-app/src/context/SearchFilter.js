@@ -11,7 +11,7 @@ export const SearchFilter = (props) => {
 
   useEffect(() => {
     if (filteredProducts.length === 0) setFilteredProducts(products)
-  })
+  }, [filteredProducts.length, products])
 
   console.log(filteredProducts)
 
