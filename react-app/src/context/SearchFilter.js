@@ -11,13 +11,16 @@ export const SearchFilter = (props) => {
   const [searchQuery, setSearchQuery] = useState("")
   const [filteredProducts, setFilteredProducts] = useState()
 
+  console.log(products)
+  console.log(filteredProducts)
+
   useEffect(() => {
     dispatch(fetchProducts())
   }, [dispatch])
 
   useEffect(() => {
     setFilteredProducts(products)
-  }, [])
+  }, [products.length])
 
   return (
     <SearchContext.Provider
