@@ -12,9 +12,9 @@ function Navigation({ isLoaded }) {
   const history = useHistory()
 
   const sessionUser = useSelector((state) => state.session.user)
-  const { products, setFilteredProducts } = useContext(SearchContext)
+  const { products, setFilteredProducts, searchQuery, setSearchQuery } =
+    useContext(SearchContext)
   const [showMenu, setShowMenu] = useState(false)
-  const [searchQuery, setSearchQuery] = useState("")
   const [searchResults, setSearchResults] = useState([])
 
   const handleSearchQueryChange = (e) => {
@@ -35,9 +35,18 @@ function Navigation({ isLoaded }) {
 
   const handleSearchResultClick = (product) => {
     setSearchResults([])
+    setFilteredProducts(products)
     setSearchQuery("")
     history.push(`/products/${product.id}`)
   }
+
+  useEffect(() => {
+    history.listen(() => {
+      setSearchResults([])
+      setFilteredProducts(products)
+      setSearchQuery("")
+    })
+  }, [history])
 
   useEffect(() => {
     if (!showMenu) return
