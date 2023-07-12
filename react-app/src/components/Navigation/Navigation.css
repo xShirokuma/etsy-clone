@@ -176,13 +176,16 @@
   position: absolute;
   top: 100%;
   z-index: 3;
-  /* width: 80%; */
+  width: 55%;
+  height: 240px;
   background-color: #fff;
   border: 1px solid #ccc;
   border-top: none;
   padding: 0;
   margin-top: 5px;
   list-style: none;
+  overflow: auto;
+  transform: translateX(5%);
 }
 
 .search-results li {
