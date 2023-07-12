@@ -1,5 +1,5 @@
 .shoppage {
-    width: 55%;
+    /* width: 55%; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,6 +10,8 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 20px 0 20px 0;
+    min-width: 564px;
+    max-width: 659px;
 }
 
 .shoppage-title button {
@@ -34,6 +36,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: fit-content;
 }
 
 .item-in-shop {
@@ -46,10 +49,11 @@
     justify-content: stretch;
     align-items: stretch;
     gap: 10px;
+    /* width: auto; */
 }
 
 .item-in-shop img {
-    width: 85%;
+    width: 190px;
     height: 15rem;
 }
 
@@ -62,15 +66,16 @@
     flex-direction: column;
     justify-content: stretch;
     gap: 20px;
+    width: 200px;
 }
 
 .item-in-shop-button {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-left: 70px;
+    /* padding-left: 70px; */
     gap: 40px;
-
+    width: 121px;
 }
 
 .item-in-shop-button button {
@@ -92,18 +97,39 @@
 }
 
 /* Media screen */
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 769px) {
+    .shoppage {
+        align-items: center;
+    }
+    .shoppage .item-in-shop {
+        display:flex;
+        flex-direction: column;
+        width:300px;
+    }
     .item-in-shop {
         display:flex;
-        flex-direction: column;      
+        flex-direction: column;
     }
     .item-in-shop-button{
         padding-left:0px;
         gap:20px;
+        width: 100%;
     }
-    .shoppage-title > h1{
+    .shoppage-title {
+        flex-direction: column;
+        align-items: center;
+    }
+    .shoppage-title button {
+        padding: 8px;
+        width: 300px;
+    }
+    .shoppage-title h1{
         justify-content: flex-start;
-        border:solid red 5px;
+        text-wrap: nowrap;
 
+    }
+    .shoppage-title h3{
+        padding-bottom: 10px;
+        text-wrap: nowrap;
     }
   }
