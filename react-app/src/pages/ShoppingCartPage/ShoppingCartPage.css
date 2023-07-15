@@ -24,13 +24,14 @@
 }
 
 .cartpage {
-    width: 55%;
+    width: 75%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
+    margin-top: 20px;
 }
 
-.cartpage h1 {
+h1 {
     display: flex;
     justify-content: center;
     padding: 10px 0 20px 0;
@@ -67,3 +68,37 @@
 .delete-item-in-cart-btn:hover {
     transform: scale(1.02);
 }
+
+.quantity {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.quantity select {
+    width: fit-content;
+    padding: 2px;
+    margin: 10px 0;
+}
+
+.cart {
+    display: flex;
+    flex-direction: row;
+}
+
+.overall-total{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.overall-total p {
+    font-weight: 700;
+}
+
+@media screen and (max-width: 700px) {
+    h1{
+        display: block;
+    }
+  }

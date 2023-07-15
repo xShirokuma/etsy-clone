@@ -32,7 +32,7 @@ function Footer({ isLoaded }) {
             <a href="https://github.com/JENLIU2023">
               <i className="fa-brands fa-github"></i>
             </a>
-            <a href="https://www.linkedin.com/in/your-linkedin-profile">
+            <a href="https://www.linkedin.com/in/jen-liu-8862b9281/">
               <i className="fa-brands fa-linkedin"></i>
             </a>
           </div>
@@ -47,7 +47,7 @@ function Footer({ isLoaded }) {
           </div>
         </div>
       </div>
-      <div>
+      <div className="inspired">
         <div>
           <h3>
             <i className="fa-regular fa-copyright"></i>2023 Shopsy inspired by Esty

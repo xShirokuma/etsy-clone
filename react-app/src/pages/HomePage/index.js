@@ -1,21 +1,15 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchProducts } from "../../store/products";
+import React, { useContext } from "react"
 import { ProductList } from "../../components"
 import "./HomePage.css"
+import { SearchContext } from "../../context/SearchFilter"
 
 const HomePage = () => {
-  const dispatch = useDispatch();
-  const products = Object.values(useSelector((state) => state.products));
-
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+  const { filteredProducts } = useContext(SearchContext)
 
   return (
-  <div className="home">
-    <ProductList products={products}/>
-  </div>
+    <div className="home">
+      <ProductList products={filteredProducts} />
+    </div>
   )
 }
 

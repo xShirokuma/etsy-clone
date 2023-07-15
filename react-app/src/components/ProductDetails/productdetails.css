@@ -33,7 +33,7 @@
 
   .carousel.carousel-slider button.control-arrow.control-prev:hover,
   .carousel.carousel-slider button.control-arrow.control-next:hover {
-    background-color: white; 
+    background-color: white;
   }
 
   .carousel-slider button.control-arrow.control-next:before {
@@ -45,7 +45,7 @@
     border-right: 6px solid rgb(171, 161, 161);
     margin: 0;
   }
-  
+
   .thumbs-wrapper .control-prev {
     display: none;
   }
@@ -71,7 +71,7 @@
     position: relative;
     max-height: 480px;
   }
-  
+
   .carousel.carousel-slider .control-arrow {
     font-size:12px;
 
@@ -162,7 +162,7 @@ li.slide.selected{
   display:flex;
   flex-direction: column;
   gap:.5rem;
-    
+
   }
 
 .favorite-button {
@@ -179,6 +179,26 @@ li.slide.selected{
   color: white;
   gap: 10px;
   width: 100%;
+}
+
+.add-to-cart-button-owner {
+  padding: 12px 25px 12px 25px;
+  font-size: 20px;
+  border-radius: 25px 25px;
+  border: black 1px solid;
+  background-color: rgb(88, 141, 255);
+  color: white; 
+  gap: 10px;
+  width: 100%;
+}
+
+.add-to-cart-button-owner-h3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: rgb(88, 141, 255);
+  padding-bottom: 3px;
 }
 
 .fav-in-page-detail button {
@@ -341,4 +361,9 @@ label {
 
 .create-review-button button:hover {
   transform: scale(1.05);
+}
+
+.add-to-cart .cart-button button {
+  border: none;
+  width: 100%;
 }

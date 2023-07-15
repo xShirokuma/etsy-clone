@@ -12,6 +12,9 @@
     gap: 20px;
     padding-bottom: 40px;
     border-bottom: 1px rgb(146, 144, 144) solid;
+    @media screen and (max-width: 768px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .favoritesContainer .product-image {
@@ -36,6 +39,9 @@
     gap: 20px;
     padding-top: 40px;
     padding-bottom: 40px;
+    @media screen and (max-width: 768px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .recommond-products .product-image {
